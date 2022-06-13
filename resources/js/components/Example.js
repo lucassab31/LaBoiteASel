@@ -9,6 +9,7 @@ function Example() {
     return (
         <BrowserRouter>
             <div>
+                {/* possible de les mettre dans des components */}
                 <Link to="/">Accueil</Link>
                 <Link to="/test">Test</Link>
 
