@@ -6,3 +6,13 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+header {
+    background-color: red;
+
+    h1 {
+        color: blue;
+        text-transform: uppercase;
+    }
+}

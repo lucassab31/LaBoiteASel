@@ -10271,3 +10271,10 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+header {
+  background-color: red;
+}
+header h1, header .h1 {
+  color: blue;
+  text-transform: uppercase;
+}

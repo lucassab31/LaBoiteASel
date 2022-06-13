@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
+import Header from './Header';
 
 import Home from "./Home";
 import Test from "./Test";
 
-function Example() {
+function App() {
     return (
         <BrowserRouter>
             <div>
                 {/* possible de les mettre dans des components */}
-                <Link to="/">Accueil</Link>
-                <Link to="/test">Test</Link>
+                <Header />
 
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -22,8 +22,8 @@ function Example() {
     );
 }
 
-export default Example;
+export default App;
 
-if (document.getElementById('example')) {
-    ReactDOM.render(<Example />, document.getElementById('example'));
+if (document.getElementById('app')) {
+    ReactDOM.render(<App />, document.getElementById('app'));
 }

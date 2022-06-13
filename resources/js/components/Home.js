@@ -7,9 +7,4 @@ const Home = () => {
     );
 }
 
-// if (document.getElementById('hello-react')) {
-//     const root = createRoot(document.getElementById('hello-react'));
-//     root.render(<Home />);
-// }
-
 export default Home;
