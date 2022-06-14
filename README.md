@@ -8,6 +8,6 @@
 
 ## Décodeur
 - **users | role :** *U* -> utilisateur, *A* -> admin
-- **post | toolsProvided :** *O* -> Oui, *N* -> Non; *A* -> aucun outils nécéssaire
-- **post | status :** *C* -> crée, *E* -> en cours de résolution; *C* -> clôturé
-- **reports | status :** *C* -> crée, *E* -> en cours de résolution; *C* -> clôturé
+- **post | toolsProvided :** *Y* -> Oui, *N* -> Non; *A* -> aucun outils nécéssaire
+- **post | status :** *C* -> crée, *P* -> en cours de résolution; *F* -> clôturé
+- **reports | status :** *C* -> crée, *P* -> en cours de résolution; *F* -> clôturé
