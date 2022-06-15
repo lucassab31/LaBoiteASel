@@ -10313,8 +10313,14 @@ footer {
 footer p, footer a {
   color: white;
 }
-footer #reseauxSociaux__icon {
+footer #reseauxSociaux {
+  margin: 0 0 18px 0;
+}
+footer #reseauxSociaux svg {
   color: white !important;
+}
+footer #reseauxSociaux .reseauxSociaux__icon {
+  margin: 0 20px;
 }
 footer #rgpd {
   display: flex;

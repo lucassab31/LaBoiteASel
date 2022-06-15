@@ -5,26 +5,15 @@
 #annonces h2 {
   font-weight: bold;
 }
-#annonces #listAnnonces {
-  padding: 15px 10px 10px 0;
-  background-color: #F07C63;
-  margin-left: 5px;
-  flex-grow: 1;
-}
-#annonces #listAnnonces h2 {
-  padding: 10px 10px 10px 42px;
-  background-color: white;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-top: 16px;
-}
 #annonces #filtres {
   margin: 28px 24px;
 }
 #annonces #filtres h2 {
-  -webkit-text-decoration: #5BB286;
-          text-decoration: #5BB286;
+  border-bottom: 2px solid #5BB286;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding-bottom: 8px;
 }
 #annonces #filtres .filtres_container {
   display: flex;
@@ -48,4 +37,18 @@
 }
 #annonces #filtres button {
   float: right;
+}
+#annonces #listAnnonces {
+  padding: 15px 10px 10px 0;
+  background-color: #F07C63;
+  margin-left: 5px;
+  flex-grow: 1;
+}
+#annonces #listAnnonces h2 {
+  padding: 10px 10px 10px 42px;
+  background-color: white;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: 16px;
 }

@@ -56,9 +56,18 @@ footer {
         color: white;
     }
 
-    #reseauxSociaux__icon {
-        color:white !important;
+    #reseauxSociaux {
+        margin: 0 0 18px 0;
+
+        svg {
+            color: white !important;
+        }
+
+        .reseauxSociaux__icon {
+            margin:0 20px;
+        }
     }
+
 
     #rgpd{
         display : flex;

@@ -1,17 +1,21 @@
 import React from "react";
 import FacebookIcon from '@mui/icons-material/Facebook';
-import {IconContext} from "react-icons";
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import EmailIcon from '@mui/icons-material/Email';
 
 const Footer = () => {
-
     return (
         <footer>
-            <div id="reseauxSociaux">
-                <i className="reseauxSociaux__icon">  <span className="visually-hidden"> Lien vers la page Facebook de l' association</span></i>
+            <div>
+                <div id="reseauxSociaux">
+                    <FacebookIcon className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50 }}> <span className="visually-hidden"> Lien vers la page Facebook de l' association</span> </FacebookIcon>
+                    <EmailIcon className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50 }}> <span className="visually-hidden"> Lien vers la page Facebook de l' association</span> </EmailIcon>
+                    <YouTubeIcon className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50 }}> <span className="visually-hidden"> Lien vers la page Facebook de l' association</span> </YouTubeIcon>
+                    <TwitterIcon className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50}}> <span className="visually-hidden"> Lien vers la page Facebook de l' association</span> </TwitterIcon>
+                </div>
             </div>
-            <IconContext.Provider value={{ style: {fontSize: '30px', color: "red"}}}>
-                 <FacebookIcon className="reseauxSociaux__icon" color="white" fontSize="large"/>
-            </IconContext.Provider>
+
 
             <p>Tout droits réservés © 2022 La Boîte à Sel, inc.</p>
             <div id="rgpd">
