@@ -10273,10 +10273,6 @@ textarea.form-control-lg {
 header {
   background-color: #FDFDFB;
 }
-header h1, header .h1 {
-  color: blue;
-  text-transform: uppercase;
-}
 
 h1, .h1 {
   font-size: 2rem;
@@ -10292,4 +10288,25 @@ h3, .h3 {
 
 h4, .h4 {
   font-size: 1rem;
+}
+
+* :is(h1, .h1, h2, .h2, h3, .h3, h4, .h4) {
+  font-weight: bold;
+  color: #1F294C;
+}
+
+* :focus {
+  outline: 3px dashed #1F294C;
+}
+
+.button {
+  background-color: #1F294C;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  color: #fff;
+}
+.button:hover {
+  background-color: #fff;
+  color: #1F294C;
+  border: 2px solid #1F294C;
 }
