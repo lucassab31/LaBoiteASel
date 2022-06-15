@@ -8,12 +8,22 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PostsController extends Controller
 {
-    // Affichage des annonces - Liste
+    /**
+     * Display all posts
+     *
+     * @param integer $id
+     * @return Request
+     */
     public function index() {
-        
+        $posts = Post::where('visibility', 1)->orderByDesc('created_at')->get();
+        return response()->json([
+            "success" => true,
+            "data" => $posts
+        ]);
     }
 
     /**
@@ -23,7 +33,11 @@ class PostsController extends Controller
      * @return Request
      */
     public function view($id) {
-        
+        $post = Post::findOrFail($id);
+        return response()->json([
+            "success" => true,
+            "data" => $post
+        ]);
     }
 
     /**
@@ -46,8 +60,9 @@ class PostsController extends Controller
      * @return Request
      */
     public function store(Request $request) {
-        $request->validate([
-            'title' => 'required|max:80|string',
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'title' => 'required|max:10|string',
             'description' => 'required|string',
             'timeLength' => 'required|integer',
             'cost' => 'required|integer',
@@ -60,24 +75,30 @@ class PostsController extends Controller
         ],[
             'title.required' => 'Vous devez renseigner un titre',
             'title.max' => 'Le titre ne doit pas dépasser 80 caractères',
-            'title.string' => 'Le titre doit être une chaine de caractères',
+            'title.string' => 'Le titre doit être une chaîne de caractères',
             'description.required' => 'Vous devez renseigner une description',
-            'description.string' => 'La description doit être une chaine de caractères',
-            'timeLength.required' => 'Vous devez renseigner une durée aproximative',
-            'timeLength.integer' => 'Vous devez renseigner une durée aproximative correcte',
-            'cost.required' => 'Vous devez renseigner le nombre de grain de sel en récompense',
-            'cost.integer' => 'Le nombre de grain de sel doit être un entier',
-            'toolsProvided.required' => 'Vous devez renseigner si des outils sont nécessaire',
-            'toolsType.string' => 'Le type d\'outil doit être une chaine de caractères',
+            'description.string' => 'La description doit être une chaîne de caractères',
+            'timeLength.required' => 'Vous devez renseigner une durée approximative',
+            'timeLength.integer' => 'Vous devez renseigner une durée approximative correcte',
+            'cost.required' => 'Vous devez renseigner le nombre de grains de sel en récompense',
+            'cost.integer' => 'Le nombre de grains de sel doit être un entier',
+            'toolsProvided.required' => 'Vous devez renseigner si des outils sont nécessaires',
+            'toolsType.string' => 'Le type d\'outil doit être une chaîne de caractères',
             'address.required' => 'Vous devez renseigner une adresse',
-            'address.string' => 'L\'adresse doit être une chaine de caractères',
-            'zipCode.required' => 'Vous devez renseigner un code postale',
-            'zipCode.string' => 'Le code postale doit être une chaine de caractères',
+            'address.string' => 'L\'adresse doit être une chaîne de caractères',
+            'zipCode.required' => 'Vous devez renseigner un code postal',
+            'zipCode.string' => 'Le code postal doit être une chaîne de caractères',
             'city.required' => 'Vous devez renseigner une ville',
-            'city.string' => 'La ville doit être une chaine de caractères',
-            'category_id.required' => 'Vous devez renseigner une categorie',
+            'city.string' => 'La ville doit être une chaîne de caractères',
+            'category_id.required' => 'Vous devez renseigner une catégorie',
             'category_id.exists' => 'La catégorie doit exister',
         ]);
+        if($validator->fails()){
+            return response()->json([
+                "success" => false,
+                "error" => $validator->errors()
+            ]);
+        }
 
         $post = new Post();
         $post->title            = $request->title;
@@ -93,7 +114,7 @@ class PostsController extends Controller
         $post->user()->associate(Auth::user()->id);
         $post->save();
 
-        return request()->json([
+        return response()->json([
             "success" => true
         ]);
     }
@@ -119,22 +140,22 @@ class PostsController extends Controller
         ],[
             'title.required' => 'Vous devez renseigner un titre',
             'title.max' => 'Le titre ne doit pas dépasser 80 caractères',
-            'title.string' => 'Le titre doit être une chaine de caractères',
+            'title.string' => 'Le titre doit être une chaîne de caractères',
             'description.required' => 'Vous devez renseigner une description',
-            'description.string' => 'La description doit être une chaine de caractères',
-            'timeLength.required' => 'Vous devez renseigner une durée aproximative',
-            'timeLength.integer' => 'Vous devez renseigner une durée aproximative correcte',
-            'cost.required' => 'Vous devez renseigner le nombre de grain de sel en récompense',
-            'cost.integer' => 'Le nombre de grain de sel doit être un entier',
-            'toolsProvided.required' => 'Vous devez renseigner si des outils sont nécessaire',
-            'toolsType.string' => 'Le type d\'outil doit être une chaine de caractères',
+            'description.string' => 'La description doit être une chaîne de caractères',
+            'timeLength.required' => 'Vous devez renseigner une durée approximative',
+            'timeLength.integer' => 'Vous devez renseigner une durée approximative correcte',
+            'cost.required' => 'Vous devez renseigner le nombre de grains de sel en récompense',
+            'cost.integer' => 'Le nombre de grains de sel doit être un entier',
+            'toolsProvided.required' => 'Vous devez renseigner si des outils sont nécessaires',
+            'toolsType.string' => 'Le type d\'outil doit être une chaîne de caractères',
             'address.required' => 'Vous devez renseigner une adresse',
-            'address.string' => 'L\'adresse doit être une chaine de caractères',
-            'zipCode.required' => 'Vous devez renseigner un code postale',
-            'zipCode.string' => 'Le code postale doit être une chaine de caractères',
+            'address.string' => 'L\'adresse doit être une chaîne de caractères',
+            'zipCode.required' => 'Vous devez renseigner un code postal',
+            'zipCode.string' => 'Le code postal doit être une chaîne de caractères',
             'city.required' => 'Vous devez renseigner une ville',
-            'city.string' => 'La ville doit être une chaine de caractères',
-            'category_id.required' => 'Vous devez renseigner une categorie',
+            'city.string' => 'La ville doit être une chaîne de caractères',
+            'category_id.required' => 'Vous devez renseigner une catégorie',
             'category_id.exists' => 'La catégorie doit exister',
         ]);
 

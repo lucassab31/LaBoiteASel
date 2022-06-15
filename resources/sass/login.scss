@@ -1,0 +1,10 @@
+@import 'variables';
+
+.Login {
+    padding: $spacing-1
+}
+
+.Login form {
+    margin: $spacing-1;
+    max-width: $tablet;
+}
