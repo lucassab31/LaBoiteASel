@@ -10682,10 +10682,10 @@ defineJQueryPlugin(Toast);
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./public/css/home.css":
-/*!***************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./public/css/home.css ***!
-  \***************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[10].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[10].oneOf[1].use[2]!./public/css/home.css":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[10].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[10].oneOf[1].use[2]!./public/css/home.css ***!
+  \*****************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -10699,7 +10699,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body .bloc--bg-red {\r\n  background-color: #F07C63;\r\n}\r\nbody .bloc--bg-yellow {\r\n  background-color: #FFCF4F;\r\n}\r\nbody .bloc-home {\r\n  padding: 1rem;\r\n}\r\nbody .bloc-home img {\r\n  display: none;\r\n}\r\nbody .bloc-text {\r\n  background-color: #fff;\r\n  padding: 1.5rem;\r\n  margin: 2rem;\r\n  border-radius: 16px;\r\n  border: 1px solid transparent;\r\n  box-shadow: 2px 2px 4px 3px rgba(0, 0, 0, 0.25);\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\nbody .bloc-text-title {\r\n  padding: 1rem;\r\n  border-bottom: 2px solid #5BB286;\r\n  margin: auto;\r\n  width: -webkit-fit-content;\r\n  width: -moz-fit-content;\r\n  width: fit-content;\r\n  margin-bottom: 1rem;\r\n}\r\nbody .bloc-text .button {\r\n  align-self: end;\r\n}\r\n@media (min-width: 1280px) {\r\n  body .bloc-home {\r\n    padding: 0;\r\n    max-height: 429px;\r\n  }\r\n  body .bloc-home img {\r\n    display: block;\r\n  }\r\n  body .bloc--2-columns {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: space-around;\r\n  }\r\n  body .bloc--2-columns > * {\r\n    width: 50%;\r\n  }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body .bloc--bg-red {\n  background-color: #F07C63;\n}\nbody .bloc--bg-yellow {\n  background-color: #FFCF4F;\n}\nbody .bloc-home {\n  padding: 1rem;\n}\nbody .bloc-home img {\n  display: none;\n}\nbody .bloc-text {\n  background-color: #fff;\n  padding: 1.5rem;\n  margin: 2rem;\n  border-radius: 16px;\n  border: 1px solid transparent;\n  box-shadow: 2px 2px 4px 3px rgba(0, 0, 0, 0.25);\n  display: flex;\n  flex-direction: column;\n}\nbody .bloc-text-title {\n  padding: 1rem;\n  border-bottom: 2px solid #5BB286;\n  margin: auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  margin-bottom: 1rem;\n}\nbody .bloc-text .button {\n  align-self: end;\n}\n@media (min-width: 1280px) {\n  body .bloc-home {\n    padding: 0;\n    max-height: 429px;\n  }\n  body .bloc-home img {\n    display: block;\n  }\n  body .bloc--2-columns {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-around;\n  }\n  body .bloc--2-columns > * {\n    width: 50%;\n  }\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28827,6 +28827,45 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************!*\
   !*** ./resources/sass/home.scss ***!
   \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/login.scss":
+/*!***********************************!*\
+  !*** ./resources/sass/login.scss ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/validation.scss":
+/*!****************************************!*\
+  !*** ./resources/sass/validation.scss ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/compteUser.scss":
+/*!****************************************!*\
+  !*** ./resources/sass/compteUser.scss ***!
+  \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -61521,7 +61560,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_home_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./home.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./public/css/home.css");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_10_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_10_oneOf_1_use_2_home_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[10].oneOf[1].use[1]!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[10].oneOf[1].use[2]!./home.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[10].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[10].oneOf[1].use[2]!./public/css/home.css");
 
             
 
@@ -61530,11 +61569,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_home_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_10_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_10_oneOf_1_use_2_home_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_home_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_10_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_10_oneOf_1_use_2_home_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -61982,6 +62021,9 @@ function _extends() {
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
+/******/ 			"css/compteUser": 0,
+/******/ 			"css/validation": 0,
+/******/ 			"css/login": 0,
 /******/ 			"css/home": 0,
 /******/ 			"css/app": 0
 /******/ 		};
@@ -62038,9 +62080,12 @@ function _extends() {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/home","css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/home","css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/home","css/app"], () => (__webpack_require__("./resources/sass/home.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/compteUser","css/validation","css/login","css/home","css/app"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/compteUser","css/validation","css/login","css/home","css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/compteUser","css/validation","css/login","css/home","css/app"], () => (__webpack_require__("./resources/sass/home.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/compteUser","css/validation","css/login","css/home","css/app"], () => (__webpack_require__("./resources/sass/login.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/compteUser","css/validation","css/login","css/home","css/app"], () => (__webpack_require__("./resources/sass/validation.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/compteUser","css/validation","css/login","css/home","css/app"], () => (__webpack_require__("./resources/sass/compteUser.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
