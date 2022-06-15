@@ -1,0 +1,51 @@
+#annonces {
+  display: flex;
+  flex-direction: row;
+}
+#annonces h2 {
+  font-weight: bold;
+}
+#annonces #listAnnonces {
+  padding: 15px 10px 10px 0;
+  background-color: #F07C63;
+  margin-left: 5px;
+  flex-grow: 1;
+}
+#annonces #listAnnonces h2 {
+  padding: 10px 10px 10px 42px;
+  background-color: white;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: 16px;
+}
+#annonces #filtres {
+  margin: 28px 24px;
+}
+#annonces #filtres h2 {
+  -webkit-text-decoration: #5BB286;
+          text-decoration: #5BB286;
+}
+#annonces #filtres .filtres_container {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0;
+}
+#annonces #filtres .filtres_container p {
+  font-size: 19px;
+  width: 382px;
+}
+#annonces #filtres .filtres_container input {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-family: Roboto, sans-serif;
+}
+#annonces #filtres .filtres_container label {
+  font-family: "News Cycle", sans-serif;
+  font-size: 17px;
+  margin-bottom: 9px;
+}
+#annonces #filtres button {
+  float: right;
+}

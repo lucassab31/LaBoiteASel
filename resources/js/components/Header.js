@@ -13,6 +13,7 @@ const Header = () => {
             <div id="menu">
                 <Link className="menu__lien" to="/">Accueil</Link>
                 <Link className="menu__lien" to="/test">Test</Link>
+                <Link className="menu__lien" to="/annonces">Annonces</Link>
             </div>
         </header>
     );

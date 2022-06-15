@@ -10276,6 +10276,7 @@ header {
   align-items: center;
   background-color: #FDFDFB;
   justify-content: space-between;
+  box-shadow: 10px 5px 5px #dedddd;
 }
 header h1, header .h1 {
   color: #1F294C;
@@ -10298,6 +10299,9 @@ header #menu .menu__lien {
   text-decoration: none;
   font-size: 20px;
 }
+header #menu .menu__lien:active {
+  text-decoration: underline;
+}
 
 footer {
   padding: 40px;
@@ -10308,6 +10312,9 @@ footer {
 }
 footer p, footer a {
   color: white;
+}
+footer #reseauxSociaux__icon {
+  color: white !important;
 }
 footer #rgpd {
   display: flex;
@@ -10338,4 +10345,39 @@ h3, .h3 {
 
 h4, .h4 {
   font-size: 1rem;
+}
+
+.blue-btn {
+  color: #FDFDFB;
+  background-color: #1F294C;
+  padding: 8px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  font-family: Roboto, serif;
+}
+
+input {
+  padding: 7px;
+}
+
+* :is(h1, .h1, h2, .h2, h3, .h3, h4, .h4) {
+  font-weight: bold;
+  color: #1F294C;
+}
+
+* :focus {
+  outline: 3px dashed #1F294C;
+}
+
+.button {
+  background-color: #1F294C;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  color: #fff;
+}
+.button:hover {
+  background-color: #fff;
+  color: #1F294C;
+  border: 2px solid #1F294C;
 }
