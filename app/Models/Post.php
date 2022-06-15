@@ -35,8 +35,9 @@ class Post extends Model
         return $this->hasMany(Transaction::class);
     }
 
-    // a checker
-    public function users() {
-        return $this->belongsToMany(User::class)->withPivot('validated');
+    // a checker -> maybe create table candidate
+    public function user() {
+        return $this->belongsTo(User::class);
+        // return $this->belongsToMany(User::class)->withPivot('validated');
     }
 }
