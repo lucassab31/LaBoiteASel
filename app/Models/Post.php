@@ -36,7 +36,7 @@ class Post extends Model
     }
 
     // a checker -> maybe create table candidate
-    public function users() {
+    public function user() {
         return $this->belongsTo(User::class);
         // return $this->belongsToMany(User::class)->withPivot('validated');
     }

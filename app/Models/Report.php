@@ -14,11 +14,15 @@ class Report extends Model
         'status'
     ];
 
-    public function posts() {
+    public function post() {
         return $this->belongsTo(Post::class);
     }
 
-    public function users() {
-        return $this->belongsTo(User::class);
+    public function user() {
+        return $this->belongsTo(User::class,  'user_id');
+    }
+
+    public function userReported() {
+        return $this->belongsTo(User::class, 'user_reported_id');
     }
 }
