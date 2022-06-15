@@ -5487,19 +5487,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var Footer = function Footer() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("footer", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      id: "reseauxSociaux"
+      id: "reseauxSociaux",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("i", {
+        className: "reseauxSociaux__icon",
+        children: ["  ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          className: "visually-hidden",
+          children: " Lien vers la page Facebook de l' association"
+        })]
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
       children: "Tout droits r\xE9serv\xE9s \xA9 2022 La Bo\xEEte \xE0 Sel, inc."
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-      href: "#",
-      children: "Mentions L\xE9gales"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-      href: "#",
-      children: "Politique de confidentialit\xE9"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      id: "rgpd",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+        href: "#",
+        children: "Mentions L\xE9gales"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        children: " | "
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+        href: "#",
+        children: "Politique de confidentialit\xE9"
+      })]
     })]
   });
 };
@@ -5529,19 +5540,29 @@ __webpack_require__.r(__webpack_exports__);
 
 var Header = function Header() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("header", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-      src: "../../../images/logo_color.png",
-      width: "80",
-      height: "90",
-      alt: "logo de l'association Boite \xE0 Sel"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
-      children: "La Bo\xEEte \xE0 Sel"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-      to: "/",
-      children: "Accueil"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-      to: "/test",
-      children: "Test"
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      id: "laBoiteASel",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+        id: "laBoiteASel__logo",
+        src: "../../../images/logo.svg",
+        width: "80",
+        height: "90",
+        alt: "Retour \xE0 la page d'accueil"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
+        id: "laBoiteASel__nom",
+        children: "La Bo\xEEte \xE0 Sel"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      id: "menu",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+        className: "menu__lien",
+        to: "/",
+        children: "Accueil"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+        className: "menu__lien",
+        to: "/test",
+        children: "Test"
+      })]
     })]
   });
 };

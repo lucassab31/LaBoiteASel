@@ -8,11 +8,67 @@
 
 
 header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
     background-color: $whiteHeader;
+    justify-content: space-between;
 
     h1 {
-        color: blue;
-        text-transform: uppercase;
+        color: $blue;
+        margin-left: 10px;
+        font-weight: bold;
+    }
+
+    #laBoiteASel{
+        display: flex;
+        flex-direction: row;
+
+        #laBoiteASel__nom {
+            display: flex;
+            align-items: center;
+            margin-top: 35px;
+        }
+    }
+
+    #menu {
+        .menu__lien {
+            font-family: $font-family-sans-serif;
+            margin: 7px 12px 0 0;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 20px;
+        }
+    }
+}
+
+footer {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: $blue;
+
+    p,a {
+        color: white;
+    }
+
+    #rgpd{
+        display : flex;
+        flex-direction: row;
+        justify-content: center;
+
+        span {
+            color: white;
+        }
+
+        a {
+            margin: 0 4px;
+        }
+
+        a:hover {
+            color: white;
+        }
     }
 }
 
