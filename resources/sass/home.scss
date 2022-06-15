@@ -1,0 +1,66 @@
+
+@import 'variables';
+
+body {
+ 
+    .bloc--bg-red {
+        background-color: $red;
+    }
+
+    .bloc--bg-yellow {
+        background-color : $yellow;
+    }
+
+    .bloc-home {
+        padding : 1rem;
+        img {
+            display : none;
+        }
+    }
+
+    .bloc-text {
+        background-color: #fff;
+        padding: $spacing-4;
+        margin: $spacing-3;
+        border-radius: $border-rd-lg;
+        border: 1px solid transparent;
+        box-shadow: 2px 2px 4px 3px rgba(0, 0, 0, 0.25);
+        display : flex;
+        flex-direction: column;
+
+        &-title {
+            padding: $spacing-5;
+            border-bottom: 2px solid $green;
+            margin: auto;
+            width: fit-content;
+            margin-bottom: $spacing-5;
+        }
+
+        .button {
+           align-self : end;
+        }
+
+    }
+ 
+    @media  (min-width : $laptop) {
+
+        .bloc-home {
+            padding : 0;
+            max-height: 429px;
+            img {
+                display : block;
+               
+            }
+        }
+        
+        .bloc--2-columns {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+
+            & > * {
+                width: 50%;
+            }
+        }
+    }
+}

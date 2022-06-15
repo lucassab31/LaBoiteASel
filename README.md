@@ -3,7 +3,7 @@
 ## Structure des retour API
 **json :**
 - *success* -> true, false
-- *message* -> "message de retour en cas d'erreur"
+- *error* -> "message de retour en cas d'erreur"
 - *data* -> __Array__
 
 ## Décodeur
