@@ -20,10 +20,7 @@ class PostsController extends Controller
      */
     public function index() {
         $posts = Post::where('visibility', 1)->orderByDesc('created_at')->get();
-        return response()->json([
-            "success" => true,
-            "data" => $posts
-        ]);
+        return $this->sendResponse(true, $posts);
     }
 
     /**
@@ -34,10 +31,7 @@ class PostsController extends Controller
      */
     public function view($id) {
         $post = Post::findOrFail($id);
-        return response()->json([
-            "success" => true,
-            "data" => $post
-        ]);
+        return $this->sendResponse(true, $post);
     }
 
     /**
@@ -47,10 +41,7 @@ class PostsController extends Controller
      */
     public function add() {
         $categories = Category::all();
-        return response()->json([
-            "success" => true,
-            "data" => $categories
-        ]);
+        return $this->sendResponse(true, $categories);
     }
 
     /**
@@ -62,7 +53,7 @@ class PostsController extends Controller
     public function store(Request $request) {
         $input = $request->all();
         $validator = Validator::make($input, [
-            'title' => 'required|max:10|string',
+            'title' => 'required|max:80|string',
             'description' => 'required|string',
             'timeLength' => 'required|integer',
             'cost' => 'required|integer',
@@ -114,9 +105,7 @@ class PostsController extends Controller
         $post->user()->associate(Auth::user()->id);
         $post->save();
 
-        return response()->json([
-            "success" => true
-        ]);
+        return $this->sendResponse();
     }
 
     /**
@@ -171,9 +160,7 @@ class PostsController extends Controller
         $post->city             = $request->city;
         $post->save();
 
-        return request()->json([
-            "success" => true
-        ]);
+        return $this->sendResponse();
     }
 
     /**
@@ -187,9 +174,7 @@ class PostsController extends Controller
         // suppr toute les candidatures
         // $post->candidate()->detach();
         $post->delete();
-        return request()->json([
-            "success" => true
-        ]);
+        return $this->sendResponse();
     }
 
     /**
@@ -202,9 +187,7 @@ class PostsController extends Controller
         $post = Post::findOrFail($request->id);
         $post->status = 'P';
         $post->save();
-        return request()->json([
-            "success" => true
-        ]);
+        return $this->sendResponse();
     }
 
     /**
@@ -224,8 +207,6 @@ class PostsController extends Controller
         $transaction->user()->associate(Auth::user()->id);
         $transaction->save();
 
-        return request()->json([
-            "success" => true
-        ]);
+        return $this->sendResponse();
     }
 }
