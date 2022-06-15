@@ -1,10 +1,10 @@
-@media all and (min-width: 480px) {
-    .Login {
-        padding: 60px 0;
-    }
+@import 'variables';
 
-    .Login form {
-        margin: 0 auto;
-        max-width: 320px;
-    }
+.Login {
+    padding: $spacing-1
+}
+
+.Login form {
+    margin: $spacing-1;
+    max-width: $tablet;
 }

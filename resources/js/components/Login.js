@@ -1,9 +1,11 @@
-import { Button } from "bootstrap";
-import { useState } from "react";
+import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button"
 
-import "../../sass/login.scss"
+import "../../../public/css/login.css"
+import { constant } from "lodash";
 
-export default function Login() {
+const Login=()=>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -18,7 +20,7 @@ export default function Login() {
     return (
         <div className="Login">
             <Form onSubmit={handleSubmit}>
-                <Form.Group size="lg" controlId="email">
+                <Form.Group size="lg">
                     <Form.Label>Email</Form.Label>
                     <Form.Control 
                         autoFocus
@@ -27,7 +29,7 @@ export default function Login() {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </Form.Group>
-                <Form.Group size="lg" controlId="password">
+                <Form.Group size="lg">
                     <Form.Label>Password</Form.Label>
                     <Form.Control 
                         type="password"
@@ -42,3 +44,5 @@ export default function Login() {
         </div>
     );
 }
+
+export default Login;
