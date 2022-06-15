@@ -10,13 +10,16 @@
     }
 
     #filtres {
-
         margin: 28px 24px;
 
         h2 {
-            border-bottom: 2px solid #5BB286;
+            border-bottom: 2px solid $green;
             width: fit-content;
             padding-bottom: 8px;
+        }
+
+        #filtres__description {
+            font-size : $font-size-base;
         }
 
         .filtres_container {
@@ -58,6 +61,35 @@
             width: fit-content;
             margin-top: 16px;
         }
+
+        .annonce {
+            background-color: $whiteHeader;
+            margin : 29px 23px 0 42px; 
+            border-radius: 10px;
+            padding: 20px;
+
+            .annonce__infos {
+                h3 {
+                    margin-left: 6px;
+                }
+                button {
+                    margin-right: 33px;
+                }
+                .annonce__infosDate {
+                    margin-bottom: 10px;
+                }
+                .annonce__infosCategorie, .annonce__infosDate {
+                    display: flex;
+                    align-items: center;
+
+                    p {
+                        margin-top: 12px;
+                        margin-left: 12px;
+                    }
+                }
+            }
+        }
+
     }
 }
 

@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "validation.scss",
+        "_variables.scss"
+    ],
+    "names": [],
+    "file": "validation.css"
+}
