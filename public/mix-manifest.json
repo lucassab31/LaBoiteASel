@@ -1,8 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/compteUser.css": "/css/compteUser.css",
-    "/css/validation.css": "/css/validation.css",
-    "/css/login.css": "/css/login.css",
+    "/css/listAnnonces.css": "/css/listAnnonces.css",
     "/css/home.css": "/css/home.css",
     "/css/app.css": "/css/app.css"
 }

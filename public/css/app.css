@@ -48,7 +48,7 @@
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 33, 37, 41;
   --bs-body-bg-rgb: 248, 250, 252;
-  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-sans-serif: "News Cycle", sans-serif;
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
@@ -10271,7 +10271,70 @@ textarea.form-control-lg {
   }
 }
 header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
   background-color: #FDFDFB;
+  justify-content: space-between;
+  box-shadow: 10px 5px 5px #dedddd;
+}
+header h1, header .h1 {
+  color: #1F294C;
+  margin-left: 10px;
+  font-weight: bold;
+}
+header #laBoiteASel {
+  display: flex;
+  flex-direction: row;
+}
+header #laBoiteASel #laBoiteASel__nom {
+  display: flex;
+  align-items: center;
+  margin-top: 35px;
+}
+header #menu .menu__lien {
+  font-family: "News Cycle", sans-serif;
+  margin: 7px 12px 0 0;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 20px;
+}
+header #menu .menu__lien:active {
+  text-decoration: underline;
+}
+
+footer {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #1F294C;
+}
+footer p, footer a {
+  color: white;
+}
+footer #reseauxSociaux {
+  margin: 0 0 18px 0;
+}
+footer #reseauxSociaux svg {
+  color: white !important;
+}
+footer #reseauxSociaux .reseauxSociaux__icon {
+  margin: 0 20px;
+}
+footer #rgpd {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+footer #rgpd span {
+  color: white;
+}
+footer #rgpd a {
+  margin: 0 4px;
+}
+footer #rgpd a:hover {
+  color: white;
 }
 
 h1, .h1 {
@@ -10288,6 +10351,20 @@ h3, .h3 {
 
 h4, .h4 {
   font-size: 1rem;
+}
+
+.blue-btn {
+  color: #FDFDFB;
+  background-color: #1F294C;
+  padding: 8px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  font-family: Roboto, serif;
+}
+
+input {
+  padding: 7px;
 }
 
 * :is(h1, .h1, h2, .h2, h3, .h3, h4, .h4) {

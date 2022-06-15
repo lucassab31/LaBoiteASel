@@ -1,0 +1,63 @@
+// Variables
+@import 'variables';
+
+#annonces {
+    display: flex;
+    flex-direction: row;
+
+    h2 {
+        font-weight: bold;
+    }
+
+    #filtres {
+
+        margin: 28px 24px;
+
+        h2 {
+            border-bottom: 2px solid #5BB286;
+            width: fit-content;
+            padding-bottom: 8px;
+        }
+
+        .filtres_container {
+            display: flex;
+            flex-direction: column;
+            margin : 30px 0;
+
+            p {
+                font-size: 19px;
+                width: 382px;
+            }
+
+            input {
+                width: fit-content;
+                font-family: Roboto, sans-serif;
+            }
+
+            label {
+                font-family: $font-family-sans-serif;
+                font-size: 17px;
+                margin-bottom: 9px;
+            }
+        }
+
+        button {
+            float: right;
+        }
+    }
+
+    #listAnnonces {
+        padding: 15px 10px 10px 0;
+        background-color: $red;
+        margin-left: 5px;
+        flex-grow: 1;
+
+        h2 {
+            padding: 10px 10px 10px 42px;
+            background-color: white;
+            width: fit-content;
+            margin-top: 16px;
+        }
+    }
+}
+
