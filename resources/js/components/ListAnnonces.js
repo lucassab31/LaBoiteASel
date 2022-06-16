@@ -28,7 +28,7 @@ const ListAnnonces = () => {
                     <input type="number" id="lengthService" placeholder="1 heure" name="lengthService" minLength="4" maxLength="8"/>
                 </div>
 
-                <button className="blue-btn">Filtrez les annonces</button>
+                <button className="button-blue">Filtrez les annonces</button>
             </div>
 
             <div id="listAnnonces">

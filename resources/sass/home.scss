@@ -1,15 +1,8 @@
 
 @import 'variables';
+@import 'mixins';
 
 body {
- 
-    .bloc--bg-red {
-        background-color: $red;
-    }
-
-    .bloc--bg-yellow {
-        background-color : $yellow;
-    }
 
     .bloc-home {
         padding : 1rem;
@@ -28,7 +21,7 @@ body {
         display : flex;
         flex-direction: column;
 
-        &-title {
+        &__title {
             padding: $spacing-5;
             border-bottom: 2px solid $green;
             margin: auto;
@@ -54,13 +47,8 @@ body {
         }
         
         .bloc--2-columns {
-            display: flex;
-            flex-direction: row;
             justify-content: space-around;
-
-            & > * {
-                width: 50%;
-            }
+            @include bloc--2-columns(50%, 50%);
         }
     }
 }

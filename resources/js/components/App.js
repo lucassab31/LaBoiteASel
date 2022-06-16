@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {lazy} from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 import Header from './Header';
@@ -7,6 +7,7 @@ import ListAnnonces from './ListAnnonces';
 
 import Home from "./Home";
 import Test from "./Test";
+import Messaging from "./Messaging";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/test" element={<Test />} />
                     <Route path="/annonces" element={<ListAnnonces/>} />
+                    <Route path="/messaging" element={<Messaging/>}/>
                 </Routes>
 
                 <Footer/>
