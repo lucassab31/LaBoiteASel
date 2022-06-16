@@ -60,7 +60,7 @@ class UsersController extends Controller
             'lastName.required' => 'Vous devez renseigner un nom',
             'lastName.string' => 'Le nom doit être une chaîne de caractères',
             'email.required' => 'Vous devez renseigner une adresse email',
-            'email.string' => 'L\'email doit être valide',
+            'email.email' => 'L\'email doit être valide (par exemple : nom.prenom@exemple.com)',
             'email.unique' => 'Un compte existe déjà avec cette adresse email',
             'phone.required' => 'Vous devez renseigner un numéro de téléphone',
             'phone.string' => 'Le numéro de téléphone doit être une chaîne de caractères',
