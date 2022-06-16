@@ -12,7 +12,6 @@ class CategoriesController extends Controller
     /**
      * Display all categories
      *
-     * @param integer $id
      * @return Request
      */
     public function index() {
@@ -23,7 +22,7 @@ class CategoriesController extends Controller
     /**
      * Display the specified category
      *
-     * @param integer $id
+     * @param String $id
      * @return Request
      */
     public function view($id) {
@@ -93,11 +92,11 @@ class CategoriesController extends Controller
     /**
      * Delete a category
      *
-     * @param Request $request
+     * @param String $id
      * @return Request
      */
-    public function delete(Request $request) {
-        $category = Category::findOrFail($request->id);
+    public function delete($id) {
+        $category = Category::findOrFail($id);
         $category->delete();
         return $this->sendResponse();
     }
