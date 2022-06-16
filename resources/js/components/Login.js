@@ -26,7 +26,7 @@ const Login = () => {
                         <Form.Label>Nom d'utilisateur</Form.Label>
                         <Form.Control
                             autoFocus
-                            type="e-mail"
+                            type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
@@ -34,7 +34,7 @@ const Login = () => {
                     <Form.Group className="group" size="lg">
                         <Form.Label>Mot de passe</Form.Label>
                         <Form.Control
-                            type="mot de passe"
+                            type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />

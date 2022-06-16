@@ -1,15 +1,6 @@
 @import 'variables';
 
 body {
-
-    .bloc--bg-white {
-        background-color: $whiteHeader;
-    }
-
-    .bloc--bg-red {
-        background-color: $red;
-    }
-
     .Login {
         padding: $spacing-1;
     }
@@ -44,7 +35,7 @@ body {
 
     .title {
         color: $blue;
-        background-color: $whiteHeader;
+        background-color: $white;
         max-width: 250px;
         border-radius: 0 $border-rd-sm $border-rd-sm 0;
         border: 1px solid transparent;

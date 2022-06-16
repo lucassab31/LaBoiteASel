@@ -13461,7 +13461,7 @@ var Login = function Login() {
             children: "Nom d'utilisateur"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_4__["default"].Control, {
             autoFocus: true,
-            type: "e-mail",
+            type: "email",
             value: email,
             onChange: function onChange(e) {
               return setEmail(e.target.value);
@@ -13473,7 +13473,7 @@ var Login = function Login() {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_4__["default"].Label, {
             children: "Mot de passe"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_4__["default"].Control, {
-            type: "mot de passe",
+            type: "password",
             value: password,
             onChange: function onChange(e) {
               return setPassword(e.target.value);
@@ -13551,6 +13551,7 @@ var Validation = function Validation() {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "bloc--icon",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_icons_material_ThumbUpAlt__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        "aria-hidden": "true",
         style: {
           color: '#5BB286',
           fontSize: 80
@@ -37061,12 +37062,9 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************!*\
   !*** ./resources/sass/login.scss ***!
   \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
+throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: Undefined variable.\n  ╷\n6 │         background-color: $white;\r\n  │                           ^^^^^^\n  ╵\n  resources\\sass\\login.scss 6:27  root stylesheet\n    at processResult (C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\webpack\\lib\\NormalModule.js:758:19)\n    at C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\webpack\\lib\\NormalModule.js:860:5\n    at C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\loader-runner\\lib\\LoaderRunner.js:400:11\n    at C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\loader-runner\\lib\\LoaderRunner.js:252:18\n    at context.callback (C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\loader-runner\\lib\\LoaderRunner.js:124:13)\n    at C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\sass-loader\\dist\\index.js:54:7\n    at Function.call$2 (C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\sass\\sass.dart.js:99628:16)\n    at render_closure1.call$2 (C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\sass\\sass.dart.js:85048:12)\n    at _RootZone.runBinary$3$3 (C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\sass\\sass.dart.js:29643:18)\n    at _FutureListener.handleError$1 (C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\sass\\sass.dart.js:28163:21)");
 
 /***/ }),
 
@@ -37074,12 +37072,9 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************!*\
   !*** ./resources/sass/validation.scss ***!
   \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
+throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: Undefined variable.\n  ╷\n6 │         background-color: $white;\r\n  │                           ^^^^^^\n  ╵\n  resources\\sass\\validation.scss 6:27  root stylesheet\n    at processResult (C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\webpack\\lib\\NormalModule.js:758:19)\n    at C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\webpack\\lib\\NormalModule.js:860:5\n    at C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\loader-runner\\lib\\LoaderRunner.js:400:11\n    at C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\loader-runner\\lib\\LoaderRunner.js:252:18\n    at context.callback (C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\loader-runner\\lib\\LoaderRunner.js:124:13)\n    at C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\sass-loader\\dist\\index.js:54:7\n    at Function.call$2 (C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\sass\\sass.dart.js:99628:16)\n    at render_closure1.call$2 (C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\sass\\sass.dart.js:85048:12)\n    at _RootZone.runBinary$3$3 (C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\sass\\sass.dart.js:29643:18)\n    at _FutureListener.handleError$1 (C:\\xampp\\htdocs\\Lavarel\\LaBoiteASel\\node_modules\\sass\\sass.dart.js:28163:21)");
 
 /***/ }),
 
@@ -73556,8 +73551,6 @@ function combine (array, callback) {
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
 /******/ 			"css/compteUser": 0,
-/******/ 			"css/validation": 0,
-/******/ 			"css/login": 0,
 /******/ 			"css/home": 0,
 /******/ 			"css/app": 0
 /******/ 		};
@@ -73614,12 +73607,12 @@ function combine (array, callback) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/compteUser","css/validation","css/login","css/home","css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/compteUser","css/validation","css/login","css/home","css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/compteUser","css/validation","css/login","css/home","css/app"], () => (__webpack_require__("./resources/sass/home.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/compteUser","css/validation","css/login","css/home","css/app"], () => (__webpack_require__("./resources/sass/login.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/compteUser","css/validation","css/login","css/home","css/app"], () => (__webpack_require__("./resources/sass/validation.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/compteUser","css/validation","css/login","css/home","css/app"], () => (__webpack_require__("./resources/sass/compteUser.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/compteUser","css/home","css/app"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/compteUser","css/home","css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/compteUser","css/home","css/app"], () => (__webpack_require__("./resources/sass/home.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/compteUser","css/home","css/app"], () => (__webpack_require__("./resources/sass/login.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/compteUser","css/home","css/app"], () => (__webpack_require__("./resources/sass/validation.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/compteUser","css/home","css/app"], () => (__webpack_require__("./resources/sass/compteUser.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
