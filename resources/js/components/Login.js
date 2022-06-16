@@ -23,18 +23,18 @@ const Login = () => {
                 <h1 className="title">Connectez-vous</h1>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="group" size="lg">
-                        <Form.Label>Email</Form.Label>
+                        <Form.Label>Nom d'utilisateur</Form.Label>
                         <Form.Control
                             autoFocus
-                            type="email"
+                            type="e-mail"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </Form.Group>
                     <Form.Group className="group" size="lg">
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label>Mot de passe</Form.Label>
                         <Form.Control
-                            type="password"
+                            type="mot de passe"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />

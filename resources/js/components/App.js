@@ -9,6 +9,8 @@ import Home from "./Home";
 import Login from "./Login";
 import Test from "./Test";
 import Messaging from "./Messaging";
+import Validation from "./Validation";
+
 
 function App() {
     return (
