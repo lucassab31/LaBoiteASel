@@ -29,12 +29,10 @@ class UsersController extends Controller
      * @return Request
      */
     public function view($id) {
-        $oUser = new stdClass();
-        $oUser->user = User::findOrFail($id);
-        $oUser->posts = $oUser->user->posts;
-        // $user = User::findOrFail($id);
-        // $posts = $user->posts;
-        return $this->sendResponse(true, $oUser);
+        $user = User::findOrFail($id)->with(['posts' => function ($query) {
+            $query->orderByDesc('created_at');
+        }])->get();
+        return $this->sendResponse(true, $user);
     }
 
     /**
