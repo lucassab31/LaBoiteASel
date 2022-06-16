@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Report;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -203,6 +204,17 @@ class PostsController extends Controller
         $transaction->post()->associate($post->id);
         $transaction->user()->associate(Auth::user()->id);
         $transaction->save();
+
+        return $this->sendResponse();
+    }
+
+    public function report(Request $request) {
+        $report = new Report();
+        $report->$request->reason;
+        $report->user()->associate(Auth::user()->id);
+        $report->post()->associate($request->post_id);
+        $report->userReported()->associate($request->user_reported_id);
+        $report->save();
 
         return $this->sendResponse();
     }
