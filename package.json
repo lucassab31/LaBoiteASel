@@ -28,6 +28,8 @@
     "dependencies": {
         "@fontsource/news-cycle": "^4.5.7",
         "@fontsource/roboto": "^4.5.7",
+        "@emotion/react": "^11.9.3",
+        "@emotion/styled": "^11.9.3",
         "@mui/icons-material": "^5.8.4",
         "react-bootstrap": "^2.4.0"
     }

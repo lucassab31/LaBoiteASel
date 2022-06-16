@@ -1,10 +1,66 @@
 @import 'variables';
 
-.Login {
-    padding: $spacing-1
-}
+body {
+    .Login {
+        padding: $spacing-1;
+    }
+    
+    .Login form {
+        margin-left: 20rem;
+        background-color: $yellow;
+        border-radius: $border-rd-lg;
+        font-size: $font-size-base;
+        box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
+        position: absolute;
+        right: -80px;
+        padding: $spacing-6;
+    }
 
-.Login form {
-    margin: $spacing-1;
-    max-width: $tablet;
+    .group {
+        padding: $spacing-6;
+        margin: $spacing-6;
+    }
+    
+    .bloc1 {
+        margin: auto;
+        border-radius: $border-rd-lg;
+        max-width: 500px;
+        box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
+        background-image: url("../../public/images/mains-1.webp");
+        background-repeat: no-repeat;
+        min-height: 350px;
+        position: relative;
+        padding: $spacing-3 0;
+    }
+
+    .title {
+        color: $blue;
+        background-color: $white;
+        max-width: 250px;
+        border-radius: 0 $border-rd-sm $border-rd-sm 0;
+        border: 1px solid transparent;
+        margin-left: 0;
+        margin-top: $spacing-5;
+        position: absolute;
+        z-index: 1;
+    }
+
+    button {
+        display: block;
+        margin-left: 50px;
+        background-color: $blue;
+        color: white;
+    }
+
+    /*
+    @media (max-width : $tablet) {
+        .bloc1 {
+            box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
+            background-image: url("../../public/images/mains-1.webp");
+            background-repeat: no-repeat;
+            min-height: 350px;
+            position: relative;
+        }
+    }
+    */
 }
