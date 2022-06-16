@@ -27,11 +27,14 @@
   font-size: 19px;
   width: 382px;
 }
-#annonces #filtres .filtres_container input {
+#annonces #filtres .filtres_container select, #annonces #filtres .filtres_container input {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   font-family: Roboto, sans-serif;
+}
+#annonces #filtres .filtres_container select {
+  padding: 8px;
 }
 #annonces #filtres .filtres_container label {
   font-family: "News Cycle", sans-serif;

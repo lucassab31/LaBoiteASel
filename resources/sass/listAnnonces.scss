@@ -32,9 +32,13 @@
                 width: 382px;
             }
 
-            input {
+            select, input {
                 width: fit-content;
                 font-family: "Roboto", sans-serif;
+            }
+
+            select {
+                padding: 8px;
             }
 
             label {
