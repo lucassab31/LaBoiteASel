@@ -5,7 +5,7 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-
+// Header
 header {
     padding: 20px;
     display: flex;
@@ -43,6 +43,8 @@ header {
         }
     }
 }
+
+// Footer
 
 footer {
     padding: 40px;
@@ -87,6 +89,12 @@ footer {
     }
 }
 
+// globals
+
+body {
+    font-family : "Roboto", serif
+}
+
 h1{
     font-size: 2rem;
 }
@@ -111,6 +119,7 @@ input {
 * :is(h1, .h1, h2, .h2, h3, .h3, h4, .h4) {
     font-weight: bold;
     color: $blue;
+    font-family: "News Cycle";
 }
 
 *:focus { 

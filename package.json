@@ -26,8 +26,9 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
+        "@fontsource/news-cycle": "^4.5.7",
+        "@fontsource/roboto": "^4.5.7",
         "@mui/icons-material": "^5.8.4",
         "react-bootstrap": "^2.4.0"
-
     }
 }

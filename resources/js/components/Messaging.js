@@ -39,7 +39,7 @@ const Messaging = () => {
                         </div>
                     </div>
                     <form className="bloc-messages__content bloc--bg-blue">
-                    <label for="message"> Entrez votre message </label>
+                    <label htmlFor="message"> Entrez votre message </label>
                     <textarea placeholder="Exemple : Bonjour..." id="message"/>
                     <button class="button button-white" type="submit"> Envoyer le message </button>
                     </form>
