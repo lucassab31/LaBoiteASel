@@ -21,7 +21,7 @@ body {
         display : flex;
         flex-direction: column;
 
-        &__title {
+        &--title {
             padding: $spacing-5;
             border-bottom: 2px solid $green;
             margin: auto;
