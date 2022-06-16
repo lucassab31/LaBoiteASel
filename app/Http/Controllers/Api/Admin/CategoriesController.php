@@ -40,11 +40,11 @@ class CategoriesController extends Controller
     public function store(Request $request) {
         $input = $request->all();
         $validator = Validator::make($input, [
-            'title' => 'required|max:80|string',
+            'title' => 'required|max:100|string',
             'description' => 'required|string'
         ],[
             'title.required' => 'Vous devez renseigner un titre',
-            'title.max' => 'Le titre ne doit pas dépasser 80 caractères',
+            'title.max' => 'Le titre ne doit pas dépasser 100 caractères',
             'title.string' => 'Le titre doit être une chaîne de caractères',
             'description.required' => 'Vous devez renseigner une description',
             'description.string' => 'La description doit être une chaîne de caractères'
@@ -72,11 +72,11 @@ class CategoriesController extends Controller
      */
     public function update(Request $request) {
         $request->validate([
-            'title' => 'required|max:80|string',
+            'title' => 'required|max:100|string',
             'description' => 'required|string',
         ],[
             'title.required' => 'Vous devez renseigner un titre',
-            'title.max' => 'Le titre ne doit pas dépasser 80 caractères',
+            'title.max' => 'Le titre ne doit pas dépasser 100 caractères',
             'title.string' => 'Le titre doit être une chaîne de caractères',
             'description.required' => 'Vous devez renseigner une description',
             'description.string' => 'La description doit être une chaîne de caractères'
