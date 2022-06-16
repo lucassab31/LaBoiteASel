@@ -1,0 +1,111 @@
+@import 'variables';
+
+body {
+    .bloc {
+
+        &-profil {
+            display : flex;
+            padding : 1.5rem;
+
+            &__img {
+                border-right : 1px solid $green;
+                padding : $spacing-4;
+            }
+
+            &__infos {
+                padding : 0 $spacing-4;
+            }
+        }
+
+        &-messaging {
+            background-color : $yellow;
+        }
+
+        &-messages {
+            padding : $spacing-3;
+            position : relative;
+            max-height : 100vh;
+            overflow : scroll;
+            scrollbar-color: $red $blue;
+            &::-webkit-scrollbar {
+                background-color: $blue;
+            }
+            &::-webkit-scrollbar-thumb {
+                background: $red;
+              }
+
+
+            .bloc-message {
+                box-shadow: 2px 2px 4px 3px rgba(0, 0, 0, 0.25);
+                padding : $spacing-4;
+                border-radius : $border-rd-sm;
+                position : relative;
+                margin-bottom : $spacing-1;
+
+                &:last-child{
+                    margin-bottom: 200px;
+                }
+
+                &--received {
+                    background-color : $white;
+                    margin-left : 30%;
+                    &::after {
+                        border-right : 60px white solid;
+                        right: 30px;
+                    }
+                }
+
+                &--send {
+                    background-color : #fff;
+                    margin-right : 30%;
+                    &::after {
+                        border-left : 60px white solid;
+                        left : 30px;
+                    }
+                }
+
+                &::after {
+                    content : "";
+                    border-top : 0px transparent solid;
+                    border-bottom : 40px transparent solid;
+                    position: absolute;
+                    bottom: -40px;
+                }
+    
+                &__date {
+                    border-top : 1px solid $green;
+                    color : $blue;
+                    width: fit-content;
+                }
+            }
+
+            &__content {
+                padding : $spacing-5;
+                display : flex;
+                flex-direction: column;
+                align-items: center;
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                max-height : 200px;
+                width : 70%;
+
+                label {
+                    color : #fff;
+                }
+
+                textarea {
+                    width : 90%;
+                    margin : 1rem;
+                }
+
+                button {
+                    align-self : end;
+                }
+
+            }
+
+        }
+
+    }
+} 

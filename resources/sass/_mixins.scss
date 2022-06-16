@@ -1,0 +1,30 @@
+@mixin button($color, $secondColor) {
+    padding : $spacing-6 $spacing-4;
+    border-radius : $border-rd-sm;
+    background-color: $color;
+    color : $secondColor;
+    border : 2px solid transparent; 
+
+    &:hover {
+        border-color : $color; 
+        background-color: $secondColor;
+        color : $color;
+    }
+}
+
+@mixin bloc--2-columns($col1, $col2) {
+
+    display : flex;
+    flex-direction : column;
+
+    @media screen and (min-width : $laptop){
+        flex-direction : row;
+    }
+
+    &>*:first-child {
+        width : $col1;
+    }
+    &>*:last-child {
+        width : $col2;
+    }
+}
