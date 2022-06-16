@@ -6,6 +6,7 @@ import Footer from './Footer';
 import ListAnnonces from './ListAnnonces';
 
 import Home from "./Home";
+import Login from "./Login";
 import Test from "./Test";
 import Messaging from "./Messaging";
 
@@ -18,9 +19,11 @@ function App() {
 
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/connexion" element={<Login />} />
                     <Route path="/test" element={<Test />} />
                     <Route path="/annonces" element={<ListAnnonces/>} />
                     <Route path="/messaging" element={<Messaging/>}/>
+                    <Route path="/validation" element={<Validation />} />
                 </Routes>
 
                 <Footer/>
