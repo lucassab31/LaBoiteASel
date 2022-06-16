@@ -18,6 +18,7 @@ const ListAnnonces = () => {
         const apiPosts = await axios.get("http://127.0.0.1:8000/api/posts");
         const apiCategories = await axios.get("http://127.0.0.1:8000/api/posts/add");
 
+        console.log(apiPosts);
         setData({
             posts: await apiPosts.data.data, 
             listCategories: await apiCategories.data.data
