@@ -4,7 +4,7 @@ import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 import Header from './Header';
 import Footer from './Footer';
 import ListAnnonces from './ListAnnonces';
-
+import Annonce from './Annonce';
 import Home from "./Home";
 import Login from "./Login";
 import Test from "./Test";
@@ -26,6 +26,7 @@ function App() {
                     <Route path="/annonces" element={<ListAnnonces/>} />
                     <Route path="/messaging" element={<Messaging/>}/>
                     <Route path="/validation" element={<Validation />} />
+                    <Route path="/annonce" element={<Annonce/>} />
                 </Routes>
 
                 <Footer/>
