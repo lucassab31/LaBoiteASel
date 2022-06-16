@@ -85,10 +85,7 @@ class PostsController extends Controller
             'category_id.exists' => 'La catégorie doit exister',
         ]);
         if($validator->fails()){
-            return response()->json([
-                "success" => false,
-                "error" => $validator->errors()
-            ]);
+            return $this->sendResponse(false, $validator->errors());
         }
 
         $post = new Post();
@@ -166,11 +163,11 @@ class PostsController extends Controller
     /**
      * Delete a post
      *
-     * @param Request $request
+     * @param String $id
      * @return Request
      */
-    public function delete(Request $request) {
-        $post = Post::findOrFail($request->id);
+    public function delete($id) {
+        $post = Post::findOrFail($id);
         // suppr toute les candidatures
         // $post->candidate()->detach();
         $post->delete();
@@ -180,11 +177,11 @@ class PostsController extends Controller
     /**
      * Mark a post as in progress
      *
-     * @param Request $request
+     * @param String $id
      * @return Request
      */
-    public function inProgress(Request $request) {
-        $post = Post::findOrFail($request->id);
+    public function inProgress($id) {
+        $post = Post::findOrFail($id);
         $post->status = 'P';
         $post->save();
         return $this->sendResponse();
@@ -193,11 +190,11 @@ class PostsController extends Controller
     /**
      * Mark a post as finished
      *
-     * @param Request $request
+     * @param String $id
      * @return Request
      */
-    public function finish(Request $request) {
-        $post = Post::findOrFail($request->id);
+    public function finish($id) {
+        $post = Post::findOrFail($id);
         $post->status = 'F';
         $post->save();
         // Create Transaction

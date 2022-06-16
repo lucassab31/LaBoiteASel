@@ -26,10 +26,11 @@ class ReportsController extends Controller
     /**
      * Display a report
      *
+     * @param String $id
      * @return Request
      */
-    public function view($request) {
-        $report = Report::findOrFail($request->id);
+    public function view($id) {
+        $report = Report::findOrFail($id);
         return response()->json([
             "success" => true,
             "data" => $report
@@ -71,11 +72,11 @@ class ReportsController extends Controller
     /**
      * Delete a report
      *
-     * @param Request $request
+     * @param @param String $id
      * @return Request
      */
-    public function delete(Request $request) {
-        $report = Report::findOrFail($request->id);
+    public function delete($id) {
+        $report = Report::findOrFail($id);
         if ($report->status != 'F') {
             $report->delete();
             return request()->json([
