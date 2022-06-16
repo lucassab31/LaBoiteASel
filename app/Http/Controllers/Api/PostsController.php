@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Report;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,10 +21,7 @@ class PostsController extends Controller
      */
     public function index() {
         $posts = Post::where('visibility', 1)->orderByDesc('created_at')->get();
-        return response()->json([
-            "success" => true,
-            "data" => $posts
-        ]);
+        return $this->sendResponse(true, $posts);
     }
 
     /**
@@ -34,10 +32,7 @@ class PostsController extends Controller
      */
     public function view($id) {
         $post = Post::findOrFail($id);
-        return response()->json([
-            "success" => true,
-            "data" => $post
-        ]);
+        return $this->sendResponse(true, $post);
     }
 
     /**
@@ -47,10 +42,7 @@ class PostsController extends Controller
      */
     public function add() {
         $categories = Category::all();
-        return response()->json([
-            "success" => true,
-            "data" => $categories
-        ]);
+        return $this->sendResponse(true, $categories);
     }
 
     /**
@@ -62,7 +54,7 @@ class PostsController extends Controller
     public function store(Request $request) {
         $input = $request->all();
         $validator = Validator::make($input, [
-            'title' => 'required|max:10|string',
+            'title' => 'required|max:80|string',
             'description' => 'required|string',
             'timeLength' => 'required|integer',
             'cost' => 'required|integer',
@@ -94,10 +86,7 @@ class PostsController extends Controller
             'category_id.exists' => 'La catégorie doit exister',
         ]);
         if($validator->fails()){
-            return response()->json([
-                "success" => false,
-                "error" => $validator->errors()
-            ]);
+            return $this->sendResponse(false, $validator->errors());
         }
 
         $post = new Post();
@@ -114,9 +103,7 @@ class PostsController extends Controller
         $post->user()->associate(Auth::user()->id);
         $post->save();
 
-        return response()->json([
-            "success" => true
-        ]);
+        return $this->sendResponse();
     }
 
     /**
@@ -171,50 +158,44 @@ class PostsController extends Controller
         $post->city             = $request->city;
         $post->save();
 
-        return request()->json([
-            "success" => true
-        ]);
+        return $this->sendResponse();
     }
 
     /**
      * Delete a post
      *
-     * @param Request $request
+     * @param String $id
      * @return Request
      */
-    public function delete(Request $request) {
-        $post = Post::findOrFail($request->id);
+    public function delete($id) {
+        $post = Post::findOrFail($id);
         // suppr toute les candidatures
         // $post->candidate()->detach();
         $post->delete();
-        return request()->json([
-            "success" => true
-        ]);
+        return $this->sendResponse();
     }
 
     /**
      * Mark a post as in progress
      *
-     * @param Request $request
+     * @param String $id
      * @return Request
      */
-    public function inProgress(Request $request) {
-        $post = Post::findOrFail($request->id);
+    public function inProgress($id) {
+        $post = Post::findOrFail($id);
         $post->status = 'P';
         $post->save();
-        return request()->json([
-            "success" => true
-        ]);
+        return $this->sendResponse();
     }
 
     /**
      * Mark a post as finished
      *
-     * @param Request $request
+     * @param String $id
      * @return Request
      */
-    public function finish(Request $request) {
-        $post = Post::findOrFail($request->id);
+    public function finish($id) {
+        $post = Post::findOrFail($id);
         $post->status = 'F';
         $post->save();
         // Create Transaction
@@ -224,8 +205,17 @@ class PostsController extends Controller
         $transaction->user()->associate(Auth::user()->id);
         $transaction->save();
 
-        return request()->json([
-            "success" => true
-        ]);
+        return $this->sendResponse();
+    }
+
+    public function report(Request $request) {
+        $report = new Report();
+        $report->$request->reason;
+        $report->user()->associate(Auth::user()->id);
+        $report->post()->associate($request->post_id);
+        $report->userReported()->associate($request->user_reported_id);
+        $report->save();
+
+        return $this->sendResponse();
     }
 }
