@@ -16,7 +16,7 @@ class Controller extends BaseController
         else $param = "error";
         return response()->json([
             "success" => $success,
-            "data" => $content
+            "$param" => $content
         ]);
     }
 }

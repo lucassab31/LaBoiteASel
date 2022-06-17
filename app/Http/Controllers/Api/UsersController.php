@@ -25,7 +25,7 @@ class UsersController extends Controller
             'password' => $request->password
         ];
 
-        if (auth()->attempt($data)) {
+        if (Auth::attempt($data)) {
             return $this->sendResponse();
         } else {
             return $this->sendResponse(false, "Adresse mail ou mot de passe incorrect");
