@@ -7,7 +7,9 @@ use App\Models\Category;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Candidate;
 use App\Models\Report;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -31,7 +33,9 @@ class PostsController extends Controller
      * @return Request
      */
     public function view($id) {
-        $post = Post::findOrFail($id);
+        $post = Post::where('id', $id)->with(['user' => function ($query) {
+            $query->select('id', 'firstName', 'lastName');
+        }])->first();
         return $this->sendResponse(true, $post);
     }
 
@@ -52,6 +56,7 @@ class PostsController extends Controller
      * @return Request
      */
     public function store(Request $request) {
+        if (!Auth::check()) return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
         $input = $request->all();
         $validator = Validator::make($input, [
             'title' => 'required|max:80|string',
@@ -113,7 +118,8 @@ class PostsController extends Controller
      * @return Request
      */
     public function update(Request $request) {
-        $request->validate([
+        $input = $request->all();
+        $validator = Validator::make($input, [
             'title' => 'required|max:80|string',
             'description' => 'required|string',
             'timeLength' => 'required|integer',
@@ -145,18 +151,23 @@ class PostsController extends Controller
             'category_id.required' => 'Vous devez renseigner une catégorie',
             'category_id.exists' => 'La catégorie doit exister',
         ]);
+        if($validator->fails()){
+            return $this->sendResponse(false, $validator->errors());
+        }
 
         $post = Post::find($request->id);
-        $post->title            = $request->title;
-        $post->description      = $request->description;
-        $post->timeLength       = $request->timeLength;
-        $post->cost             = $request->cost;
-        $post->toolsProvided    = $request->toolsProvided;
-        $post->toolsType        = $request->toolsType;
-        $post->address          = $request->address;
-        $post->zipCode          = $request->zipCode;
-        $post->city             = $request->city;
-        $post->save();
+        if (Auth::check() && Auth::user()->id == $post->user_id) {
+            $post->title            = $request->title;
+            $post->description      = $request->description;
+            $post->timeLength       = $request->timeLength;
+            $post->cost             = $request->cost;
+            $post->toolsProvided    = $request->toolsProvided;
+            $post->toolsType        = $request->toolsType;
+            $post->address          = $request->address;
+            $post->zipCode          = $request->zipCode;
+            $post->city             = $request->city;
+            $post->save();
+        } else return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
 
         return $this->sendResponse();
     }
@@ -168,9 +179,8 @@ class PostsController extends Controller
      * @return Request
      */
     public function delete($id) {
+        if (!Auth::check()) return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
         $post = Post::findOrFail($id);
-        // suppr toute les candidatures
-        // $post->candidate()->detach();
         $post->delete();
         return $this->sendResponse();
     }
@@ -182,9 +192,13 @@ class PostsController extends Controller
      * @return Request
      */
     public function inProgress($id) {
+        if (!Auth::check()) return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
         $post = Post::findOrFail($id);
         $post->status = 'P';
         $post->save();
+
+        // Mail user qui own l'annonce en disant
+
         return $this->sendResponse();
     }
 
@@ -195,6 +209,7 @@ class PostsController extends Controller
      * @return Request
      */
     public function finish($id) {
+        if (!Auth::check()) return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
         $post = Post::findOrFail($id);
         $post->status = 'F';
         $post->save();
@@ -202,12 +217,41 @@ class PostsController extends Controller
         $transaction = new Transaction();
         $transaction->amount = $post->cost;
         $transaction->post()->associate($post->id);
-        $transaction->user()->associate(Auth::user()->id);
         $transaction->save();
+        // debit + crédit gds
+        $post->user->money -= $post->cost;
+        $post->user->save();
+        $post->userMaker->money += $post->cost;
+        $post->userMaker->save();
 
         return $this->sendResponse();
     }
 
+    /**
+     * Candidate to a post
+     *
+     * @param String $id
+     * @return Response
+     */
+    public function candidate($id) {
+        if (Auth::check()) {
+            $post = Post::findOrFail($id);
+            if ($post->user_id != Auth::user()->id) {
+                $candidate = new Candidate();
+                $candidate->user()->associate(Auth::user()->id);
+                $candidate->post()->associate($id);
+                $candidate->save();
+                return $this->sendResponse();
+            } else return $this->sendResponse(false, "Vous ne pouvez pas postuler à votre annonce !");
+        } else return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
+    }
+
+    /**
+     * Report a post
+     *
+     * @param Request $request
+     * @return Response
+     */
     public function report(Request $request) {
         $report = new Report();
         $report->$request->reason;
