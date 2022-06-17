@@ -1,0 +1,20 @@
+@import 'variables';
+@import 'mixins';
+
+main {
+    &>div:nth-child(odd){
+        background-color : $red;
+    }
+
+    &>div:nth-child(even){
+        background-color : $yellow;
+    }
+
+    .bloc-text {
+        background-color : #fff;
+    }
+
+    div {
+        padding : $spacing-4;
+    }
+}
