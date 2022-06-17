@@ -20,6 +20,8 @@ class Post extends Model
         'address',
         'zipCode',
         'city',
+        'datetimeType',
+        'datetimePost',
         'visibility',
     ];
 
