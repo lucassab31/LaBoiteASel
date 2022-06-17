@@ -95,6 +95,14 @@
                 .annonce__link {
                     color: white;
                 }
+
+                .annonce_buttons {
+                    display: flex;
+
+                    button {
+                         margin: 0;
+                    }
+                }
             }
         }
 

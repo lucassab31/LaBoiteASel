@@ -12,7 +12,27 @@
             background-color: white;
             border-radius: 9px;
             padding: 20px;
-        }   
+        }  
+        
+        [id^=annonce_basicInfos-]{
+            display: flex;
+            padding: 20px;
+
+            p {
+                margin-left: 20px;
+            }
+        }
+
+        .firstRow, .secondRow {
+            display: flex;
+            padding: 20px;
+        }
+
+        #annonce__btn {
+            display: flex;
+            margin-top: 20px;
+            justify-content: center;
+        }
     
     }
 

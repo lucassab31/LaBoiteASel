@@ -21,23 +21,33 @@ const Annonce = () => {
                     <h2>Titre de l'annonce</h2>
                     <p>Crée le par</p>
                     <div>
-                        <div>
-                            <CategoryIcon style={{ color: '#5BB286', fontSize:30}}/>
-                            <p>Catégorie : </p>
+                        <div className="firstRow">
+                            <div id="annonce_basicInfos-Category">
+                                <CategoryIcon style={{ color: '#5BB286', fontSize:30}}/>
+                                <p>Catégorie : </p>
+                            </div>
+                            <div id="annonce_basicInfos-Date">
+                                <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
+                                <p>Date</p>
+                            </div>
                         </div>
-                        <div>
-                            <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
-                            <p>Date</p>
-                        </div>
-                        <div>
-                            <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
-                            <p>Environ combien de temps</p>
-                        </div>
-                        <div>
-                            <p>30 grains de sel</p>
-                        </div>
+                       
+                       <div className="secondRow">
+                            <div id="annonce_basicInfos-Length">
+                                <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
+                                <p>Environ combien de temps</p>
+                            </div>
+                            <div id="annonce_basicInfos-salt">
+                                <p>30 grains de sel</p>
+                            </div>
+                       </div>
                     </div>
                     <button className="yellowButton">Rendre service</button>
+                </div>
+                
+                <div>
+                    <button className="button-blue">Retour à la liste des annonces</button>
+                    <button className="button-blue">Voir le profil de la personne</button>
                 </div>
             </div>
 
@@ -70,6 +80,7 @@ const Annonce = () => {
             <div id="annonces">
             
             </div>
+
         </section>
     );
 }

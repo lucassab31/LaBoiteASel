@@ -88,7 +88,7 @@ const ListAnnonces = () => {
                         </select>
                     </div>
 
-                    <button className="blue-btn">Filtrez les annonces</button>
+                    <button className="button-blue">Filtrez les annonces</button>
                 </form>
             </div>
 
@@ -114,8 +114,8 @@ const ListAnnonces = () => {
                             </div>
                             
                             <div>
-                                <button className="blue-btn"><Link to={`/annonce?id=${item.id}`}className="annonce__link">Voir l'annonce</Link></button>
-                                <button className="blue-btn">Rendre service</button>
+                                <button className="button-blue"><Link to={`/annonce?id=${item.id}`}className="annonce__link">Voir l'annonce</Link></button>
+                                <button className="button-blue">Rendre service</button>
                             </div>
                         </div>
                     </div>            
