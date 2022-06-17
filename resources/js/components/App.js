@@ -18,8 +18,6 @@ function App() {
         <BrowserRouter>
             <div>
                 <Helmet titleTemplate="La Boîte à sel | %s">
-                    <meta charSet="utf-8" />
-                    <link rel="canonical" href="http://mysite.com/example" />
                 </Helmet>
                 {/* possible de les mettre dans des components */}
                 <Header/>
