@@ -4,6 +4,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { useState, useEffect } from 'react';
 import FlatList from 'flatlist-react';
 import {Link} from "react-router-dom";
+import {Helmet} from "react-helmet";
 
 const ListAnnonces = () => {
     require("../../../public/css/listAnnonces.css");
@@ -47,6 +48,9 @@ const ListAnnonces = () => {
 
     return (
         <section id="annonces">
+            <Helmet>
+                <title>Liste des annonces</title>
+            </Helmet>
 
             <div  id="filtres">
                 <h2>Filtres</h2>

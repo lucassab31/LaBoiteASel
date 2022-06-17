@@ -10,12 +10,15 @@ import Login from "./Login";
 import Test from "./Test";
 import Messaging from "./Messaging";
 import Validation from "./Validation";
+import {Helmet} from "react-helmet";
 
 
 function App() {
     return (
         <BrowserRouter>
             <div>
+                <Helmet titleTemplate="La Boîte à sel | %s">
+                </Helmet>
                 {/* possible de les mettre dans des components */}
                 <Header/>
 

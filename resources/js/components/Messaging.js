@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Link, Routes, Route, Outlet } from "react-router-dom";
+import {Helmet} from "react-helmet";
 const laptop = 1280;
 
 const Messaging = () => {
@@ -11,6 +12,9 @@ const Messaging = () => {
         const PeopleList = () => {
             return (
                 <main>
+                    <Helmet>
+                        <title>Mes contacts</title>
+                    </Helmet>
                     <h2> Ma messagerie </h2>
                     <div id="bloc" className="bloc bloc-contacts bloc--bg-white">
                         <div className="bloc-chat">
@@ -41,6 +45,9 @@ const Messaging = () => {
         const MessageList = () => {
             return (
                 <main>
+                    <Helmet>
+                        <title>Mes messages</title>
+                    </Helmet>
                     <div className="bloc-messages"> 
                         <div className="bloc-messages__wrapper">
                         <Link to="/messaging" className="button-blue bloc-messages__contactlist">Voir mes contacts</Link>
@@ -92,6 +99,9 @@ const Messaging = () => {
     else {
         return (
             <main>
+                <Helmet>
+                    <title>Ma messagerie</title>
+                </Helmet>
                 <h2> Ma messagerie </h2>
                 <div id="bloc" className="bloc bloc-messaging bloc--1-3">
                     <div className="bloc-chat">

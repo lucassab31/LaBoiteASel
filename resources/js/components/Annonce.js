@@ -3,6 +3,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import {Helmet} from "react-helmet";
 
 const Annonce = () => {
     require("../../../public/css/annonce.css");
@@ -10,6 +11,9 @@ const Annonce = () => {
     
     return (
         <section id="annonce">
+            <Helmet>
+                    <title>Titre de l'annonce</title>
+            </Helmet>
            
             <div id="annonce_basicInfos">
                 <div>

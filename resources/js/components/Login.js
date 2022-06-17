@@ -2,6 +2,7 @@ import React, { Component, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button"
 import { constant } from "lodash";
+import {Helmet} from "react-helmet";
 
 const Login = () => {
     require("../../../public/css/login.css");
@@ -18,6 +19,9 @@ const Login = () => {
 
     return (
         <div className="Login bloc--bg-white">
+            <Helmet>
+                <title>Page de connexion</title>
+            </Helmet>
             <div className="bloc1 bloc--bg-red">
                 <h1 className="title">Connectez-vous</h1>
                 <Form onSubmit={handleSubmit}>
