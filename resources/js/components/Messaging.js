@@ -16,7 +16,7 @@ const Messaging = () => {
                     <Helmet>
                         <title>{title}</title>
                     </Helmet>
-                    <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
+                    <p role="status" className="visually-hidden"> La Boite à Sel - {title} </p>
                     <h2> Ma messagerie </h2>
                     <div id="bloc" className="bloc bloc-contacts bloc--bg-white">
                         <div className="bloc-chat">

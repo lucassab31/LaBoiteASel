@@ -4,16 +4,54 @@
 
 #annonce {
 
-    #annonce_basicInfos {
+    p {
+        font-size: $spacing-5;
+    }
+
+   #annonce_basicInfos {
+        background-color: white;
+        border-radius: 9px;
+        padding: 20px;
+    }  
+
+    #annonce_basicInfosContainer {
         background-color: $red;
         padding: 56px;
+
+        
+        [id^=annonce_basicInfos-]{
+            display: flex;
+            padding-right: 77px;
+
+            p {
+                margin-left: 20px;
+            }
+        }
+
+        .firstRow, .secondRow {
+            display: flex;
+        }
+
+        .secondRow img {
+            width: 33px;
+        }
+
+        #annonce__btn {
+            display: flex;
+            margin-top: 20px;
+            justify-content: center;
+
+            a {
+                color: $white;
+                text-decoration: none;
+            }
+        }
     
-        div:first-child {
-            background-color: white;
-            border-radius: 9px;
-            padding: 20px;
-        }   
-    
+    }
+
+    #annonce_actionBtn {
+        display: flex;
+        justify-content: end;
     }
 
     #description, #details {

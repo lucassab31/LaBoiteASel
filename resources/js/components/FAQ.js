@@ -10,7 +10,7 @@ const Faq = () => {
             <Helmet>
                     <title>{title}</title>
             </Helmet>
-            <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
+            <p role="status" className="visually-hidden"> La Boite à Sel - {title} </p>
 
             <div id="bloc1" className="bloc bloc--bg-red">
                 <div className="bloc-text">

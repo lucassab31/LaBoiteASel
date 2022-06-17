@@ -10,7 +10,7 @@ const Home = () => {
         <Helmet>
             <title>{title}</title>
         </Helmet>
-        <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
+        <p role="status" className="visually-hidden"> La Boite à Sel - {title} </p>
 
         <div id="bloc1" className="bloc bloc-home bloc--bg-red bloc--2-columns">
             <div className="bloc-text">

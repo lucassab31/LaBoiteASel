@@ -10,7 +10,7 @@ const Validation = () => {
             <Helmet>
                 <title>{title}</title>
             </Helmet>
-            <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
+            <p role="status" className="visually-hidden"> La Boite à Sel - {title} </p>
 
             <div className="bloc--icon"><ThumbUpAltIcon  aria-hidden="true" style={{ color: '#5BB286', fontSize:80}}/></div>
             <div className="bloc-yellow">

@@ -1,6 +1,6 @@
+import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 import React, {lazy} from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 import Header from './Header';
 import Footer from './Footer';
 import ListAnnonces from './ListAnnonces';
