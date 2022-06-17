@@ -3,12 +3,15 @@ import {Helmet} from "react-helmet";
 
 const Faq = () => {
     require("../../../public/css/basePage.css");
-
+    const title = "Tutoriel";
+    
     return (
         <main>
             <Helmet>
-                <title>Tutoriel</title>
+                    <title>{title}</title>
             </Helmet>
+            <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
+
             <div id="bloc1" className="bloc bloc--bg-red">
                 <div className="bloc-text">
                     <h2 className="bloc-text--title"> Comment poster une annonce ? </h2>

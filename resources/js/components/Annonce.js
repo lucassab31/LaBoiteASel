@@ -7,13 +7,14 @@ import {Helmet} from "react-helmet";
 
 const Annonce = () => {
     require("../../../public/css/annonce.css");
-
+    const title = "Titre de l'annonce"
     
     return (
         <section id="annonce">
             <Helmet>
-                    <title>Titre de l'annonce</title>
+                    <title>{title}</title>
             </Helmet>
+            <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
            
             <div id="annonce_basicInfos">
                 <div>
