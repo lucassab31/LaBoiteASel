@@ -45,6 +45,11 @@ const ListAnnonces = () => {
     //console.log("----------");
     console.log(state.posts);
     console.log(state.listCategories);
+
+    const displayCategoryName = (item) => {
+        console.log(item.category_name);
+       return item.category_name; 
+    };
   
 
     return (
@@ -105,7 +110,7 @@ const ListAnnonces = () => {
                             <div className="annonce__infos">
                                 <div className="annonce__infosCategorie">
                                     <CategoryIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                    <p>{item.category_name}</p>
+                                    <p>{displayCategoryName(item)}</p>
                                 </div>
                                 <div className="annonce__infosDate">
                                     <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>

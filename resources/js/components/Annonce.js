@@ -18,8 +18,8 @@ const Annonce = () => {
            
             <div id="annonce_basicInfos">
                 <div>
-                    <h2>Titre de l'annonce</h2>
-                    <p>Crée le par</p>
+                    <h2>{state.dataPost.title}</h2>
+                    <p>Crée le {state.postCreatedAt} par</p>
                     <div>
                         <div className="firstRow">
                             <div id="annonce_basicInfos-Category">
@@ -35,17 +35,17 @@ const Annonce = () => {
                        <div className="secondRow">
                             <div id="annonce_basicInfos-Length">
                                 <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                <p>Environ combien de temps</p>
+                                <p>{state.dataPost.timeLength} heures</p>
                             </div>
                             <div id="annonce_basicInfos-salt">
-                                <p>30 grains de sel</p>
+                                <p>{state.dataPost.cost} grains de sel</p>
                             </div>
                        </div>
                     </div>
                     <button className="yellowButton">Rendre service</button>
                 </div>
-                
-                <div>
+
+                <div id="annonce__btn">
                     <button className="button-blue">Retour à la liste des annonces</button>
                     <button className="button-blue">Voir le profil de la personne</button>
                 </div>
@@ -55,9 +55,7 @@ const Annonce = () => {
                 <h3>Description</h3>
                 <div>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lacinia diam ac molestie. Mauris eleifend nunc non dui suscipit, ac pellentesque tellus congue.
-                        Curabitur placerat libero lectus, a consequat ex cursus ut. 
-                        Aenean imperdiet varius nunc, vel condimentum dolor malesuada at. Nulla interdum purus velit, congue euismod mi bibendum quis. Quisque ultrices auctor aliquam. 
+                     {state.dataPost.description}
                     </p>
                 </div>
             </div>
@@ -67,12 +65,12 @@ const Annonce = () => {
                 <div id="details__infos">
                     <div>
                         <LocationOnIcon style={{ color: '#5BB286', fontSize:30}} />
-                        <p>Localisation : Exemple </p>
+                        <p>Localisation : {state.dataPost.city}</p>
                     </div>
 
                     <div>
                         <ConstructionIcon style={{ color: '#5BB286', fontSize:30}}/>
-                        <p>Pas d'outils nécessaires</p>
+                        <p>{tools()}</p>
                     </div>
                 </div>
             </div>
