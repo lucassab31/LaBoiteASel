@@ -10,11 +10,13 @@ const Messaging = () => {
     if(window.innerWidth < laptop) {
 
         const PeopleList = () => {
+            const title = "Mes contacts";
             return (
                 <main>
                     <Helmet>
-                        <title>Mes contacts</title>
+                        <title>{title}</title>
                     </Helmet>
+                    <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
                     <h2> Ma messagerie </h2>
                     <div id="bloc" className="bloc bloc-contacts bloc--bg-white">
                         <div className="bloc-chat">
@@ -43,11 +45,15 @@ const Messaging = () => {
         }
 
         const MessageList = () => {
+            const title = "Mes messages";
+
             return (
                 <main>
                     <Helmet>
-                        <title>Mes messages</title>
+                        <title>{title}</title>
                     </Helmet>
+                    <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
+
                     <div className="bloc-messages"> 
                         <div className="bloc-messages__wrapper">
                         <Link to="/messaging" className="button-blue bloc-messages__contactlist">Voir mes contacts</Link>
@@ -97,11 +103,13 @@ const Messaging = () => {
     }
     //desktop version
     else {
+        const title = "Ma messagerie";
         return (
             <main>
                 <Helmet>
-                    <title>Ma messagerie</title>
+                    <title>{title}</title>
                 </Helmet>
+                <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
                 <h2> Ma messagerie </h2>
                 <div id="bloc" className="bloc bloc-messaging bloc--1-3">
                     <div className="bloc-chat">

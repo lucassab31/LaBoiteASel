@@ -8,6 +8,7 @@ import {Helmet} from "react-helmet";
 
 const ListAnnonces = () => {
     require("../../../public/css/listAnnonces.css");
+    const title = "Liste des annonces";
     
     //let loading = true; 
     // Fetch data from database to get list of posts and category
@@ -49,8 +50,9 @@ const ListAnnonces = () => {
     return (
         <section id="annonces">
             <Helmet>
-                <title>Liste des annonces</title>
+                <title>{title}</title>
             </Helmet>
+            <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
 
             <div  id="filtres">
                 <h2>Filtres</h2>

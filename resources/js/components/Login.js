@@ -6,6 +6,7 @@ import {Helmet} from "react-helmet";
 
 const Login = () => {
     require("../../../public/css/login.css");
+    const title = "Page de connexion";
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -20,8 +21,10 @@ const Login = () => {
     return (
         <div className="Login bloc--bg-white">
             <Helmet>
-                <title>Page de connexion</title>
+                <title>{title}</title>
             </Helmet>
+            <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
+
             <div className="bloc1 bloc--bg-red">
                 <h1 className="title">Connectez-vous</h1>
                 <Form onSubmit={handleSubmit}>
