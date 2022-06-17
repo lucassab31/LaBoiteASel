@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import CategoryIcon from '@mui/icons-material/Category';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ConstructionIcon from '@mui/icons-material/Construction';
@@ -6,68 +6,159 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import {Helmet} from "react-helmet";
 
 const FormAnnonce = () => {
-    require("../../../public/css/annonce.css");
+    require("../../../public/css/basePage.css");
     const title = "Créez votre annonce";
-    const tools = false;
+    const [tools, setTools] = useState("false");
+
+    function changeTools(e) {
+        setTools(e.currentTarget.value);
+    }
+
+    async function submitForm() {
+
+    }
+
+    const GetInfosTools = (obj) => {
+        //issue : tabulation error on radio inputs
+        if(obj.render == "true"){
+            return (
+                <div className="form__block__column">
+                    <label htmlFor="type_tools"> Veuillez renseignez les outils nécessaires (par exemple : "pelle, seau") </label>
+                    <input id="type_tools" type="text"/>
+
+                    <fieldset className="group-radios">
+                        <legend> Ces outils seront-ils fournis ? </legend>
+
+                        <div className="group-radios__radio">
+                            <input id="unrequired" type="radio" value="oui" name="gettools"/>
+                            <label htmlFor="unrequired"> Oui </label>
+                        </div>
+
+                        <div className="group-radios__radio">
+                            <input id="required" type="radio" value="non" name="gettools"/>
+                            <label htmlFor="required"> Non </label>
+                        </div>
+                    </fieldset>
+                </div>
+            )
+        }
+        else {
+            return null;
+        }
+    }
 
     return (
-        <section id="annonce">
+        <main id="formAnnonce">
             <Helmet>
                 <title>{title}</title>
             </Helmet>
-            <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
+            <p role="status" className="visually-hidden"> La Boite à Sel - {title} </p>
+
+            <h2> Annonce </h2>
            
             <form>
-                <label htmlFor="title"> Titre de votre annonce (exemple : "Besoin d'aide pour tailler ma haie") </label>
-                <input id="title" type="text" placeholder="titre..."/>
+                <fieldset className="form__block-1 form__block bloc--bg-yellow">
+                    <legend className="form__block__title">Création d'annonce</legend>
 
-                <label htmlFor="description">  Votre description </label>
-                <input id="description" type="text" placeholder="ma description..."/>
+                    <div className="bloc--2-2 form__block__wrapper">
+                        
+                        <div className="form__block__column">
 
-                <label htmlFor="localisation">  Votre zone géographique (par exemple : "18ème arrondissement de Paris") </label>
-                <input id="localisation" type="text" placeholder="ma zone géographique..."/>
+                            <label htmlFor="title"> Titre de votre annonce (par exemple : "Besoin d'aide pour tailler ma haie") </label>
+                            <input id="title" type="text" placeholder="mon titre d'annonce..."/>
 
-                <label htmlFor="category"> Choisir une catégorie </label>
-                <select id="category"> 
-                    <option> Category </option>
-                </select>
+                            <label htmlFor="description">  Votre description </label>
+                            <textarea id="description" type="text" placeholder="ma description..."/>
 
-                <fieldset className="group-radios">
-                    <legend> Des outils sont-ils nécessaires ? </legend>
+                        </div>
 
-                    <div className="group-radios__radio">
-                        <input  id="tools_yes" type="radio" value="oui" name="tools"/>
-                        <label htmlFor="tools_yes"> Oui </label>
+                        <div className="form__block__column">
+
+                            <label htmlFor="category"> Choisissez une catégorie </label>
+                            <select id="category"> 
+                                <option> Category </option>
+                            </select>
+
+                            <label htmlFor="saltNumber"> Nombre de grains de sel </label>
+                            <input type="number" id="saltNumber"/>
+
+                        </div>
+
                     </div>
 
-                    <div className="group-radios__radio">
-                        <input  id="tools_no" type="radio" value="non" name="tools"/>
-                        <label htmlFor="tools_no"> Non </label>
-                    </div>
                 </fieldset>
 
-                {tools === true && 
-                    <div>
-                        <label htmlFor="type_tools"> Veuillez renseignez les outils nécessaires </label>
-                        <input id="type_tools" type="text"/>
+                <div className="form__block-2 form__block bloc--bg-yellow bloc--2-2">
+                    <fieldset className="group-radios form__block__column">
+                        <legend className="form__block__title"> Des outils sont-ils nécessaires ? </legend>
+                        
+                        <div className="group-radios__radio form__block__wrapper">
+                            <input id="tools_yes" onChange={changeTools} type="radio" value="true" name="toolsreq"/>
+                            <label htmlFor="tools_yes"> Oui </label>
+                        </div>
 
-                        <fieldset className="group-radios">
-                            <legend> Ces outils seront-ils fournis ? </legend>
+                        <div className="group-radios__radio form__block__wrapper">
+                            <input id="tools_no" onChange={changeTools} type="radio" value="false" name="toolsreq"/>
+                            <label htmlFor="tools_no"> Non </label>
+                        </div>
+                    </fieldset>
 
-                            <div className="group-radios__radio">
-                                <input id="unrequired" type="radio" value="oui" name="tools"/>
-                                <label htmlFor="unrequired"> Oui </label>
+                    <GetInfosTools render={tools}/>
+                </div>
+
+                <div className="form__block-3 form__block bloc--bg-yellow">
+
+                    <fieldset>
+                        <legend className="form__block__title"> Date et une durée pour le service demandé </legend>
+
+                        <div className="bloc--2-2 form__block__wrapper">
+                        
+                            <div className="form__block__column">
+                                <label htmlFor="date"> Date </label>
+                                <input id="date" type="date"/>
                             </div>
 
-                            <div className="group-radios__radio">
-                                <input id="required" type="radio" value="non" name="tools"/>
-                                <label htmlFor="required"> Non </label>
+                            <div className="form__block__column">
+                                <label htmlFor="time"> Durée </label>
+                                <input id="time" type="time"/>
                             </div>
-                        </fieldset>
+
+                        </div>
+
+                    </fieldset>
+                </div>
+
+                <fieldset className="form__block-4 form__block bloc--bg-yellow">
+
+                    <legend className="form__block__title">Votre adresse</legend>
+
+                    <div className="bloc--2-2 form__block__wrapper">
+
+                        <div className="form__block__column">
+
+                            <label htmlFor="address"> Votre numéro et nom de rue (ces informations ne sera pas visible sur l'annonce) </label>
+                            <input id="address" type="text" placeholder="mes numéro et nom de rue..."/>
+
+                            <label htmlFor="city"> Votre ville </label>
+                            <input id="city" type="text" placeholder="ma ville..."/>
+                        
+                        </div>
+
+                        <div className="form__block__column">
+
+                            <label htmlFor="zipcode"> Votre code postal </label>
+                            <input id="zipcode" type="text" placeholder="mon code postal..."/>
+
+                        </div>
+
                     </div>
-                }
+                
+                </fieldset>
+
+                <button type="submit" className="button-yellow" onClick={submitForm}> Créer votre annonce </button>
+
             </form>
-        </section>
+        </main>
     );
 }
 

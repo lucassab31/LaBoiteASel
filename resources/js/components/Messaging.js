@@ -21,7 +21,7 @@ const Messaging = () => {
                     <div id="bloc" className="bloc bloc-contacts bloc--bg-white">
                         <div className="bloc-chat">
                             <div className="bloc-profil"> 
-                                <img className="bloc-profil__img" src="../../images/exemple-profile.png"></img>
+                                <img className="bloc-profil__img" alt="" src="../../images/exemple-profile.png"></img>
                                 <div className="bloc-profil__infos">
                                     <p className="bloc-infos__name"> Nathalie Sims </p>
                                     <p className="bloc-infos__date"> 25/06/2034 10:34 </p>

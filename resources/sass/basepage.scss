@@ -14,7 +14,32 @@ main {
         background-color : #fff;
     }
 
-    div {
+    &>div {
         padding : $spacing-4;
     }
+
+    //formulaires
+
+    .form__block {
+        margin : $spacing-3;
+        border-radius : $border-rd-lg;
+        padding: $spacing-3 0;
+
+        &__title {
+            background-color : #fff;
+            padding : $spacing-6;
+            width: fit-content;
+        }
+
+        &__wrapper {
+            padding: 0 2rem;
+        }
+
+        @media screen and (min-width : $laptop){
+            input:not([type="radio"]), textarea, select {
+                width : 60%;
+            }
+        }
+    }
+
 }
