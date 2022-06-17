@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Api\Admin\UsersController;
-use App\Http\Controllers\Api\PostsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\PassportAuthController;
+use App\Http\Controllers\Api\PostsController;
+use App\Http\Controllers\Api\UsersController;
+use App\Http\Controllers\Api\Admin\UsersController as AdminUsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,27 +25,37 @@ Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/add', [PostsController::class, 'add']);
     Route::post('/add', [PostsController::class, 'store']);
 
+    Route::get('/candidate/{id}', [PostsController::class, 'candidate']);
     Route::get('/progress/{id}', [PostsController::class, 'inProgress']);
     Route::get('/finish/{id}', [PostsController::class, 'finish']);
     
     Route::get('/delete/{id}', [PostsController::class, 'delete']);
 });
+// Users
+Route::prefix('users')->name('users.')->group(function () {
+    Route::post('/login', [UsersController::class, 'login']);
+    Route::get('/logout', [UsersController::class, 'logout']);
+
+    Route::get('/view/{id}', [UsersController::class, 'view']);
+    Route::get('/viewPosts/{id}', [UsersController::class, 'viewPosts']);
+    Route::get('/viewTransactions/{id}', [UsersController::class, 'viewTransactions']);
+    Route::get('/viewReports/{id}', [UsersController::class, 'viewReports']);
+    
+    Route::get('/delete/{id}', [UsersController::class, 'delete']);
+});
 // Admin
 Route::prefix('admin')->group(function () {
     // Users
     Route::prefix('users')->name('users.')->group(function () {
-        Route::get('/', [UsersController::class, 'index']);
-        Route::get('/view/{id}', [UsersController::class, 'view']);
+        Route::get('/', [AdminUsersController::class, 'index']);
+        Route::get('/view/{id}', [AdminUsersController::class, 'view']);
     
-        Route::get('/add', [UsersController::class, 'add']);
-        Route::post('/add', [UsersController::class, 'store']);
+        Route::get('/add', [AdminUsersController::class, 'add']);
+        Route::post('/add', [AdminUsersController::class, 'store']);
 
-        Route::get('/delete/{id}', [UsersController::class, 'delete']);
+        Route::get('/delete/{id}', [AdminUsersController::class, 'delete']);
     });
 });
-
-Route::post('login', [PassportAuthController::class, 'login']);
-Route::get('logout', [PassportAuthController::class, 'logout']);
 
 // A mettre en place à la fin
 Route::middleware('isAuthenticated')->group(function () {

@@ -29,9 +29,9 @@ class UsersController extends Controller
      * @return Request
      */
     public function view($id) {
-        $user = User::findOrFail($id)->with(['posts' => function ($query) {
+        $user = User::where('id', $id)->with(['posts' => function ($query) {
             $query->orderByDesc('created_at');
-        }])->get();
+        }])->first();
         return $this->sendResponse(true, $user);
     }
 
@@ -75,7 +75,6 @@ class UsersController extends Controller
             'city.required' => 'Vous devez renseigner une ville en France',
             'city.string' => 'La ville doit être une chaîne de caractères',
             'role.required' => 'Vous devez renseigner un rôle'
-            
         ]);
         if($validator->fails()) {
             return $this->sendResponse(false, $validator->errors());
@@ -108,7 +107,8 @@ class UsersController extends Controller
      * @return Request
      */
     public function update(Request $request) {
-        $request->validate([
+        $input = $request->all();
+        $validator = Validator::make($input, [
             'firstName' => 'required|string',
             'lastName' => 'required|string',
             'email' => 'required|email|unique:users,email',
@@ -125,7 +125,7 @@ class UsersController extends Controller
             'lastName.required' => 'Vous devez renseigner un nom',
             'lastName.string' => 'Le nom doit être une chaîne de caractères',
             'email.required' => 'Vous devez renseigner une adresse email',
-            'email.string' => 'L\'email doit être valide',
+            'email.email' => 'L\'email doit être valide (par exemple : nom.prenom@exemple.com)',
             'email.unique' => 'Un compte existe déjà avec cette adresse email',
             'phone.required' => 'Vous devez renseigner un numéro de téléphone',
             'phone.string' => 'Le numéro de téléphone doit être une chaîne de caractères',
@@ -140,8 +140,10 @@ class UsersController extends Controller
             'city.required' => 'Vous devez renseigner une ville en France',
             'city.string' => 'La ville doit être une chaîne de caractères',
             'role.required' => 'Vous devez renseigner un rôle'
-            
         ]);
+        if($validator->fails()) {
+            return $this->sendResponse(false, $validator->errors());
+        }
 
         $user = User::find($request->id);
         $user->firstName        = $request->firstName;
