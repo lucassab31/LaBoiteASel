@@ -4,19 +4,24 @@
 
 #annonce {
 
-    #annonce_basicInfos {
+    p {
+        font-size: $spacing-5;
+    }
+
+   #annonce_basicInfos {
+        background-color: white;
+        border-radius: 9px;
+        padding: 20px;
+    }  
+
+    #annonce_basicInfosContainer {
         background-color: $red;
         padding: 56px;
-    
-        div:first-child {
-            background-color: white;
-            border-radius: 9px;
-            padding: 20px;
-        }  
+
         
         [id^=annonce_basicInfos-]{
             display: flex;
-            padding: 20px;
+            padding-right: 77px;
 
             p {
                 margin-left: 20px;
@@ -25,7 +30,6 @@
 
         .firstRow, .secondRow {
             display: flex;
-            padding: 20px;
         }
 
         .secondRow img {
@@ -43,6 +47,11 @@
             }
         }
     
+    }
+
+    #annonce_actionBtn {
+        display: flex;
+        justify-content: end;
     }
 
     #description, #details {

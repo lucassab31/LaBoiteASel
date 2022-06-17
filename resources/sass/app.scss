@@ -179,10 +179,6 @@ input {
 }
 
 .yellowButton {
-    padding : $spacing-6 $spacing-4;
-    border-radius : $border-rd-sm;
-    background-color: $yellow;
-    font-weight: bold;
-    border: none;
-    color: $blue;
+    @include button($yellow, $blue);
+
 }

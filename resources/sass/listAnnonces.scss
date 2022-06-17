@@ -76,9 +76,7 @@
                 h3 {
                     margin-left: 6px;
                 }
-                button {
-                    margin-right: 33px;
-                }
+              
                 .annonce__infosDate {
                     margin-bottom: 10px;
                 }
@@ -92,15 +90,19 @@
                     }
                 }
 
-                .annonce__link {
-                    color: white;
-                }
-
-                .annonce_buttons {
+                .annonce_btn {
                     display: flex;
 
                     button {
-                         margin: 0;
+                         margin: 0 17px 0 0;
+                    }
+
+                    .annonce__link--blue {
+                        color: $blue;
+                    }
+
+                    .annonce__link--white {
+                        color: white;
                     }
                 }
             }

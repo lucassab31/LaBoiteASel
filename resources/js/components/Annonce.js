@@ -10,6 +10,12 @@ const Annonce = () => {
     require("../../../public/css/annonce.css");
     const title = "Titre de l'annonce";
 
+    let  baseUrl = "http://127.0.0.1:8000/api/posts/"; 
+
+    // get the id of the post from the url 
+    const queryParams = new URLSearchParams(window.location.search);
+    const id = queryParams.get('id');
+
     // fetch data of the post from the database 
     const [state, setDataPost] = useState({
         dataPost: '', 
@@ -17,7 +23,7 @@ const Annonce = () => {
         postCreatedAt:''
     });
     const fetchDataPost = async () => {
-        const apiPost = await axios.get("http://127.0.0.1:8000/api/posts/view/4");
+        const apiPost = await axios.get(baseUrl+"view/"+id);
         const apiCategories = await axios.get("http://127.0.0.1:8000/api/posts/add");
 
         //console.log(apiPost.data.data.created_at); 
@@ -54,8 +60,8 @@ const Annonce = () => {
     
 
 
-    console.log(state.dataPost);
-    console.log(state.postCreatedAt);
+    //console.log(state.dataPost);
+    //console.log(state.category);
 
     const tools = () => {
        
@@ -77,9 +83,9 @@ const Annonce = () => {
                     <title>{title}</title>
             </Helmet>
             <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
-        
-            <div id="annonce_basicInfos">
-                <div>
+            
+            <div id="annonce_basicInfosContainer">
+                <div id="annonce_basicInfos">
                     <h2>{state.dataPost.title}</h2>
                     <p>Crée le {state.postCreatedAt} par</p>
                     <div>
@@ -104,7 +110,9 @@ const Annonce = () => {
                             </div>
                        </div>
                     </div>
-                    <button className="yellowButton">Rendre service</button>
+                    <div id="annonce_actionBtn">
+                        <button className="yellowButton"><Link to="/validation">Rendre service</Link></button>
+                    </div>
                 </div>
 
                 <div id="annonce__btn">

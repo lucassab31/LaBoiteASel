@@ -20,7 +20,7 @@ const ListAnnonces = () => {
         const apiPosts = await axios.get("http://127.0.0.1:8000/api/posts");
         const apiCategories = await axios.get("http://127.0.0.1:8000/api/posts/add");
 
-        console.log(apiPosts);
+       //console.log(apiPosts);
         setData({
             posts: await apiPosts.data.data, 
             listCategories: await apiCategories.data.data
@@ -28,12 +28,12 @@ const ListAnnonces = () => {
 
         // find category name for each post
         for (let post of apiPosts.data.data ) {
-            console.log(post);
+            //console.log(post);
             //console.log(post.category_id);
             for (let category of apiCategories.data.data) {
                 if (category.id === post.category_id ) {
                     post.category_name = category.title;
-                    console.log(post.category_name);
+                    //console.log(post.category_name);
                 }
             }
         }
@@ -42,14 +42,8 @@ const ListAnnonces = () => {
             fetchPosts();
 
        }, []);
-    //console.log("----------");
-    console.log(state.posts);
-    console.log(state.listCategories);
-
-    const displayCategoryName = (item) => {
-        console.log(item.category_name);
-       return item.category_name; 
-    };
+    //console.log(state.posts);
+    //console.log(state.listCategories);
   
 
     return (
@@ -110,7 +104,7 @@ const ListAnnonces = () => {
                             <div className="annonce__infos">
                                 <div className="annonce__infosCategorie">
                                     <CategoryIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                    <p>{displayCategoryName(item)}</p>
+                                    <p>Catégorie</p>
                                 </div>
                                 <div className="annonce__infosDate">
                                     <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
@@ -118,9 +112,9 @@ const ListAnnonces = () => {
                                 </div>
                             </div>
                             
-                            <div>
-                                <button className="button-blue"><Link to={`/annonce?id=${item.id}`}className="annonce__link">Voir l'annonce</Link></button>
-                                <button className="button-blue">Rendre service</button>
+                            <div className="annonce_btn">
+                                <button className="button-blue"><Link to={`/annonce?id=${item.id}`} className="annonce__link--white">Voir l'annonce</Link></button>
+                                <button className="yellowButton"><Link to="/validation" className="annonce__link--blue">Rendre service</Link></button>
                             </div>
                         </div>
                     </div>            
