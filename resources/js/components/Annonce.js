@@ -82,7 +82,7 @@ const Annonce = () => {
             <Helmet>
                     <title>{title}</title>
             </Helmet>
-            <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
+            <p role="status" className="visually-hidden"> La Boite à Sel - {title} </p>
             
             <div id="annonce_basicInfosContainer">
                 <div id="annonce_basicInfos">

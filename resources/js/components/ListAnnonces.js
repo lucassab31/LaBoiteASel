@@ -47,11 +47,11 @@ const ListAnnonces = () => {
   
 
     return (
-        <section id="annonces">
+        <main id="annonces">
             <Helmet>
                 <title>{title}</title>
             </Helmet>
-            <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
+            <p role="status" className="visually-hidden"> La Boite à Sel - {title} </p>
 
             <div  id="filtres">
                 <h2>Filtres</h2>
@@ -122,7 +122,7 @@ const ListAnnonces = () => {
                 />                    
                 </div>
             </div>
-        </section>
+        </main>
     );
 }
 
