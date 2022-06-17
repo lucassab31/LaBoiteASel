@@ -28,10 +28,19 @@
             padding: 20px;
         }
 
+        .secondRow img {
+            width: 33px;
+        }
+
         #annonce__btn {
             display: flex;
             margin-top: 20px;
             justify-content: center;
+
+            a {
+                color: $white;
+                text-decoration: none;
+            }
         }
     
     }
