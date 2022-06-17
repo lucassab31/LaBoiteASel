@@ -1,38 +1,40 @@
 @import 'variables';
+@import 'mixins';
 
 body {
     .bloc {
 
         &-profil {
             display : flex;
-            padding : 1.5rem;
 
             &__img {
                 border-right : 1px solid $green;
-                padding : $spacing-4;
+                padding : 0 $spacing-6;
             }
 
             &__infos {
                 padding : 0 $spacing-4;
             }
-        }
 
-        &-messaging {
-            background-color : $yellow;
+            .bloc-infos__name, .bloc-infos__date {
+                display : inline;
+            }
+
+            .bloc-infos__date {
+                right: 20px;
+                position: absolute;
+            }
         }
 
         &-messages {
-            padding : $spacing-3;
             position : relative;
-            max-height : 100vh;
-            overflow : scroll;
-            scrollbar-color: $red $blue;
-            &::-webkit-scrollbar {
-                background-color: $blue;
+
+            &__wrapper {
+                overflow : none;
+                background-color: $yellow;
+                padding: $spacing-3;
+                position: relative;
             }
-            &::-webkit-scrollbar-thumb {
-                background: $red;
-              }
 
 
             .bloc-message {
@@ -41,6 +43,7 @@ body {
                 border-radius : $border-rd-sm;
                 position : relative;
                 margin-bottom : $spacing-1;
+                margin-top : $spacing-4;
 
                 &:last-child{
                     margin-bottom: 200px;
@@ -82,30 +85,64 @@ body {
             &__content {
                 padding : $spacing-5;
                 display : flex;
-                flex-direction: column;
+                flex-direction : column;
                 align-items: center;
-                position: fixed;
+                position: absolute;
                 bottom: 0;
-                right: 0;
-                max-height : 200px;
-                width : 70%;
+                min-width : 100%;
 
                 label {
                     color : #fff;
                 }
 
                 textarea {
-                    width : 90%;
-                    margin : 1rem;
-                }
-
-                button {
-                    align-self : end;
+                    width : 95%;
                 }
 
             }
 
+            &__wrapper-textarea {
+                width : 75%;
+            }
+
         }
 
+    }
+
+    @media  (min-width : $laptop) {
+
+        .bloc{
+
+            &-profil {
+                padding : 1.5rem;
+
+                &__img {
+                    padding : $spacing-4;
+                }
+            }
+
+            &-messages {
+
+                &__content {
+                flex-direction: row;
+
+                    button {
+                        width : 25%;
+                    }
+                }
+
+                &__wrapper {
+                    max-height: 100vh;
+                    overflow: scroll;
+                    scrollbar-color: $red $blue;
+                    &::-webkit-scrollbar {
+                        background-color: $blue;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        background: $red;
+                    }
+                }
+            }
+        }
     }
 } 

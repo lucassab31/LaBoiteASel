@@ -1,8 +1,8 @@
 import React from "react";
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
-import "../../../public/css/validation.css"
 
 const Validation = () => {
+    require("../../../public/css/validation.css");
     return (
         <main className="main-validation">
             <div className="bloc--icon"><ThumbUpAltIcon  aria-hidden="true" style={{ color: '#5BB286', fontSize:80}}/></div>

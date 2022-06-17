@@ -53,6 +53,10 @@ footer {
     text-align: center;
     background-color: $blue;
 
+    *:focus {
+        outline : 3px dashed #fff!important;
+    }
+
     p,a {
         color: white;
     }
@@ -144,6 +148,10 @@ input {
     &> *:focus {
         outline : 3px dashed #fff!important;
     }
+}
+
+.bloc--bg-white {
+    background-color : $white;
 }
 
 .button-blue {

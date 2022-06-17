@@ -1,11 +1,10 @@
 import React, { Component, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button"
-
-import "../../../public/css/login.css"
 import { constant } from "lodash";
 
 const Login = () => {
+    require("../../../public/css/login.css");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
