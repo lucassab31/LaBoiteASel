@@ -1,12 +1,12 @@
 import React from "react";
 import CategoryIcon from '@mui/icons-material/Category';
-import css from "../../../public/css/listAnnonces.css";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { useState, useEffect } from 'react';
 import FlatList from 'flatlist-react';
 import {Link} from "react-router-dom";
 
 const ListAnnonces = () => {
+    require("../../../public/css/listAnnonces.css");
     
     //let loading = true; 
     // Fetch data from database to get list of posts and category

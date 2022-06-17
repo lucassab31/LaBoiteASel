@@ -3,9 +3,9 @@ import CategoryIcon from '@mui/icons-material/Category';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import css from "../../../public/css/annonce.css";
 
 const Annonce = () => {
+    require("../../../public/css/annonce.css");
 
     
     return (

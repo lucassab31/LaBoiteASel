@@ -1,8 +1,8 @@
 import React from "react";
-import css from "../../../public/css/home.css"
 
 const Home = () => {
- 
+    require("../../../public/css/home.css");
+
     return (
         <main>
         <div id="bloc1" className="bloc bloc-home bloc--bg-red bloc--2-columns">

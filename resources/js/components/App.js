@@ -24,9 +24,9 @@ function App() {
                     <Route path="/connexion" element={<Login />} />
                     <Route path="/test" element={<Test />} />
                     <Route path="/annonces" element={<ListAnnonces/>} />
-                    <Route path="/messaging" element={<Messaging/>}/>
                     <Route path="/validation" element={<Validation />} />
                     <Route path="/annonce" element={<Annonce/>} />
+                    <Route path="/messaging/*" element={<Messaging/>}/>
                 </Routes>
 
                 <Footer/>
