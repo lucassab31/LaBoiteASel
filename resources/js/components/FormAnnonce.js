@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import CategoryIcon from '@mui/icons-material/Category';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ConstructionIcon from '@mui/icons-material/Construction';
@@ -9,6 +9,27 @@ const FormAnnonce = () => {
     require("../../../public/css/basePage.css");
     const title = "Créez votre annonce";
     const [tools, setTools] = useState("false");
+    const [list, setList] = useState([]);
+
+    async function fetchPosts() {
+        await axios.get("http://127.0.0.1:8000/api/posts/add")
+        .then(
+            response => (
+                setList(
+                    response.data.data.map(
+                        item => ( 
+                        <option key={Object.values(item)[0]}> {Object.values(item)[1]} </option>)
+                    )
+                )
+            )
+        )    
+    };
+
+    useEffect(() => {
+        fetchPosts();
+
+    }, []);
+
 
     function changeTools(e) {
         setTools(e.currentTarget.value);
@@ -75,8 +96,8 @@ const FormAnnonce = () => {
                         <div className="form__block__column">
 
                             <label htmlFor="category"> Choisissez une catégorie </label>
-                            <select id="category"> 
-                                <option> Category </option>
+                            <select id="category">
+                                {list}
                             </select>
 
                             <label htmlFor="saltNumber"> Nombre de grains de sel </label>
