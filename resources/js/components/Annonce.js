@@ -4,6 +4,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import {Helmet} from "react-helmet";
+import {Link} from "react-router-dom";
 import { useState, useEffect } from 'react';
 import {Link} from "react-router-dom";
 
@@ -30,33 +31,29 @@ const Annonce = () => {
         //console.log(apiPost.data.data.created_at); 
         let date = apiPost.data.data.created_at;
         date = new Date(apiPost.data.data.created_at).toISOString().slice(0,10);
-        console.log(date);
+        //console.log(date);
 
         apiPost.data.data.created_at = date; 
-        console.log(apiPost.data.data.created_at);
+        //console.log(apiPost.data.data.created_at);
+     
+        // find category name for each post
+        //console.log("toto");
+        for (let category of apiCategories.data.data) {
+            if (category.id === apiPost.data.data.category_id ) {
+                apiPost.data.data.category_name = category.title;
+                //console.log(post.category_name);
+            }
+        }
 
         setDataPost({
             dataPost: await apiPost.data.data, 
             listCategories: await apiCategories.data.data,
             postCreatedAt : await  apiPost.data.data.created_at
         });
-
-     
-        
-        // find category name for each post
-        console.log("toto");
-        for (let category of apiCategories.data.data) {
-            if (category.id === apiPost.data.data.category_id ) {
-                post.category_name = category.title;
-                console.log(post.category_name);
-            }
-        }
-        
     };
     useEffect(() => {
         fetchDataPost();
-
-       }, []);
+    }, []);
 
     
 
@@ -93,7 +90,7 @@ const Annonce = () => {
                         <div className="firstRow">
                             <div id="annonce_basicInfos-Category">
                                 <CategoryIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                <p>Catégorie : </p>
+                                <p>{state.dataPost.category_name}</p>
                             </div>
                             <div id="annonce_basicInfos-Date">
                                 <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
@@ -107,6 +104,7 @@ const Annonce = () => {
                                 <p>{state.dataPost.timeLength} heures</p>
                             </div>
                             <div id="annonce_basicInfos-salt">
+                                <img src="../../../images/grains_sel.svg" alt=""/>
                                 <p>{state.dataPost.cost} grains de sel</p>
                             </div>
                        </div>
