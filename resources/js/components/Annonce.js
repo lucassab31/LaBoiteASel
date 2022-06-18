@@ -27,8 +27,8 @@ const Annonce = () => {
     const fetchDataPost = async () => {
         const apiPost = await axios.get(baseUrl+"view/"+id);
         const apiCategories = await axios.get("http://127.0.0.1:8000/api/posts/add");
+        //console.log(apiPost.data.data); 
 
-        //console.log(apiPost.data.data.created_at); 
         let date = apiPost.data.data.created_at;
         date = new Date(apiPost.data.data.created_at).toISOString().slice(0,10);
         //console.log(date);
@@ -45,24 +45,24 @@ const Annonce = () => {
             }
         }
 
+        // firstname & lastname of the user 
+        let username = apiPost.data.data.user.firstName + " " + apiPost.data.data.user.lastName; 
+
         setDataPost({
             dataPost: await apiPost.data.data, 
             listCategories: await apiCategories.data.data,
-            postCreatedAt : await  apiPost.data.data.created_at
+            postCreatedAt : await  apiPost.data.data.created_at, 
+            userName : await username
         });
     };
     useEffect(() => {
         fetchDataPost();
     }, []);
 
-    
-
-
-    //console.log(state.dataPost);
     //console.log(state.category);
+    console.log(state);
 
     const tools = () => {
-       
         if (state.dataPost.toolsProvided === "Y") {
             return "Tous les outils nécessaires seront fournis.";
         }
@@ -85,7 +85,7 @@ const Annonce = () => {
             <div id="annonce_basicInfosContainer">
                 <div id="annonce_basicInfos">
                     <h2>{state.dataPost.title}</h2>
-                    <p>Crée le {state.postCreatedAt} par</p>
+                    <p>Crée le {state.postCreatedAt} par {state.userName}</p>
                     <div>
                         <div className="firstRow">
                             <div id="annonce_basicInfos-Category">
