@@ -10,6 +10,18 @@ const FormAnnonce = () => {
     const title = "Créez votre annonce";
     const [tools, setTools] = useState("false");
     const [list, setList] = useState([]);
+    const [result, setResult] = useState({
+        title : "",
+        category_id : "",
+        toolsType : "",
+        toolsProvided : "",
+        description : "",
+        timeLength : "",
+        cost : "",
+        address : "",
+        zipCode : "",
+        city : ""
+    });
 
     async function fetchPosts() {
         await axios.get("http://127.0.0.1:8000/api/posts/add")
@@ -18,7 +30,7 @@ const FormAnnonce = () => {
                 setList(
                     response.data.data.map(
                         item => ( 
-                        <option key={Object.values(item)[0]}> {Object.values(item)[1]} </option>)
+                        <option data-name="category_id" value={Object.values(item)[0]} key={Object.values(item)[0]}> {Object.values(item)[1]} </option>)
                     )
                 )
             )
@@ -27,16 +39,76 @@ const FormAnnonce = () => {
 
     useEffect(() => {
         fetchPosts();
-
     }, []);
 
+    useEffect(()=> {
+        send();
+    }, [result]);
 
     function changeTools(e) {
         setTools(e.currentTarget.value);
     }
 
-    async function submitForm() {
+    const createAnnonce = () => {
+        return (
+            <main>
+                <div>
+                    <p> Votre annonce a bien été créee !</p>
+                </div>
+            </main>
+        );
+    }
 
+    async function submitForm(e) {
+        e.preventDefault(); 
+        let form = e.target;
+        //let results = [];
+
+        //traitement du formulaire
+
+        //select
+        let select = document.getElementById('category');
+        let option = select.options[select.selectedIndex];
+        let optionKey = option.getAttribute("data-name"); 
+        let results = {};
+        results = {...results, [optionKey] : option.value};
+
+        for(let item of form){
+
+            //other inputs
+            let type = item.getAttribute("type");
+            const keyItem = item.getAttribute("data-name");
+            const valueItem = item.value;
+           
+
+            if(type !== "radio") {
+
+                if(keyItem && keyItem.length > 0 && valueItem.length > 0){
+                    //setResult({...result, [keyItem] : valueItem});
+                    results = {...results, [keyItem] : valueItem};
+                }
+
+            }
+
+            else {
+                let radios = [];
+                radios.push(item);
+                if(keyItem && keyItem.length > 0 && valueItem.length > 0){
+                    Array.from(radios).find(radio => radio.checked ? results = {...results, [keyItem] : valueItem} : "");
+                   
+                }
+            }
+        }
+
+        results = {...results, id : 1};
+
+        setResult(results);
+    }
+
+
+    async function send(){
+        console.log(result);
+        await axios.post("http://127.0.0.1:8000/api/posts/add", result).then(res => console.log(res.data));
     }
 
     const GetInfosTools = (obj) => {
@@ -45,18 +117,18 @@ const FormAnnonce = () => {
             return (
                 <div className="form__block__column">
                     <label htmlFor="type_tools"> Veuillez renseignez les outils nécessaires (par exemple : "pelle, seau") </label>
-                    <input id="type_tools" type="text"/>
+                    <input data-name="toolsType" id="type_tools" type="text"/>
 
                     <fieldset className="group-radios">
                         <legend> Ces outils seront-ils fournis ? </legend>
 
                         <div className="group-radios__radio">
-                            <input id="unrequired" type="radio" value="oui" name="gettools"/>
+                            <input data-name="toolsProvided" id="unrequired" type="radio" value="B" name="gettools"/>
                             <label htmlFor="unrequired"> Oui </label>
                         </div>
 
                         <div className="group-radios__radio">
-                            <input id="required" type="radio" value="non" name="gettools"/>
+                            <input data-name="toolsProvided" id="required" type="radio" value="A" name="gettools"/>
                             <label htmlFor="required"> Non </label>
                         </div>
                     </fieldset>
@@ -77,7 +149,7 @@ const FormAnnonce = () => {
 
             <h2> Annonce </h2>
            
-            <form>
+            <form onSubmit={submitForm}>
                 <fieldset className="form__block-1 form__block bloc--bg-yellow">
                     <legend className="form__block__title">Création d'annonce</legend>
 
@@ -86,10 +158,10 @@ const FormAnnonce = () => {
                         <div className="form__block__column">
 
                             <label htmlFor="title"> Titre de votre annonce (par exemple : "Besoin d'aide pour tailler ma haie") </label>
-                            <input id="title" type="text" placeholder="mon titre d'annonce..."/>
+                            <input data-name="title" id="title" type="text" placeholder="mon titre d'annonce..."/>
 
                             <label htmlFor="description">  Votre description </label>
-                            <textarea id="description" type="text" placeholder="ma description..."/>
+                            <textarea data-name="description" id="description" type="text" placeholder="ma description..."/>
 
                         </div>
 
@@ -101,7 +173,7 @@ const FormAnnonce = () => {
                             </select>
 
                             <label htmlFor="saltNumber"> Nombre de grains de sel </label>
-                            <input type="number" id="saltNumber"/>
+                            <input data-name="cost" type="number" id="saltNumber"/>
 
                         </div>
 
@@ -136,12 +208,12 @@ const FormAnnonce = () => {
                         
                             <div className="form__block__column">
                                 <label htmlFor="date"> Date </label>
-                                <input id="date" type="date"/>
+                                <input data-name="datetimePost" id="date" type="date"/>
                             </div>
 
                             <div className="form__block__column">
-                                <label htmlFor="time"> Durée </label>
-                                <input id="time" type="time"/>
+                                <label htmlFor="time"> Durée en heures, par exemple pour 3 heures marquer "3" </label>
+                                <input data-name="timeLength" id="time" type="number"/>
                             </div>
 
                         </div>
@@ -158,17 +230,17 @@ const FormAnnonce = () => {
                         <div className="form__block__column">
 
                             <label htmlFor="address"> Votre numéro et nom de rue (ces informations ne sera pas visible sur l'annonce) </label>
-                            <input id="address" type="text" placeholder="mes numéro et nom de rue..."/>
+                            <input data-name="address" id="address" type="text" placeholder="mes numéro et nom de rue..."/>
 
                             <label htmlFor="city"> Votre ville </label>
-                            <input id="city" type="text" placeholder="ma ville..."/>
+                            <input data-name="city" id="city" type="text" placeholder="ma ville..."/>
                         
                         </div>
 
                         <div className="form__block__column">
 
                             <label htmlFor="zipcode"> Votre code postal </label>
-                            <input id="zipcode" type="text" placeholder="mon code postal..."/>
+                            <input data-name="zipCode" id="zipcode" type="text" placeholder="mon code postal..."/>
 
                         </div>
 
@@ -176,7 +248,7 @@ const FormAnnonce = () => {
                 
                 </fieldset>
 
-                <button type="submit" className="button-yellow" onClick={submitForm}> Créer votre annonce </button>
+                <button type="submit" className="button-yellow"> Créer votre annonce </button>
 
             </form>
         </main>
