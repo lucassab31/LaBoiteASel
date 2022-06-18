@@ -6,13 +6,12 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import {Helmet} from "react-helmet";
 import {Link} from "react-router-dom";
 import { useState, useEffect } from 'react';
-import {Link} from "react-router-dom";
+import axios from 'axios';
+const API_URL = process.env.MIX_APP_URL +'api/'; 
 
 const Annonce = () => {
-    require("../../../public/css/annonce.css");
-    const title = "Titre de l'annonce";
 
-    let  baseUrl = "http://127.0.0.1:8000/api/posts/"; 
+    let  baseUrl = API_URL+"posts/"; 
 
     // get the id of the post from the url 
     const queryParams = new URLSearchParams(window.location.search);
@@ -26,7 +25,7 @@ const Annonce = () => {
     });
     const fetchDataPost = async () => {
         const apiPost = await axios.get(baseUrl+"view/"+id);
-        const apiCategories = await axios.get("http://127.0.0.1:8000/api/posts/add");
+        const apiCategories = await axios.get(baseUrl+"add");
         //console.log(apiPost.data.data); 
 
         let date = apiPost.data.data.created_at;
@@ -59,8 +58,11 @@ const Annonce = () => {
         fetchDataPost();
     }, []);
 
+    require("../../../public/css/annonce.css");
+    const title = state.dataPost.title;
+
     //console.log(state.category);
-    console.log(state);
+    //console.log(state);
 
     const tools = () => {
         if (state.dataPost.toolsProvided === "Y") {
@@ -115,7 +117,7 @@ const Annonce = () => {
                 </div>
 
                 <div id="annonce__btn">
-                    <button className="button-blue">Retour à la liste des annonces</button>
+                    <button className="button-blue"><Link to="/annonces">Retour à la liste des annonces</Link></button>
                     <button className="button-blue">Voir le profil de la personne</button>
                 </div>
             </div>

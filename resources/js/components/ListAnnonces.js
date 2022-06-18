@@ -5,20 +5,21 @@ import { useState, useEffect } from 'react';
 import FlatList from 'flatlist-react';
 import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet";
+const API_URL = process.env.MIX_APP_URL +'api/'; 
 
 const ListAnnonces = () => {
     require("../../../public/css/listAnnonces.css");
     const title = "Liste des annonces";
     
-    //let loading = true; 
     // Fetch data from database to get list of posts and category
+    let  baseUrl = API_URL+"posts/"; 
     const [state, setData] = useState({
         posts: '', 
         listCategories:''
     });
     const fetchPosts = async () => {
-        const apiPosts = await axios.get("http://127.0.0.1:8000/api/posts");
-        const apiCategories = await axios.get("http://127.0.0.1:8000/api/posts/add");
+        const apiPosts = await axios.get(baseUrl);
+        const apiCategories = await axios.get(baseUrl+"add");
 
        //console.log(apiPosts);
         setData({
@@ -29,7 +30,6 @@ const ListAnnonces = () => {
         // find category name for each post
         for (let post of apiPosts.data.data ) {
             //console.log(post);
-            //console.log(post.category_id);
             for (let category of apiCategories.data.data) {
                 if (category.id === post.category_id ) {
                     post.category_name = category.title;
@@ -94,21 +94,26 @@ const ListAnnonces = () => {
             <div id="listAnnonces">
                 <h2>Liste des annonces</h2>
                 <div id="listAnnonces__container">
-
-                <FlatList list={state.posts} renderItem={item => 
-                    <div className="annonce">
-                        <img src="#" alt=""/>
-                        <div className="annonce__infos">
-
-                            <h3>{item.title}</h3>
+                    <FlatList list={state.posts}  renderItem={item => 
+                        <div className="annonce">
+                            <img src="#" alt=""/>
                             <div className="annonce__infos">
-                                <div className="annonce__infosCategorie">
-                                    <CategoryIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                    <p>Catégorie</p>
+                                <h3>{item.title}</h3>
+
+                                <div className="annonce__infos">
+                                    <div className="annonce__infosCategorie">
+                                        <CategoryIcon style={{ color: '#5BB286', fontSize:30}}/>
+                                        <p>Catégorie</p>
+                                    </div>
+                                    <div className="annonce__infosDate">
+                                        <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
+                                        <p>19/06/2022</p>
+                                    </div>
                                 </div>
-                                <div className="annonce__infosDate">
-                                    <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                    <p>19/06/2022</p>
+                                
+                                <div className="annonce_btn">
+                                    <button className="button-blue"><Link to={`/annonce?id=${item.id}`} className="annonce__link--white">Voir l'annonce</Link></button>
+                                    <button className="yellowButton"><Link to="/validation" className="annonce__link--blue">Rendre service</Link></button>
                                 </div>
                             </div>
                             
@@ -116,9 +121,8 @@ const ListAnnonces = () => {
                                 <Link to={`/annonce?id=${item.id}`} className="button-blue">Voir l'annonce</Link>
                                 <Link to="/validation" className="button-yellow">Rendre service</Link>
                             </div>
-                        </div>
-                    </div>            
-            }
+                        </div>           
+                    }
                 />                    
                 </div>
             </div>
