@@ -3,21 +3,20 @@ import { Button } from "react-bootstrap";
 import EditIcon from '@mui/icons-material/Edit';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import "../../../public/css/compteUser.css"
+import { useEffect } from "react";
+
+const API_URL = process.env.MIX_APP_URL + '/api/';
+console.log(API_URL);
 
 const CompteUser = () => {
 
     useEffect(() => {
-        fetchPosts();
+        fetchUser();
 
     }, []);
-    const userForm = async () => {
-        const response = await axios.get("http://127.0.0.1:8000/api/utilisateur");
-        if (response.data.success) navigate("/");
-        else {
-            // afficher l'erreur "response.data.error"
-            let error = document.getElementById("error");
-            error.textContent = response.data.error;
-        }
+    const fetchUser = async () => {
+        const response = await axios.get(API_URL + "users/view/0");
+        console.log(response.data);
     }
 
     return (
