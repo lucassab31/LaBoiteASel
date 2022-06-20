@@ -33,14 +33,19 @@ class PostsController extends Controller
      * 
      * @param String $category
      * @param String $lengthService
+     * @param String $date
      * @return Request
      */
-    public function filteredPosts($category, $lengthService) {
-        //$posts = Post::where('category_id', $category)->get();
-        $posts = Post::where([
+    public function filteredPosts( $category, $lengthService, $date) {
+        //dd($date);
+       /* $posts = Post::where([
             ['category_id',$category],
-            ['timeLength',$lengthService]
-        ])->get();
+            ['timeLength',$lengthService],
+            ['datetimePost', $date]
+        ])->get();*/
+        //$posts = Post::where('datetimePost', $date)->get();
+        //$posts = Post::where('category_id', $category)->where('timeLength', $lengthService)->get();
+        $posts = Post::where('category_id', $category)->where('timeLength', $lengthService)->where('datetimePost', $date)->get();
         return $this->sendResponse(true, $posts);
     }
 

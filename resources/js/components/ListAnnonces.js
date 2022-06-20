@@ -17,6 +17,7 @@ const ListAnnonces = () => {
     const [state, setData] = useState({
         posts: '', 
         listCategories:'',
+        filteredPosts:''
     });
 
     const fetchPosts = async () => {
@@ -33,6 +34,7 @@ const ListAnnonces = () => {
     useEffect(() => {
             fetchPosts();
     }, []);
+    console.log(state.listCategories);
 
 
     // Filter part - form 
@@ -58,7 +60,28 @@ const ListAnnonces = () => {
         console.log('category ', category);
         console.log('length of the service ', lengthService);
         console.log('date limit is ', date);
+        let idCategory;
+
+        console.log(category);
+        for ( const item of state.listCategories) {
+            console.log(item);
+            console.log(category);
+            if (item.title == category) {
+                console.log("is it working ? :')");
+                 idCategory = item.id; 
+            }
+        }
+        let urlApiRequest = baseUrl+"postsFiltered/"+idCategory+"/"+lengthService;
+        console.log(idCategory);
+        console.log(urlApiRequest);
+        fetchFilteredPosts(urlApiRequest);
     }; 
+
+    const fetchFilteredPosts = async (urlRequest) => {
+        console.log("toto");
+        const apiFilteredPosts = await axios.get(urlRequest);
+        console.log(apiFilteredPosts.data);
+    };
 
 
     return (
@@ -122,7 +145,7 @@ const ListAnnonces = () => {
                                     </div>
                                     <div className="annonce__infosDate">
                                         <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                        <p>19/06/2022</p>
+                                        <p>DATE</p>
                                     </div>
                                 </div>
                                 

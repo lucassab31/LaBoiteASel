@@ -14,6 +14,7 @@ const Annonce = () => {
     // taille des champs + texte claires 
 
     let  baseUrl = API_URL+"posts/"; 
+    console.log(baseUrl);
 
     // get the id of the post from the url 
     const queryParams = new URLSearchParams(window.location.search);
