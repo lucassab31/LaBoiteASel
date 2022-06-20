@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Admin;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class PostsController extends Controller
 {
@@ -86,6 +87,8 @@ class PostsController extends Controller
         $post->zipCode          = $request->zipCode;
         $post->city             = $request->city;
         $post->status           = $request->status;
+        $post->datetimeType     = $request->datetimeType;
+        $post->datetimePost     = $request->datetimePost;
         $post->category()->associate(Category::findOrFail($request->category_id));
         $post->save();
 
