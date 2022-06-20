@@ -162,6 +162,10 @@ input {
    @include button($blue, #fff);
 }
 
+.button-yellow {
+    @include button($yellow, $blue);
+ }
+
 .button-white {
     @include button(#fff, $blue);
 
@@ -178,7 +182,26 @@ input {
     }
 }
 
+.bloc--2-2 {
+    @include bloc--2-columns(50%, 50%);
+
+    .form__block__column {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
 .yellowButton {
     @include button($yellow, $blue);
 
+}
+
+.field_error {
+    color : $blue;
+    font-weight : bold;
+    border : 2px solid $red;
+    padding : $spacing-6;
+    width : fit-content;
+    margin-top : $spacing-6;
 }

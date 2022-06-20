@@ -91,7 +91,9 @@ class PostsController extends Controller
             'category_id.exists' => 'La catégorie doit exister',
         ]);
         if($validator->fails()){
-            return $this->sendResponse(false, $validator->errors());
+            return response()->json([
+                "validate_err"=> $validator->messages()
+            ]);
         }
 
         $post = new Post();
@@ -154,7 +156,9 @@ class PostsController extends Controller
             'category_id.exists' => 'La catégorie doit exister',
         ]);
         if($validator->fails()){
-            return $this->sendResponse(false, $validator->errors());
+            return response()->json([
+                "validate_err"=> $validator->messages()
+            ]);
         }
 
         $post = Post::find($request->id);

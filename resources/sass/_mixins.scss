@@ -20,12 +20,15 @@
 
     @media screen and (min-width : $laptop){
         flex-direction : row;
+
+        &>*:first-child {
+            width : $col1;
+        }
+        &>*:last-child {
+            width : $col2;
+        }
+        
     }
 
-    &>*:first-child {
-        width : $col1;
-    }
-    &>*:last-child {
-        width : $col2;
-    }
+   
 }
