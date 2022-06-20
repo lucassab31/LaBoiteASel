@@ -10,6 +10,7 @@ import Login from "./Login";
 import Test from "./Test";
 import Messaging from "./Messaging";
 import Validation from "./Validation";
+import CompteUser from './CompteUser';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/connexion" element={<Login />} />
+                    <Route path="/utilisateur" element={<CompteUser />} />
                     <Route path="/test" element={<Test />} />
                     <Route path="/annonces" element={<ListAnnonces/>} />
                     <Route path="/messaging" element={<Messaging/>}/>

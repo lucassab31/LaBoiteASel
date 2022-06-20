@@ -1,1 +1,87 @@
 @import 'variables';
+@import 'mixins';
+
+body {
+    .bloc-white {
+        background-color: $white;
+        padding : 1rem;
+    }
+
+    .bloc-red {
+        background-color: $red;
+        padding : 1rem;
+    }
+
+    .left-panel {
+        background-color: #fff;
+        border-radius: $border-rd-lg;
+        border: 1px solid transparent;
+        box-shadow: 2px 2px 4px 3px rgba(0, 0, 0, 0.25);
+        padding: $spacing-4;
+        margin: $spacing-3;
+        float: left;
+        width: 40%;
+    }
+
+    .right-panel {
+        background-color: #fff;
+        border-radius: $border-rd-lg;
+        border: 1px solid transparent;
+        box-shadow: 2px 2px 4px 3px rgba(0, 0, 0, 0.25);
+        padding: $spacing-4;
+        margin: $spacing-3;
+        position: relative;
+        margin-left: 50%;
+    }
+
+    .panel-title {
+        border-bottom: 2px solid $green;
+        text-align: center;
+        margin: auto;
+        width: fit-content;
+        margin-bottom: $spacing-5;
+        padding: $spacing-5;
+    }
+
+    p {
+        align-items: flex-start;
+    }
+
+    .text {
+        text-align: left;
+    }
+
+    .menu-button {
+        background-color: #e0e0e0;
+        color: $blue;
+        margin: $spacing-6;
+        display : inline-block;
+        text-align: end;
+        margin-left: 300px;
+    }
+
+    .menu-option {
+        border-radius: 5%;
+        border-bottom: 3px solid $blue;
+        width: fit-content;
+        margin: auto;
+        margin-bottom: $spacing-5;
+    }
+
+    .user-image {
+        text-align: center;
+        align-items: center;
+        z-index: 1;
+    }
+
+    .bg-image {
+        align-items: center;
+        border-radius: 0 0 $border-rd-lg $border-rd-lg ;
+        z-index: 0;
+        box-shadow: 2px 2px 4px 3px rgba(0, 0, 0, 0.25);
+        max-height: 180px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+}
