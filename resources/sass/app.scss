@@ -27,6 +27,10 @@ header {
             align-items: center;
             margin-top: 35px;
         }
+
+        img {
+            width: 80px;
+        }
     }
 
     #menu {
@@ -52,6 +56,10 @@ footer {
     flex-direction: column;
     text-align: center;
     background-color: $blue;
+
+    *:focus {
+        outline : 3px dashed #fff!important;
+    }
 
     p,a {
         color: white;
@@ -146,6 +154,10 @@ input {
     }
 }
 
+.bloc--bg-white {
+    background-color : $white;
+}
+
 .button-blue {
    @include button($blue, #fff);
 }
@@ -164,4 +176,9 @@ input {
     &>*:first-child {
         background-color : #fff;
     }
+}
+
+.yellowButton {
+    @include button($yellow, $blue);
+
 }

@@ -13,7 +13,7 @@ const mix = require('laravel-mix');
 
 
 //add the name of your scss file in "parts" array to compile in a separate css file
-let parts = ["app", "home", "login", "validation", "compteUser","listAnnonces", "messaging"];
+let parts = ["app", "home", "login", "validation", "compteUser","listAnnonces", "annonce", "messaging", "basePage"];
 mix.js('resources/js/app.js', 'public/js').react();
 
 for(i=0; i < parts.length; i++){

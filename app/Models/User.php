@@ -64,7 +64,7 @@ class User extends Authenticatable
         return $this->hasMany(Report::class);
     }
 
-    // public function posts() {
-    //     return $this->belongsToMany(Post::class)->withPivot('validated');
-    // }
+    public function candidates() {
+        return $this->hasMany(Candidate::class);
+    }
 }
