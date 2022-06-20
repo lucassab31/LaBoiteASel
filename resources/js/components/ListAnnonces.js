@@ -15,18 +15,46 @@ const ListAnnonces = () => {
     let  baseUrl = API_URL+"posts/"; 
     const [state, setData] = useState({
         posts: '', 
+        listCategories:'',
     });
     const fetchPosts = async () => {
         const apiPosts = await axios.get(baseUrl);
+        const apiCategories = await axios.get(baseUrl+"add");
+
+        
         setData({
             posts: await apiPosts.data.data, 
+            listCategories: await apiCategories.data.data
         });
+
+        // find category name for each post
+        for (let post of apiPosts.data.data ) {
+            console.log("avant");
+            console.log(post.category.title);
+            console.log("après");
+            for (let category of apiCategories.data.data) {
+                if (category.id === post.category_id ) {
+                    post.category_name = category.title;
+                    //console.log(post.category_name);
+                }
+            }
+            console.log(post);
+        }
+
        // console.log(apiPosts.data.data);
+
+        if ( apiPosts.data.data[0].category_name) {
+            console.log("toto");
+            console.log(apiPosts.data.data[0].category_name);
+            console.log(apiPosts.data.data[1].category_name);
+        }
     };
 
+    
     useEffect(() => {
             fetchPosts();
     }, []);
+
 
     return (
         <main id="annonces">
@@ -85,7 +113,7 @@ const ListAnnonces = () => {
                                 <div className="annonce__infos">
                                     <div className="annonce__infosCategorie">
                                         <CategoryIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                        <p>{item.category.title}</p>
+                                        <p> {item.category.title}</p>
                                     </div>
                                     <div className="annonce__infosDate">
                                         <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
