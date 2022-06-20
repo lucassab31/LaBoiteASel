@@ -1,15 +1,26 @@
-import React, {useState, useEffect} from "react";
-import CategoryIcon from '@mui/icons-material/Category';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import ConstructionIcon from '@mui/icons-material/Construction';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import React, {useState, useEffect, useFocus} from "react";
 import {Helmet} from "react-helmet";
 
 const FormAnnonce = () => {
     require("../../../public/css/basePage.css");
     const title = "Créez votre annonce";
-    const [tools, setTools] = useState("false");
-    const [list, setList] = useState([]);
+    const [errors, setErrors] = useState();
+
+    const [titre, setTitre] = useState("");
+    const [description, setDescription] = useState("");
+    const [toolsProvided, setToolsProvided] = useState("");
+    const [toolsType, setToolsType] = useState("");
+    const [timeLength, setTimeLength] = useState("");
+    const [category_id, setCategoryId] = useState("");
+    const [cost, setCost] = useState("");
+    const [dateTimePost, setDateTimePost] = useState("");
+    const [address, setAddress] = useState("");
+    const [city, setCity] = useState("");
+    const [zipCode, setZipCode] = useState("");
+    const [datetimeType, setDateTimeType] = useState("");
+
+    const [focusInput, setFocusInput] = useState();
+    const [list, setList] = useState("");
     const [result, setResult] = useState({
         title : "",
         category_id : "",
@@ -20,34 +31,32 @@ const FormAnnonce = () => {
         cost : "",
         address : "",
         zipCode : "",
-        city : ""
+        city : "",
+        datetimePost : "",
+        datetimeType : ""
     });
 
-    async function fetchPosts() {
+    async function fetchCategory() {
         await axios.get("http://127.0.0.1:8000/api/posts/add")
         .then(
-            response => (
-                setList(
-                    response.data.data.map(
-                        item => ( 
-                        <option data-name="category_id" value={Object.values(item)[0]} key={Object.values(item)[0]}> {Object.values(item)[1]} </option>)
-                    )
-                )
-            )
+            response => (setList(response.data.data.map(item => ( 
+            <option 
+                value={Object.values(item)[0]}
+                key={Object.values(item)[0]}> {Object.values(item)[1]} 
+            </option>))))
         )    
     };
 
-    useEffect(() => {
-        fetchPosts();
-    }, []);
-
-    useEffect(()=> {
-        send();
-    }, [result]);
-
-    function changeTools(e) {
-        setTools(e.currentTarget.value);
+    async function send(){
+        console.log(result);
+        await axios.post("http://127.0.0.1:8000/api/posts/add", result)
+            .then(res => (console.log(res.data), setErrors(res.data.validate_err)));
     }
+
+
+    useEffect(() => {
+        fetchCategory();
+    }, []);
 
     const createAnnonce = () => {
         return (
@@ -59,81 +68,68 @@ const FormAnnonce = () => {
         );
     }
 
+    function setListResult(){
+       
+        dateTimePost ? date = new Date(dateTimePost) : date = new Date();
+        console.log(date.toISOString().slice(0, 19).replace('T', ' '));
+        setResult({
+            "title" : titre, 
+            "category_id" : category_id,
+            "description" : description, 
+            "address" : address, 
+            "toolsProvided" : toolsProvided,
+            "zipCode" : zipCode,
+            "timeLength" : timeLength,
+            "toolsType" : toolsType,
+            "cost" : cost,
+            "city" : city,
+            "datetimePost" : date.toISOString().slice(0, 19).replace('T', ' '),
+            "datetimeType" : datetimeType
+        })
+    }
+
     async function submitForm(e) {
-        e.preventDefault(); 
-        let form = e.target;
-        //let results = [];
+        e.preventDefault();
+        setListResult();
+        send();
+    }
 
-        //traitement du formulaire
+    useEffect(() => {
+        setFocus();
+    }, [errors]);
 
-        //select
-        let select = document.getElementById('category');
-        let option = select.options[select.selectedIndex];
-        let optionKey = option.getAttribute("data-name"); 
-        let results = {};
-        results = {...results, [optionKey] : option.value};
 
-        for(let item of form){
-
-            //other inputs
-            let type = item.getAttribute("type");
-            const keyItem = item.getAttribute("data-name");
-            const valueItem = item.value;
-           
-
-            if(type !== "radio") {
-
-                if(keyItem && keyItem.length > 0 && valueItem.length > 0){
-                    //setResult({...result, [keyItem] : valueItem});
-                    results = {...results, [keyItem] : valueItem};
-                }
-
-            }
-
-            else {
-                let radios = [];
-                radios.push(item);
-                if(keyItem && keyItem.length > 0 && valueItem.length > 0){
-                    Array.from(radios).find(radio => radio.checked ? results = {...results, [keyItem] : valueItem} : "");
-                   
-                }
-            }
+    useEffect(() => {
+        if(focusInput){
+            focusInput.focus();
         }
+    }, [focusInput]);
+   
 
-        results = {...results, id : 1};
-
-        setResult(results);
+    function setFocus(){
+        let input = document.querySelectorAll("[aria-invalid=true]")[0];
+        if(input){
+        setFocusInput(input);
+        }
     }
 
-
-    async function send(){
-        console.log(result);
-        await axios.post("http://127.0.0.1:8000/api/posts/add", result).then(res => console.log(res.data));
+    function removeError(name){
+        let input = document.querySelector("[data-name=" + name + "]");
+        input.removeAttribute("aria-invalid");
+        input.removeAttribute("aria-describedby");
     }
 
-    const GetInfosTools = (obj) => {
-        //issue : tabulation error on radio inputs
-        if(obj.render == "true"){
-            return (
-                <div className="form__block__column">
-                    <label htmlFor="type_tools"> Veuillez renseignez les outils nécessaires (par exemple : "pelle, seau") </label>
-                    <input data-name="toolsType" id="type_tools" type="text"/>
+    function formError(name){
+        let input = document.querySelector("[data-name=" + name + "]");
+        input.setAttribute("aria-invalid", "true");
+        input.setAttribute("aria-describedby", name + "__error");
+    }
 
-                    <fieldset className="group-radios">
-                        <legend> Ces outils seront-ils fournis ? </legend>
-
-                        <div className="group-radios__radio">
-                            <input data-name="toolsProvided" id="unrequired" type="radio" value="B" name="gettools"/>
-                            <label htmlFor="unrequired"> Oui </label>
-                        </div>
-
-                        <div className="group-radios__radio">
-                            <input data-name="toolsProvided" id="required" type="radio" value="A" name="gettools"/>
-                            <label htmlFor="required"> Non </label>
-                        </div>
-                    </fieldset>
-                </div>
-            )
+    const DisplayErrors = (inputName) => {
+        if(errors){
+            //formError(inputName.inputName);
+            let contentErr = `${errors[inputName.inputName]}`;
+            return contentErr && contentErr !== "undefined" ? (formError(inputName.inputName), <p id={inputName.inputName + "__error"} className="field_error"> {contentErr} </p>) : (removeError(inputName.inputName), null);
         }
         else {
             return null;
@@ -149,7 +145,7 @@ const FormAnnonce = () => {
 
             <h2> Annonce </h2>
            
-            <form onSubmit={submitForm}>
+            <form>
                 <fieldset className="form__block-1 form__block bloc--bg-yellow">
                     <legend className="form__block__title">Création d'annonce</legend>
 
@@ -157,23 +153,55 @@ const FormAnnonce = () => {
                         
                         <div className="form__block__column">
 
+                            
                             <label htmlFor="title"> Titre de votre annonce (par exemple : "Besoin d'aide pour tailler ma haie") </label>
-                            <input data-name="title" id="title" type="text" placeholder="mon titre d'annonce..."/>
+                            <input 
+                                aria-required="true" 
+                                data-name="title" 
+                                id="title" 
+                                type="text" 
+                                value={titre}
+                                onChange={(e) => (setTitre(e.target.value), setListResult())}
+                                placeholder="mon titre d'annonce..."/>
+                            <DisplayErrors inputName="title"></DisplayErrors>
 
+                           
                             <label htmlFor="description">  Votre description </label>
-                            <textarea data-name="description" id="description" type="text" placeholder="ma description..."/>
+                            <textarea 
+                                aria-required="true" 
+                                data-name="description" 
+                                id="description" 
+                                type="text" 
+                                value={description}
+                                onChange={(e) => (setDescription(e.target.value), setListResult())}
+                                placeholder="ma description..."
+                            />
+                            <DisplayErrors inputName="description"></DisplayErrors>
+                            
 
                         </div>
 
                         <div className="form__block__column">
 
+                           
                             <label htmlFor="category"> Choisissez une catégorie </label>
-                            <select id="category">
+                            <select data-name="category_id" aria-required="true" value={category_id} onChange={(e) => (setCategoryId(e.target.value), setListResult())} id="category">
+                                <option disabled value=""> -- Choisir une option -- </option>
                                 {list}
                             </select>
+                            <DisplayErrors inputName="category_id"></DisplayErrors>
 
+                            
                             <label htmlFor="saltNumber"> Nombre de grains de sel </label>
-                            <input data-name="cost" type="number" id="saltNumber"/>
+                            <input 
+                                aria-required="true"
+                                value={cost}
+                                onChange={(e) => (setCost(e.target.value), setListResult())}
+                                data-name="cost" 
+                                type="number" 
+                                id="saltNumber"
+                            />
+                            <DisplayErrors inputName="cost"></DisplayErrors>
 
                         </div>
 
@@ -186,17 +214,60 @@ const FormAnnonce = () => {
                         <legend className="form__block__title"> Des outils sont-ils nécessaires ? </legend>
                         
                         <div className="group-radios__radio form__block__wrapper">
-                            <input id="tools_yes" onChange={changeTools} type="radio" value="true" name="toolsreq"/>
+                            <input id="tools_yes" type="radio" value="true" name="toolsreq"/>
                             <label htmlFor="tools_yes"> Oui </label>
                         </div>
 
                         <div className="group-radios__radio form__block__wrapper">
-                            <input id="tools_no" onChange={changeTools} type="radio" value="false" name="toolsreq"/>
+                            <input 
+                            id="tools_no" 
+                            type="radio" 
+                            value="false" 
+                            name="toolsreq"
+                            />
                             <label htmlFor="tools_no"> Non </label>
                         </div>
-                    </fieldset>
 
-                    <GetInfosTools render={tools}/>
+                        <div className="form__block__column">
+                            <label htmlFor="type_tools"> Veuillez renseignez les outils nécessaires (par exemple : "pelle, seau") </label>
+                            <input 
+                            data-name="toolsType" 
+                            id="type_tools" 
+                            type="text"
+                            value={toolsType}
+                            onChange={(e) => (setToolsType(e.target.value), setListResult())}
+                            />
+                        </div>
+                    </fieldset>
+                    <fieldset className="group-radios">
+                        <legend> Ces outils seront-ils fournis ? </legend>
+                        <DisplayErrors inputName="toolsProvided"></DisplayErrors>
+
+                        <div className="group-radios__radio">
+                            <input 
+                                data-name="toolsProvided" 
+                                id="unrequired" 
+                                type="radio" 
+                                value="B"
+                                onClick = {()=>{setToolsProvided("B")}}
+                                onChange={()=>{setListResult()}}
+                                name="gettools"/>
+                            <label htmlFor="unrequired"> Oui </label>
+                        </div>
+
+                        <div className="group-radios__radio">
+                            <input 
+                                data-name="toolsProvided" 
+                                id="required" 
+                                type="radio" 
+                                name="gettools"
+                                value="A"
+                                onClick={()=> {setToolsProvided("A")}}
+                                onChange={()=> {setListResult()}}
+                            />
+                            <label htmlFor="required"> Non </label>
+                        </div>
+                    </fieldset>
                 </div>
 
                 <div className="form__block-3 form__block bloc--bg-yellow">
@@ -205,15 +276,38 @@ const FormAnnonce = () => {
                         <legend className="form__block__title"> Date et une durée pour le service demandé </legend>
 
                         <div className="bloc--2-2 form__block__wrapper">
+
                         
                             <div className="form__block__column">
+
+                                    <label htmlFor="dateType"> Choisissez si vous souhaitez mettre une date de fin, une date de début, ou une date précise de réalisation </label>
+                                    <select data-name="datetimeType" id="dateType" value={datetimeType} onChange={(e) => (setDateTimeType(e.target.value), setListResult())}>
+                                        <option disabled value=""> -- Choisir une option -- </option>
+                                        <option value='A'> Avant la date choisie </option>
+                                        <option value='B'> Seulement date choisie </option>
+                                        <option value='O'> A partir de la date choisie </option>
+                                    </select>
+
                                 <label htmlFor="date"> Date </label>
-                                <input data-name="datetimePost" id="date" type="date"/>
+                                <input  
+                                    value={dateTimePost}
+                                    onChange={(e) => (setDateTimePost(e.target.value), setListResult())}
+                                    data-name="datetimePost" 
+                                    id="date" 
+                                    type="datetime-local"
+                                />
+                                
                             </div>
 
                             <div className="form__block__column">
-                                <label htmlFor="time"> Durée en heures, par exemple pour 3 heures marquer "3" </label>
-                                <input data-name="timeLength" id="time" type="number"/>
+                                <label htmlFor="time"> Durée en heures (par exemple pour 3 heures marquer "3") </label>
+                                <input 
+                                    value={timeLength}
+                                    onChange={(e) => (setTimeLength(e.target.value), setListResult())}
+                                    data-name="timeLength" 
+                                    id="time" 
+                                    type="number"
+                                />
                             </div>
 
                         </div>
@@ -230,17 +324,47 @@ const FormAnnonce = () => {
                         <div className="form__block__column">
 
                             <label htmlFor="address"> Votre numéro et nom de rue (ces informations ne sera pas visible sur l'annonce) </label>
-                            <input data-name="address" id="address" type="text" placeholder="mes numéro et nom de rue..."/>
+                            <input 
+                                value={address}
+                                onChange={(e) => (setAddress(e.target.value), setListResult())}
+                                aria-required="true" 
+                                autoComplete="street-address" 
+                                data-name="address" 
+                                id="address" 
+                                type="text" 
+                                placeholder="mes numéro et nom de rue..."
+                            />
+                            <DisplayErrors inputName="address"></DisplayErrors>
 
                             <label htmlFor="city"> Votre ville </label>
-                            <input data-name="city" id="city" type="text" placeholder="ma ville..."/>
+                            <input 
+                                aria-required="true"
+                                value={city}
+                                onChange={(e) => (setCity(e.target.value), setListResult())}
+                                autoComplete="address-level2" 
+                                data-name="city" 
+                                id="city" 
+                                type="text" 
+                                placeholder="ma ville..."
+                            />
+                            <DisplayErrors inputName="city"></DisplayErrors>
                         
                         </div>
 
                         <div className="form__block__column">
 
                             <label htmlFor="zipcode"> Votre code postal </label>
-                            <input data-name="zipCode" id="zipcode" type="text" placeholder="mon code postal..."/>
+                            <input 
+                                value={zipCode}
+                                onChange={(e) => (setZipCode(e.target.value), setListResult())}
+                                aria-required="true" 
+                                autoComplete="postal-code" 
+                                data-name="zipCode" 
+                                id="zipcode" 
+                                type="text" 
+                                placeholder="mon code postal..."
+                            />
+                            <DisplayErrors inputName="zipCode"></DisplayErrors>
 
                         </div>
 
@@ -248,7 +372,7 @@ const FormAnnonce = () => {
                 
                 </fieldset>
 
-                <button type="submit" className="button-yellow"> Créer votre annonce </button>
+                <button onClick={submitForm} className="button-yellow"> Créer votre annonce </button>
 
             </form>
         </main>

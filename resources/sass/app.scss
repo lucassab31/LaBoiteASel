@@ -196,3 +196,12 @@ input {
     @include button($yellow, $blue);
 
 }
+
+.field_error {
+    color : $blue;
+    font-weight : bold;
+    border : 2px solid $red;
+    padding : $spacing-6;
+    width : fit-content;
+    margin-top : $spacing-6;
+}
