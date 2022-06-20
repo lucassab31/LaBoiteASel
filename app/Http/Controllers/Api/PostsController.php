@@ -36,7 +36,7 @@ class PostsController extends Controller
      * @param String $date
      * @return Request
      */
-    public function filteredPosts( $category, $lengthService, $date) {
+    public function filteredPosts( $category, $lengthService, $date, $dateType) {
         //dd($date);
        /* $posts = Post::where([
             ['category_id',$category],
@@ -45,7 +45,17 @@ class PostsController extends Controller
         ])->get();*/
         //$posts = Post::where('datetimePost', $date)->get();
         //$posts = Post::where('category_id', $category)->where('timeLength', $lengthService)->get();
-        $posts = Post::where('category_id', $category)->where('timeLength', $lengthService)->where('datetimePost', $date)->get();
+        // params before after or on
+        
+        $operator = '=';
+        if ($dateType === "B") {
+            $operator = "<"; 
+        } else if ($dateType === "A") {
+            $operator = ">"; 
+        } else if ($dateType === "O") {
+            $operator = "="; 
+        }
+        $posts = Post::where('category_id', $category)->where('timeLength', $lengthService)->where('datetimePost',$operator, $date)->get();
         return $this->sendResponse(true, $posts);
     }
 
