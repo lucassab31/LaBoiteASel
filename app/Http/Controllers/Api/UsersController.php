@@ -54,8 +54,7 @@ class UsersController extends Controller
      * @return Response
      */
     public function view($id) {
-        return $this->sendResponse(false, 'logged : ' . auth()->check());
-        if (Auth::user()->id == $id || $id == 0) {
+        if (Auth::id() == $id || $id == 0) {
             return $this->sendResponse(true, User::findOrFail(Auth::user()->id));
         } else {
             $user = User::where('id', $id)->withCount('posts')->first();
