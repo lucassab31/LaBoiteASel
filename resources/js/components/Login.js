@@ -7,7 +7,6 @@ import "../../../public/css/login.css"
 import { constant } from "lodash";
 
 const API_URL = process.env.APP_URL +'/api/';
-console.log(API_URL);
 
 const Login = () => {
     const [email, setEmail] = useState("");
