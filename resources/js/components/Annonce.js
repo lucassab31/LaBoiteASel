@@ -3,12 +3,13 @@ import CategoryIcon from '@mui/icons-material/Category';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import TimelapseIcon from '@mui/icons-material/Timelapse';
 import {Helmet} from "react-helmet";
 import {Link} from "react-router-dom";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-const API_URL = process.env.MIX_APP_URL +'api/'; 
 import Moment from 'react-moment';
+const API_URL = process.env.MIX_APP_URL +'api/'; 
 
 
 const Annonce = () => {
@@ -126,21 +127,28 @@ const Annonce = () => {
                                 <CategoryIcon style={{ color: '#5BB286', fontSize:30}}/>
                                 <p>{state.dataPost.category_name}</p>
                             </div>
-                            <div id="annonce_basicInfos-Date">
-                                <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                <p>
-                                    {datePost()} 
-                                    <Moment format="DD/MM/YYYY">
-                                        {state.dataPost.datetimePost}
-                                    </Moment>
-                                </p>
-                            </div>
+
+                            {(() => {
+                                if (state.dataPost.datetimePost) {
+                                    return (
+                                        <div id="annonce_basicInfos-Date">
+                                            <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
+                                            <p>
+                                                {datePost()} 
+                                                <Moment format="DD/MM/YYYY">
+                                                    {state.dataPost.datetimePost}
+                                                </Moment>
+                                            </p>
+                                        </div>
+                                    )
+                                }
+                            })()}
                         </div>
                        
                        <div className="secondRow">
                             <div id="annonce_basicInfos-Length">
-                                <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                <p>{state.dataPost.timeLength} heures</p>
+                                <TimelapseIcon style={{ color: '#5BB286', fontSize:30}}/>
+                                <p>{state.dataPost.timeLength} minutes</p>
                             </div>
                             <div id="annonce_basicInfos-salt">
                                 <img src="../../../images/grains_sel.svg" alt=""/>

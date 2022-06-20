@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import FlatList from 'flatlist-react';
 import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet";
+import Moment from 'react-moment';
 const API_URL = process.env.MIX_APP_URL +'api/'; 
 
 const ListAnnonces = () => {
@@ -200,10 +201,23 @@ const ListAnnonces = () => {
                                         <CategoryIcon style={{ color: '#5BB286', fontSize:30}}/>
                                         <p> {item.category.title}</p>
                                     </div>
-                                    <div className="annonce__infosDate">
-                                        <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                        <p>{displayDatePost()}DATE</p>
-                                    </div>
+
+                                    {(() => {
+                                        if (item.datetimePost) {
+                                            return (
+                                                <div className="annonce__infosDate">
+                                                <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
+                                                <p>
+                                                    {displayDatePost()}
+                                                    <Moment format="DD/MM/YYYY">
+                                                        {item.datetimePost}
+                                                    </Moment>
+                                                </p>
+                                            </div>
+                                            )
+                                        }
+                                    })()}
+                                
                                 </div>
                                 
                                 <div className="annonce_btn">
