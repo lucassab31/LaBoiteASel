@@ -22,6 +22,7 @@ class PostsController extends Controller
      * @return Request
      */
     public function index() {
+        //$posts = Post::where('visibility', 1)->orderByDesc('created_at')->get();
         $posts = Post::where('visibility', 1)->with('category')->orderByDesc('created_at')->get();
         return $this->sendResponse(true, $posts);
     }
