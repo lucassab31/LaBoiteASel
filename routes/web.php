@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/{path?}', function () {
     return view('welcome');
 })->name('home');
+Route::get('/connexion', function () {
+    return view('welcome');
+})->name('login');

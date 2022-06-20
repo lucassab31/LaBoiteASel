@@ -104,6 +104,8 @@ class PostsController extends Controller
         $post->address          = $request->address;
         $post->zipCode          = $request->zipCode;
         $post->city             = $request->city;
+        $post->datetimeType     = $request->datetimeType;
+        $post->datetimePost     = $request->datetimePost;
         $post->category()->associate(Category::findOrFail($request->category_id));
         $post->user()->associate(Auth::user()->id);
         $post->save();
@@ -166,6 +168,8 @@ class PostsController extends Controller
             $post->address          = $request->address;
             $post->zipCode          = $request->zipCode;
             $post->city             = $request->city;
+            $post->datetimeType     = $request->datetimeType;
+            $post->datetimePost     = $request->datetimePost;
             $post->save();
         } else return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
 

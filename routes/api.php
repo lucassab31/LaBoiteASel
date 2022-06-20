@@ -58,7 +58,7 @@ Route::prefix('admin')->group(function () {
 });
 
 // A mettre en place à la fin
-Route::middleware('isAuthenticated')->group(function () {
+Route::middleware('auth:api')->group(function () {
     // Routes connected
     Route::middleware('isAdmin')->prefix('admin')->group(function () {
         // Routes admin
