@@ -27,6 +27,24 @@ class PostsController extends Controller
         return $this->sendResponse(true, $posts);
     }
 
+
+    /**
+     * Display the filtered posts 
+     * 
+     * @param String $category
+     * @param String $lengthService
+     * @return Request
+     */
+    public function filteredPosts($category, $lengthService) {
+        //$posts = Post::where('category_id', $category)->get();
+        $posts = Post::where([
+            ['category_id',$category],
+            ['timeLength',$lengthService]
+        ])->get();
+        return $this->sendResponse(true, $posts);
+    }
+
+
     /**
      * Display the specified post
      *
