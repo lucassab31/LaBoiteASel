@@ -60,6 +60,7 @@ Route::prefix('admin')->group(function () {
 // A mettre en place à la fin
 Route::middleware('auth:api')->group(function () {
     // Routes connected
+    Route::get('/t', [PostsController::class, 'index']);
     Route::middleware('isAdmin')->prefix('admin')->group(function () {
         // Routes admin
     });
