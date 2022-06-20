@@ -17,7 +17,6 @@ const ListAnnonces = () => {
     const [state, setData] = useState({
         posts: '', 
         listCategories:'',
-        filteredPosts:''
     });
 
     const fetchPosts = async () => {
@@ -28,19 +27,38 @@ const ListAnnonces = () => {
             posts: await apiPosts.data.data, 
             listCategories: await apiCategories.data.data
         });
-       // console.log(apiPosts.data.data);
+        console.log(apiPosts.data.data);
+
+
+        for (let post of apiPosts.data.data) {
+            let dateText = ""; 
+            switch (post.datetimeType) {
+                case "B":
+                    dateText =  "Avant le ";
+                    break;
+                case "O":
+                    dateText =  "À faire le ";
+                    break;
+                case "A":
+                    dateText =  "Après le ";
+                    break; 
+            } 
+            post.dateText = dateText; 
+            console.log(post);
+        }
     };
     
     useEffect(() => {
             fetchPosts();
     }, []);
-    console.log(state.listCategories);
+    //console.log(state.listCategories);
 
 
     // Filter part - form 
     const [category, setCategory] = useState("Jardinerie"); 
     const [lengthService, setLenghtService] = useState("15"); 
     const [date, setDate] = useState(""); 
+    const [searchDateSpecification, setSearchDateSpecification] = useState("A"); 
 
     const handleCategoryChange = event => {
         setCategory(event.target.value);
@@ -54,25 +72,31 @@ const ListAnnonces = () => {
         setLenghtService(event.target.value);
         //console.log('The value of category is :', event.target.value);
     };
+    const handleSearchDateSpecificationChange = event => {
+        setSearchDateSpecification(event.target.value);
+       // console.log('The value of category is :', event.target.value);
+    };
+
     const handleClick = event => {
         event.preventDefault();
         console.log('-- result of the form --')
         console.log('category ', category);
         console.log('length of the service ', lengthService);
         console.log('date limit is ', date);
+        console.log('search operator ', searchDateSpecification);
         let idCategory;
+        // à rendre dynamique
+        let dateFilter ; 
+        //dateFilter= "2022-06-20%2011:44:17"; 
+        dateFilter = date; 
 
-        console.log(category);
-        for ( const item of state.listCategories) {
-            console.log(item);
-            console.log(category);
+        for (const item of state.listCategories) {
             if (item.title == category) {
-                console.log("is it working ? :')");
                  idCategory = item.id; 
             }
         }
-        let urlApiRequest = baseUrl+"postsFiltered/"+idCategory+"/"+lengthService;
-        console.log(idCategory);
+        
+        let urlApiRequest = baseUrl+"postsFiltered/"+idCategory+"/"+lengthService+"/"+dateFilter+"/"+searchDateSpecification;
         console.log(urlApiRequest);
         fetchFilteredPosts(urlApiRequest);
     }; 
@@ -80,8 +104,32 @@ const ListAnnonces = () => {
     const fetchFilteredPosts = async (urlRequest) => {
         console.log("toto");
         const apiFilteredPosts = await axios.get(urlRequest);
-        console.log(apiFilteredPosts.data);
+        console.log(apiFilteredPosts.data.data);
+        /*setData({
+            posts: apiFilteredPosts.data.data, 
+        });*/
     };
+
+    const displayDatePost =  (item) => {
+        console.log(item);
+       
+        /*let dateText = ""; 
+        switch (item.datetimeType) {
+            case "B":
+                dateText =  "Avant le ";
+                break;
+            case "O":
+                dateText =  "À faire le ";
+                break;
+            case "A":
+                dateText =  "Après le ";
+                break; 
+        } 
+        item.dateText = dateText; 
+        console.log(item);*/
+    };
+
+    
 
 
     return (
@@ -106,6 +154,15 @@ const ListAnnonces = () => {
                         <select value={category}  onChange={handleCategoryChange} id="category" name="list" >
                             <FlatList list={state.listCategories} renderItem={item =>
                             <option value={item.title}>{item.title}</option> }/>
+                        </select>
+                    </div>
+
+                    <div className="filtres_container">
+                        <label htmlFor="category">Chercher les postes dont le service est à faire : </label>
+                        <select value={searchDateSpecification}  onChange={handleSearchDateSpecificationChange} id="category" name="list" >
+                            <option value="B">Avant le</option>
+                            <option value="O">Le</option>
+                            <option value="A">Après le</option>
                         </select>
                     </div>
 
@@ -145,7 +202,7 @@ const ListAnnonces = () => {
                                     </div>
                                     <div className="annonce__infosDate">
                                         <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                        <p>DATE</p>
+                                        <p>{displayDatePost()}DATE</p>
                                     </div>
                                 </div>
                                 

@@ -8,6 +8,8 @@ import {Link} from "react-router-dom";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 const API_URL = process.env.MIX_APP_URL +'api/'; 
+import Moment from 'react-moment';
+
 
 const Annonce = () => {
 
@@ -70,11 +72,8 @@ const Annonce = () => {
         console.log (state.dataPost.datetimeType);
         //let date = new Date(state.dataPost.datetimeType).toISOString().slice(0,10);
         //console.log(date);
-        //let date = dateFormat(); 
-        const str = state.dataPost.datetimePost;
-        //console.log(str.substr(1, 2));
         console.log (state.dataPost.datetimePost);
-     
+        console.log(new Date(state.dataPost.datetimePost));
 
         switch (state.dataPost.datetimeType) {
             case "B":
@@ -114,7 +113,13 @@ const Annonce = () => {
             <div id="annonce_basicInfosContainer">
                 <div id="annonce_basicInfos">
                     <h2>{state.dataPost.title}</h2>
-                    <p>Crée le {state.postCreatedAt} par {state.userName}</p>
+                    <p>Crée le 
+
+                        <Moment className="annonce_basicInfosDateCreation" format="DD/MM/YYYY">
+                            {state.postCreatedAt} 
+                        </Moment>
+
+                         par {state.userName}</p>
                     <div>
                         <div className="firstRow">
                             <div id="annonce_basicInfos-Category">
@@ -123,7 +128,12 @@ const Annonce = () => {
                             </div>
                             <div id="annonce_basicInfos-Date">
                                 <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                <p>Date {datePost()}</p>
+                                <p>
+                                    {datePost()} 
+                                    <Moment format="DD/MM/YYYY">
+                                        {state.dataPost.datetimePost}
+                                    </Moment>
+                                </p>
                             </div>
                         </div>
                        

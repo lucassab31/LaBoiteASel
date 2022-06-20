@@ -12,6 +12,10 @@
         background-color: white;
         border-radius: 9px;
         padding: 20px;
+
+        .annonce_basicInfosDateCreation {
+            margin: 0 $spacing-5;
+        }
     }  
 
     #annonce_basicInfosContainer {
