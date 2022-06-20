@@ -11,6 +11,8 @@ const API_URL = process.env.MIX_APP_URL +'api/';
 
 const Annonce = () => {
 
+    // taille des champs + texte claires 
+
     let  baseUrl = API_URL+"posts/"; 
 
     // get the id of the post from the url 
@@ -26,17 +28,16 @@ const Annonce = () => {
     const fetchDataPost = async () => {
         const apiPost = await axios.get(baseUrl+"view/"+id);
         const apiCategories = await axios.get(baseUrl+"add");
-        //console.log(apiPost.data.data); 
+        console.log(apiPost.data.data); 
 
+        //console.log(apiPost.data.data.created_at);
         let date = apiPost.data.data.created_at;
         date = new Date(apiPost.data.data.created_at).toISOString().slice(0,10);
         //console.log(date);
-
         apiPost.data.data.created_at = date; 
         //console.log(apiPost.data.data.created_at);
      
         // find category name for each post
-        //console.log("toto");
         for (let category of apiCategories.data.data) {
             if (category.id === apiPost.data.data.category_id ) {
                 apiPost.data.data.category_name = category.title;
@@ -64,12 +65,37 @@ const Annonce = () => {
     //console.log(state.category);
     //console.log(state);
 
+    const datePost = () => {
+        console.log (state.dataPost.datetimeType);
+        //let date = new Date(state.dataPost.datetimeType).toISOString().slice(0,10);
+        //console.log(date);
+        //let date = dateFormat(); 
+        const str = state.dataPost.datetimePost;
+        //console.log(str.substr(1, 2));
+        console.log (state.dataPost.datetimePost);
+     
+
+        switch (state.dataPost.datetimeType) {
+            case "B":
+                return "Avant le ";
+                break;
+            case "O":
+                return "À faire le ";
+                break;
+            case "A":
+                return "Après le ";
+                break; 
+        } 
+    }
+
     const tools = () => {
+        //console.log(state.dataPost.toolsType);
+        let tools = state.dataPost.toolsType; 
         if (state.dataPost.toolsProvided === "Y") {
             return "Tous les outils nécessaires seront fournis.";
         }
         else if (state.dataPost.toolsProvided === "N") {
-            return "Il faudra apporter les outils nécessaires.";
+            return "Il faudra apporter les outils suivants : "+tools+".";
         }
         else if (state.dataPost.toolsProvided === "A") {
             return "Pas d'outils nécessaires";
@@ -96,7 +122,7 @@ const Annonce = () => {
                             </div>
                             <div id="annonce_basicInfos-Date">
                                 <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                <p>Date</p>
+                                <p>Date {datePost()}</p>
                             </div>
                         </div>
                        
