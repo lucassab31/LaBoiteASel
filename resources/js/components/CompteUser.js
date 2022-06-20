@@ -5,6 +5,21 @@ import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import "../../../public/css/compteUser.css"
 
 const CompteUser = () => {
+
+    useEffect(() => {
+        fetchPosts();
+
+    }, []);
+    const userForm = async () => {
+        const response = await axios.get("http://127.0.0.1:8000/api/utilisateur");
+        if (response.data.success) navigate("/");
+        else {
+            // afficher l'erreur "response.data.error"
+            let error = document.getElementById("error");
+            error.textContent = response.data.error;
+        }
+    }
+
     return (
         <main>
             <div className="bloc-white">
@@ -13,10 +28,10 @@ const CompteUser = () => {
                 <div className="bloc-menu">
                     <p className="menu-option">À propos</p>
                     <Button className="menu-button">
-                        <EditIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15}}/>Modifier le profil
+                        <EditIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} />Modifier le profil
                     </Button>
                     <Button className="menu-button">
-                        <ReportProblemIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }}/>Signaler le profil
+                        <ReportProblemIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} />Signaler le profil
                     </Button>
                 </div>
             </div>
