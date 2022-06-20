@@ -15,7 +15,7 @@ const CompteUser = () => {
 
     }, []);
     const fetchUser = async () => {
-        const response = await axios.get(API_URL + "users/view/0");
+        const response = await axios.get(API_URL + "users/view/5");
         console.log(response.data);
     }
 
@@ -23,7 +23,7 @@ const CompteUser = () => {
         <main>
             <div className="bloc-white">
                 <img className="bg-image" alt="" src="../../../images/jardin-profile.jpg"></img>
-                <div className="user-image">Prénom <img alt="" src="../../../images/exemple-profile.png"></img> Nom</div>
+                <div className="user-image"><img alt="" src="../../../images/exemple-profile.png"></img></div>
                 <div className="bloc-menu">
                     <p className="menu-option">À propos</p>
                     <Button className="menu-button">
@@ -40,9 +40,12 @@ const CompteUser = () => {
                     <p>Téléphone :</p>
                     <p>Adresse :</p>
                     <p>Ville :</p>
+                    <p>Date d'inscription :</p>
                 </div>
                 <div className="right-panel">
                     <h3 className="panel-title">Statistiques des services rendus</h3>
+                    <p>Nombre de service rendus :</p>
+                    <p>Nombre de service postés :</p>
                 </div>
             </div>
         </main>
