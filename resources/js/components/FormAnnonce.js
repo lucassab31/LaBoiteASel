@@ -5,6 +5,8 @@ const FormAnnonce = () => {
     require("../../../public/css/basePage.css");
     const title = "Créez votre annonce";
     const [errors, setErrors] = useState();
+    const [toolsReq, setToolsReq] = useState();
+    const [created, setCreated] = useState();
 
     const [titre, setTitre] = useState("");
     const [description, setDescription] = useState("");
@@ -48,9 +50,8 @@ const FormAnnonce = () => {
     };
 
     async function send(){
-        console.log(result);
         await axios.post("http://127.0.0.1:8000/api/posts/add", result)
-            .then(res => (console.log(res.data), setErrors(res.data.validate_err)));
+            .then(res => (setCreated(res.data.validate_err ? false : true), setErrors(res.data.validate_err)));
     }
 
 
@@ -58,20 +59,25 @@ const FormAnnonce = () => {
         fetchCategory();
     }, []);
 
-    const createAnnonce = () => {
-        return (
-            <main>
-                <div>
-                    <p> Votre annonce a bien été créee !</p>
-                </div>
-            </main>
-        );
+    const CreateAnnonce = () => {
+        //aria-live="polite" : to indicate a message for screen-readers
+        return created ? <div> <p id="created" aria-live="polite"> Votre annonce a bien été créee !</p> </div> : null;
     }
 
+    useEffect(()=>{
+        const message = document.querySelector( '#created' );
+        //set tabindex to focus on the message when scroll then remove it when the focus on the element is lost
+        if(message){
+            message.setAttribute("tabindex", "-1");
+            message.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+            message.focus();
+            message.onblur = message.removeAttribute("tabindex");
+        }
+    }, [CreateAnnonce])
+
     function setListResult(){
-       
+
         dateTimePost ? date = new Date(dateTimePost) : date = new Date();
-        console.log(date.toISOString().slice(0, 19).replace('T', ' '));
         setResult({
             "title" : titre, 
             "category_id" : category_id,
@@ -107,6 +113,7 @@ const FormAnnonce = () => {
    
 
     function setFocus(){
+        //set focus on the first invalid input
         let input = document.querySelectorAll("[aria-invalid=true]")[0];
         if(input){
         setFocusInput(input);
@@ -114,12 +121,14 @@ const FormAnnonce = () => {
     }
 
     function removeError(name){
+        //remove attributes when error is resolved
         let input = document.querySelector("[data-name=" + name + "]");
         input.removeAttribute("aria-invalid");
         input.removeAttribute("aria-describedby");
     }
 
     function formError(name){
+        // set aria-invalid = true for screen-reader & aria-describedby which read the error when focus is on field
         let input = document.querySelector("[data-name=" + name + "]");
         input.setAttribute("aria-invalid", "true");
         input.setAttribute("aria-describedby", name + "__error");
@@ -144,8 +153,10 @@ const FormAnnonce = () => {
             <p role="status" className="visually-hidden"> La Boite à Sel - {title} </p>
 
             <h2> Annonce </h2>
+
+            <CreateAnnonce/>
            
-            <form>
+            <form onSubmit={submitForm} >
                 <fieldset className="form__block-1 form__block bloc--bg-yellow">
                     <legend className="form__block__title">Création d'annonce</legend>
 
@@ -214,7 +225,14 @@ const FormAnnonce = () => {
                         <legend className="form__block__title"> Des outils sont-ils nécessaires ? </legend>
                         
                         <div className="group-radios__radio form__block__wrapper">
-                            <input id="tools_yes" type="radio" value="true" name="toolsreq"/>
+                            <input 
+                                id="tools_yes" 
+                                type="radio" 
+                                value="true" 
+                                name="toolsreq"
+                                checked={toolsReq === "true"}
+                                onChange={(e) => (setToolsReq(e.target.value))}
+                                />
                             <label htmlFor="tools_yes"> Oui </label>
                         </div>
 
@@ -224,17 +242,20 @@ const FormAnnonce = () => {
                             type="radio" 
                             value="false" 
                             name="toolsreq"
+                            checked={toolsReq === "false"}
+                            onChange={(e) => (setToolsReq(e.target.value))}
                             />
                             <label htmlFor="tools_no"> Non </label>
                         </div>
 
-                        <div className="form__block__column">
+                        <div className="form__block__column form__block__wrapper">
                             <label htmlFor="type_tools"> Veuillez renseignez les outils nécessaires (par exemple : "pelle, seau") </label>
                             <input 
                             data-name="toolsType" 
                             id="type_tools" 
                             type="text"
                             value={toolsType}
+                            disabled={toolsReq === "false" ? true : false}
                             onChange={(e) => (setToolsType(e.target.value), setListResult())}
                             />
                         </div>
@@ -249,6 +270,7 @@ const FormAnnonce = () => {
                                 id="unrequired" 
                                 type="radio" 
                                 value="B"
+                                disabled={toolsReq === "false" ? true : false}
                                 onClick = {()=>{setToolsProvided("B")}}
                                 onChange={()=>{setListResult()}}
                                 name="gettools"/>
@@ -262,6 +284,7 @@ const FormAnnonce = () => {
                                 type="radio" 
                                 name="gettools"
                                 value="A"
+                                disabled={toolsReq === "false" ? true : false}
                                 onClick={()=> {setToolsProvided("A")}}
                                 onChange={()=> {setListResult()}}
                             />
@@ -273,14 +296,14 @@ const FormAnnonce = () => {
                 <div className="form__block-3 form__block bloc--bg-yellow">
 
                     <fieldset>
-                        <legend className="form__block__title"> Date et une durée pour le service demandé </legend>
+                        <legend className="form__block__title"> Date et durée pour le service demandé </legend>
 
                         <div className="bloc--2-2 form__block__wrapper">
 
                         
                             <div className="form__block__column">
 
-                                    <label htmlFor="dateType"> Choisissez si vous souhaitez mettre une date de fin, une date de début, ou une date précise de réalisation </label>
+                                    <label htmlFor="dateType"> Choisissez si vous souhaitez mettre une date de fin, une date de début, ou une date précise </label>
                                     <select data-name="datetimeType" id="dateType" value={datetimeType} onChange={(e) => (setDateTimeType(e.target.value), setListResult())}>
                                         <option disabled value=""> -- Choisir une option -- </option>
                                         <option value='A'> Avant la date choisie </option>
@@ -288,15 +311,14 @@ const FormAnnonce = () => {
                                         <option value='O'> A partir de la date choisie </option>
                                     </select>
 
-                                <label htmlFor="date"> Date </label>
+                                <label htmlFor="date"> Choisissez la date </label>
                                 <input  
                                     value={dateTimePost}
                                     onChange={(e) => (setDateTimePost(e.target.value), setListResult())}
                                     data-name="datetimePost" 
                                     id="date" 
                                     type="datetime-local"
-                                />
-                                
+                                />  
                             </div>
 
                             <div className="form__block__column">
@@ -372,7 +394,7 @@ const FormAnnonce = () => {
                 
                 </fieldset>
 
-                <button onClick={submitForm} className="button-yellow"> Créer votre annonce </button>
+                <button className="button-yellow"> Créer votre annonce </button>
 
             </form>
         </main>
