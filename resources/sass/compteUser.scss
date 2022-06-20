@@ -5,11 +5,13 @@ body {
     .bloc-white {
         background-color: $white;
         padding : 1rem;
+        min-height: 150px;
     }
 
     .bloc-red {
         background-color: $red;
         padding : 1rem;
+        min-height: 350px;
     }
 
     .left-panel {
