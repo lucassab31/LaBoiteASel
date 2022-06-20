@@ -10,9 +10,9 @@ import Login from "./Login";
 import Test from "./Test";
 import Messaging from "./Messaging";
 import Validation from "./Validation";
+import CompteUser from './CompteUser';
 import Faq from "./FAQ";
 import {Helmet} from "react-helmet";
-
 
 function App() {
     return (
@@ -26,6 +26,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/connexion" element={<Login />} />
+                    <Route path="/utilisateur" element={<CompteUser />} />
                     <Route path="/test" element={<Test />} />
                     <Route path="/annonces" element={<ListAnnonces/>} />
                     <Route path="/validation" element={<Validation />} />

@@ -1,8 +1,13 @@
 import React, { Component, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button"
+import { useNavigate } from "react-router-dom";
 import { constant } from "lodash";
 import {Helmet} from "react-helmet";
+
+import "../../../public/css/login.css"
+
+const API_URL = process.env.APP_URL +'/api/';
 
 const Login = () => {
     require("../../../public/css/login.css");
@@ -12,6 +17,18 @@ const Login = () => {
 
     function validateForm() {
         return email.length > 0 && password.length > 0;
+    }
+
+    let navigate = useNavigate();
+    const loginForm = async () => {
+        let data = { "email": email, "password": password };
+        const response = await axios.post("http://127.0.0.1:8000/api/login", data);
+        if (response.data.success) navigate("/");
+        else {
+            // afficher l'erreur "response.data.error"
+            let error = document.getElementById("error");
+            error.textContent = response.data.error;
+        }
     }
 
     function handleSubmit(event) {
@@ -45,9 +62,10 @@ const Login = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </Form.Group>
-                    <Button block="true" size="lg" type="submit" disabled={!validateForm()} onClick={event => window.location.href='/'}>
+                    <Button block="true" size="lg" type="submit" disabled={!validateForm()} onClick={loginForm}>
                         Se connecter
                     </Button>
+                    <p id="error"></p>
                 </Form>
             </div>
         </div>
