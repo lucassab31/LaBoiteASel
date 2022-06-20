@@ -73,7 +73,11 @@ const FormAnnonce = () => {
 
     const CreateAnnonce = () => {
         //aria-live="polite" : to indicate a message for screen-readers
-        return created ? <div> <p id="created" aria-live="polite"> Votre annonce a bien été créee !</p> </div> : null;
+        return created ? <div> <p onBlur={destroyMessage} id="created" aria-live="polite"> Votre annonce a bien été créee !</p> </div> : null;
+    }
+
+    function destroyMessage(){
+        setCreated(false);
     }
 
     useEffect(()=>{
