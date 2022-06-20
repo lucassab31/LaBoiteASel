@@ -10,6 +10,7 @@
 - **users | role :** *U* -> utilisateur, *A* -> admin
 - **post | toolsProvided :** *Y* -> Oui, *N* -> Non; *A* -> aucun outils nécéssaire
 - **post | status :** *C* -> crée, *P* -> en cours de résolution; *F* -> clôturé
+- **post | datetimeType :** *B* -> avant le, *A* -> après le, *O* le
 - **reports | status :** *C* -> crée, *P* -> en cours de résolution; *F* -> clôturé
 
 ## CSS

@@ -2,13 +2,16 @@ import React, { Component, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button"
 import { useNavigate } from "react-router-dom";
+import { constant } from "lodash";
+import {Helmet} from "react-helmet";
 
 import "../../../public/css/login.css"
-import { constant } from "lodash";
 
 const API_URL = process.env.APP_URL +'/api/';
 
 const Login = () => {
+    require("../../../public/css/login.css");
+    const title = "Page de connexion";
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -34,6 +37,11 @@ const Login = () => {
 
     return (
         <div className="Login bloc--bg-white">
+            <Helmet>
+                <title>{title}</title>
+            </Helmet>
+            <p role="status" className="visually-hidden"> La Boite à Sel - {title} </p>
+
             <div className="bloc1 bloc--bg-red">
                 <h1 className="title">Connectez-vous</h1>
                 <Form onSubmit={handleSubmit}>

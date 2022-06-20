@@ -20,6 +20,8 @@ class Post extends Model
         'address',
         'zipCode',
         'city',
+        'datetimeType',
+        'datetimePost',
         'visibility',
     ];
 
@@ -35,9 +37,15 @@ class Post extends Model
         return $this->hasMany(Transaction::class);
     }
 
-    // a checker -> maybe create table candidate
     public function user() {
-        return $this->belongsTo(User::class);
-        // return $this->belongsToMany(User::class)->withPivot('validated');
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function userMaker() {
+        return $this->belongsTo(User::class, 'user_maker_id');
+    }
+
+    public function candidates() {
+        return $this->hasMany(Candidate::class);
     }
 }

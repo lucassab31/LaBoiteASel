@@ -1,10 +1,17 @@
 import React from "react";
-import css from "../../../public/css/home.css"
+import {Helmet} from "react-helmet";
 
 const Home = () => {
- 
+    require("../../../public/css/home.css");
+    const title = "Accueil";
+
     return (
         <main>
+        <Helmet>
+            <title>{title}</title>
+        </Helmet>
+        <p role="status" className="visually-hidden"> La Boite à Sel - {title} </p>
+
         <div id="bloc1" className="bloc bloc-home bloc--bg-red bloc--2-columns">
             <div className="bloc-text">
                 <h2 className="bloc-text--title"> La Boîte à Sel, qu'est ce que c'est ?</h2>
