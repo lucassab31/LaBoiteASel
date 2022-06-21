@@ -2,6 +2,7 @@ import React, {useState, useEffect, useFocus} from "react";
 import {Helmet} from "react-helmet";
 
 const FormAnnonce = () => {
+    const API_URL = process.env.MIX_APP_URL +'api/'
     require("../../../public/css/basePage.css");
     const title = "Créez votre annonce";
     const [errors, setErrors] = useState();
@@ -39,7 +40,12 @@ const FormAnnonce = () => {
     });
 
     async function fetchCategory() {
-        await axios.get("http://127.0.0.1:8000/api/posts/add")
+        await axios.get(
+            API_URL + "posts/add", 
+            {
+                headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}
+            }
+        )
         .then(
             response => (setList(response.data.data.map(item => ( 
             <option 
@@ -50,8 +56,14 @@ const FormAnnonce = () => {
     };
 
     async function send(){
-        await axios.post("http://127.0.0.1:8000/api/posts/add", result)
-            .then(res => (setCreated(res.data.validate_err ? false : true), setErrors(res.data.validate_err)));
+        await axios.post(
+            API_URL + "posts/add", 
+            result, 
+            {
+                headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}
+            }
+        )
+        .then(res => (setCreated(res.data.validate_err ? false : true), setErrors(res.data.validate_err)));
     }
 
 
@@ -61,7 +73,11 @@ const FormAnnonce = () => {
 
     const CreateAnnonce = () => {
         //aria-live="polite" : to indicate a message for screen-readers
-        return created ? <div> <p id="created" aria-live="polite"> Votre annonce a bien été créee !</p> </div> : null;
+        return created ? <div> <p onBlur={destroyMessage} id="created" aria-live="polite"> Votre annonce a bien été créee !</p> </div> : null;
+    }
+
+    function destroyMessage(){
+        setCreated(false);
     }
 
     useEffect(()=>{
