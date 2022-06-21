@@ -64,18 +64,22 @@ body {
     }
 
     .menu-option {
+        display: inline;
+        margin: $spacing-4;
+        text-decoration: none;
+    }
+
+    .menu-option-info {
         border-radius: 5%;
         border-bottom: 3px solid $blue;
         width: fit-content;
-        display: inline;
-        margin: $spacing-6;
         text-decoration: none;
         padding: 5px;
     }
 
     .bloc-menu {
         display: inline;
-        margin-left: 370px;
+        margin-left: 350px;
     }
 
     .user-image {
