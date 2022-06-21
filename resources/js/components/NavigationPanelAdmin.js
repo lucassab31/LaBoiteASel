@@ -10,7 +10,7 @@ const NavigationPanelAdmin = () => {
     require ("../../../public/css/panelAdmin.css");
 
     return(
-        <nav role="navigation" className="bloc-white">
+        <nav role="navigation" className="bloc-panel bloc--bg-white">
             <h2>Navigation</h2>
             <div className="menu">
                 <div className="title-accueil">
