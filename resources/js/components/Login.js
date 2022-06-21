@@ -7,7 +7,7 @@ import {Helmet} from "react-helmet";
 
 import "../../../public/css/login.css"
 
-const API_URL = process.env.APP_URL +'/api/';
+const API_URL = process.env.MIX_APP_URL +'/api/';
 
 const Login = () => {
     require("../../../public/css/login.css");
@@ -22,7 +22,7 @@ const Login = () => {
     let navigate = useNavigate();
     const loginForm = async () => {
         let data = { "email": email, "password": password };
-        const response = await axios.post("http://127.0.0.1:8000/api/login", data);
+        const response = await axios.post(API_URL + "users/login", data);
         if (response.data.success) navigate("/");
         else {
             // afficher l'erreur "response.data.error"
