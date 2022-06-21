@@ -28,6 +28,7 @@ const CompteUser = () => {
                 <div className="user-image"><img alt="" src="../../../images/exemple-profile.png"></img><p>{resp.firstName} {resp.lastName}</p></div>
                 <div className="bloc-menu">
                     <p className="menu-option">À propos</p>
+                    <p>Mes annonces</p>
                     <Button className="menu-button">
                         <EditIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} />Modifier le profil
                     </Button>
