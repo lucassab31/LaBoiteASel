@@ -54,7 +54,7 @@ const ListAnnonces = () => {
             listCategories: await apiCategories.data.data,
             defaultValue : await dateTimePicker
         });
-        //console.log(apiPosts.data.data);
+        console.log(apiPosts.data.data);
 
 
         for (let post of apiPosts.data.data) {
