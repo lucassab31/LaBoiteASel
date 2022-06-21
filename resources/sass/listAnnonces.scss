@@ -25,7 +25,7 @@
         .filtres_container {
             display: flex;
             flex-direction: column;
-            margin : 30px 0;
+            margin : 30px $spacing-4 30px 0;
 
             p {
                 font-size: 19px;
@@ -38,7 +38,7 @@
             }
 
             select {
-                padding: 8px;
+                padding: 12px;
             }
 
             label {
@@ -54,14 +54,10 @@
     }
 
     #listAnnonces {
-        padding: 15px 10px 10px 0;
+        padding: 15px 10px 40px 0;
         background-color: $red;
         margin-left: 5px;
         flex-grow: 1;
-
-        /*#listAnnonces__annonces p {
-            font-size: 22px;
-        }*/
 
         h2 {
             padding: 10px 10px 10px 42px;
@@ -110,3 +106,20 @@
     }
 }
 
+@media  (max-width : 960px) {
+
+    #annonces {
+        display: flex;
+        flex-direction: column;
+
+        /*.filtres_row{
+            display: flex;
+            flex-direction: row;
+        }*/
+
+        #listAnnonces{
+            margin-left: 0;
+        }
+    }
+    
+}

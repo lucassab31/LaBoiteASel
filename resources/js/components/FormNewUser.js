@@ -31,14 +31,15 @@ const FormNewUser = () => {
 
     async function send(){
         const date = dateBirth ? new Date(dateBirth) : "";
+
         let data = {
-            "firstname": firstname, 
-            "lastname": lastname,
+            "firstName": firstname, 
+            "lastName": lastname,
             "email": email,
             "phone": phone, 
             //"password": password, 
-            "dateBirth":dateBirth,
-            "cost" : 0,
+            "dateOfBirth": dateBirth ? date.toISOString().slice(0, 19).replace('T', ' ') : '',
+            "money" : 0,
             "role": "U",
             "address" : address,
             "zipCode" : zipCode,
@@ -50,7 +51,7 @@ const FormNewUser = () => {
             data, 
             { headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}}
         )
-        .then(res => (console.log(res.data), setErrors(res.data.validate_err)));
+        .then(res => (console.log(res.data), setErrors(res.data.error)));
     }
 
     useEffect(() => {
@@ -92,9 +93,13 @@ const FormNewUser = () => {
     }
 
     const DisplayErrors = (inputName) => {
+        console.log(inputName);
+        console.log(errors);
         if(errors){
+            console.log("toto");
             //formError(inputName.inputName);
             let contentErr = `${errors[inputName.inputName]}`;
+            console.log(contentErr);
             return contentErr && contentErr !== "undefined" ? (formError(inputName.inputName), <p id={inputName.inputName + "__error"} className="field_error"> {contentErr} </p>) : (removeError(inputName.inputName), null);
         }
         else {
@@ -116,25 +121,25 @@ const FormNewUser = () => {
                         <label htmlFor="firstname">Prénom</label>
                         <input 
                             aria-required="true" 
-                            data-name="firstname" 
+                            data-name="firstName" 
                             value={firstname} onChange={(e) => (setFirstname(e.target.value))}
                             autoComplete="given-name"
                             id="firstname" 
                             type="text" 
                             placeholder="Prénom"/>
-                        <DisplayErrors inputName="firstname"></DisplayErrors>
+                        <DisplayErrors inputName="firstName"></DisplayErrors>
                     </div>
 
                     <div className="form__inputsContainer">
                         <label htmlFor="lastname">Nom</label>
                         <input 
                             aria-required="true" autoComplete="family-name"
-                            data-name="lastname" 
+                            data-name="lastName"
                             value={lastname} onChange={(e) => (setLastname(e.target.value))}
                             id="lastname" 
                             type="text" 
                             placeholder="Nom"/>
-                        <DisplayErrors inputName="lastname"></DisplayErrors>
+                        <DisplayErrors inputName="lastName"></DisplayErrors>
                     </div>
 
                     <div className="form__inputsContainer">
@@ -152,33 +157,22 @@ const FormNewUser = () => {
                     <div className="form__inputsContainer">
                         <label htmlFor="phone">Numéro de téléphone</label>
                         <input 
-                        aria-required="true" 
+                        aria-required="true" autoComplete="tel-local"
                         data-name="phone"  type="tel" id="phone" name="phone" 
                         value={phone} onChange={(e) => (setPhone(e.target.value))}
                         placeholder="Numéro de téléphone"/>
                         <DisplayErrors inputName="phone"></DisplayErrors>
                     </div>
 
-                    {/*<div className="form__inputsContainer">
-                        <label htmlFor="password">Mot de passe</label>
-                        <input 
-                            aria-required="true" autoComplete="new-password"
-                            data-name="password" type="password" 
-                            value={password} onChange={(e) => (setPassword(e.target.value))}
-                            id="password" name="password" minLength="8" 
-                            required placeholder="Un mot de passe temporaire"/>
-                            <DisplayErrors inputName="password"></DisplayErrors>
-                     </div>*/}
-
                     <div className="form__inputsContainer">
                         <label htmlFor="dateBirth">Date de naissance</label>
                         <input  
-                            autoComplete="bday" data-name="dateBirth" 
+                            autoComplete="bday" data-name="dateOfBirth" 
                             value={dateBirth} onChange={(e) => (setDateBirth(e.target.value))}
                             id="dateBirth" 
                             type="datetime-local"
                         />  
-                        <DisplayErrors inputName="dateBirth"></DisplayErrors>
+                        <DisplayErrors inputName="dateOfBirth"></DisplayErrors>
                     </div>
 
                     <div>
