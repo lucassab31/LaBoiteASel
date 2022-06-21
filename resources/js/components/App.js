@@ -16,6 +16,7 @@ import Faq from "./FAQ";
 import FormAnnonce from './FormAnnonce';
 import {Helmet} from "react-helmet";
 import PanelAdmin from "./PanelAdmin";
+import FormNewUser from "./FormNewUser";
 
 function App() {
     return (
@@ -38,6 +39,7 @@ function App() {
                     <Route path="/tutoriel" element={<Faq/>}/>
                     <Route path="/create" element={<FormAnnonce/>}/>
                     <Route path="/admin/*" element={<PanelAdmin/>}/>
+                    <Route path="/createNewUser" element={<FormNewUser/>}/>
                 </Routes>
 
                 <Footer/>
