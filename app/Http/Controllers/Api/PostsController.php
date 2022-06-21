@@ -22,9 +22,33 @@ class PostsController extends Controller
      * @return Request
      */
     public function index() {
+        //$posts = Post::where('visibility', 1)->orderByDesc('created_at')->get();
         $posts = Post::where('visibility', 1)->with('category')->orderByDesc('created_at')->get();
         return $this->sendResponse(true, $posts);
     }
+
+
+    /**
+     * Display the filtered posts 
+     * 
+     * @param String $category
+     * @param String $lengthService
+     * @param String $date
+     * @return Request
+     */
+    public function filteredPosts( $category, $lengthService, $date, $dateType) {        
+        $operator = '=';
+        if ($dateType === "B") {
+            $operator = "<"; 
+        } else if ($dateType === "A") {
+            $operator = ">"; 
+        } else if ($dateType === "O") {
+            $operator = "="; 
+        }
+        $posts = Post::where('category_id', $category)->where('timeLength', $lengthService)->with('category')->where('datetimePost',$operator, $date)->get();
+        return $this->sendResponse(true, $posts);
+    }
+
 
     /**
      * Display the specified post

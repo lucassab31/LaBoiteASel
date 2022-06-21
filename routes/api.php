@@ -26,13 +26,13 @@ Route::prefix('posts')->name('posts.')->group(function () {
     Route::middleware('auth:api')->group(function () {
         Route::get('/add', [PostsController::class, 'add']);
         Route::post('/add', [PostsController::class, 'store']);
-    
         Route::get('/candidate/{id}', [PostsController::class, 'candidate']);
         Route::get('/progress/{id}', [PostsController::class, 'inProgress']);
         Route::get('/finish/{id}', [PostsController::class, 'finish']);
         
         Route::get('/delete/{id}', [PostsController::class, 'delete']);
     });
+    Route::get('/postsFiltered/{category}/{lengthservice}/{date}/{dateType}', [PostsController::class, 'filteredPosts']);
 });
 
 Route::post('/users/login', [UsersController::class, 'login']);
