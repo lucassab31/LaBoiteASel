@@ -42,6 +42,7 @@ class UsersController extends Controller
      * @return Request
      */
     public function store(Request $request) {
+        if (!Auth::check()) return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
         $input = $request->all();
         $validator = Validator::make($input, [
             'firstName' => 'required|string',
@@ -76,8 +77,14 @@ class UsersController extends Controller
             'city.string' => 'La ville doit être une chaîne de caractères',
             'role.required' => 'Vous devez renseigner un rôle'
         ]);
-        if($validator->fails()) {
+        /*if($validator->fails()) {
             return $this->sendResponse(false, $validator->errors());
+        }*/
+
+        if($validator->fails()){
+            return response()->json([
+                "error"=> $validator->messages()
+            ]);
         }
 
         $user = new User();

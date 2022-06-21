@@ -1,5 +1,6 @@
 import React, {useEffect, createRef} from "react";
 import {Link, useLocation} from "react-router-dom";
+import { fallDown as Menu } from 'react-burger-menu'
 
 const Header = () => {
     let location = useLocation();
@@ -29,7 +30,14 @@ const Header = () => {
                 <Link className="menu__lien" to="/annonces">Annonces</Link>
                 <LinkLogin />
             </div>
+
+            {/*<Menu className="menuBurger" customBurgerIcon={ <img src="../../../images/menu.png" /> }>
+                <a id="home" className="menu-item" href="/">Home</a>
+                <a id="about" className="menu-item" href="/about">About</a>
+                <a id="contact" className="menu-item" href="/contact">Contact</a>
+            </Menu>*/}
         </header>
+        
     );
 }
 
