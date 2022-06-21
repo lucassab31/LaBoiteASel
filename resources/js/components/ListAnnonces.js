@@ -35,8 +35,14 @@ const ListAnnonces = () => {
     });
 
     const fetchPosts = async () => {
-        const apiPosts = await axios.get(baseUrl);
-        const apiCategories = await axios.get(baseUrl+"add");
+        const apiPosts = await axios.get(baseUrl,
+        {
+            headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}
+        });
+        const apiCategories = await axios.get(baseUrl+"add", 
+        {
+            headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}
+        });
 
         setData({
             posts: await apiPosts.data.data, 
@@ -59,14 +65,12 @@ const ListAnnonces = () => {
                     break; 
             } 
             post.dateText = dateText; 
-            //console.log(post);
         }
     };
     
     useEffect(() => {
             fetchPosts();
     }, []);
-    //console.log(state.listCategories);
 
 
     // Filter part - form 
@@ -77,33 +81,20 @@ const ListAnnonces = () => {
 
     const handleCategoryChange = event => {
         setCategory(event.target.value);
-       // console.log('The value of category is :', event.target.value);
     };
     const handleDateChange = event => {
         setDate(event.target.value);
-        //console.log('The date is :', event.target.value);
     };
     const handleLengthServiceChange = event => {
         setLenghtService(event.target.value);
-        //console.log('The value of category is :', event.target.value);
     };
     const handleSearchDateSpecificationChange = event => {
         setSearchDateSpecification(event.target.value);
-       // console.log('The value of category is :', event.target.value);
     };
 
     const handleClick = event => {
         event.preventDefault();
-        /*console.log('-- result of the form --')
-        console.log('category ', category);
-        console.log('length of the service ', lengthService);
-        console.log('date limit is ', date);
-        console.log('search operator ', searchDateSpecification);*/
         let idCategory;
-        // à rendre dynamique
-        let dateFilter ; 
-        //dateFilter= "2022-06-20%2011:44:17"; 
-        dateFilter = date; 
 
         for (const item of state.listCategories) {
             if (item.title == category) {
@@ -111,20 +102,17 @@ const ListAnnonces = () => {
             }
         }
         
-        let urlApiRequest = baseUrl+"postsFiltered/"+idCategory+"/"+lengthService+"/"+dateFilter+"/"+searchDateSpecification;
+        let urlApiRequest = baseUrl+"postsFiltered/"+idCategory+"/"+lengthService+"/"+date+"/"+searchDateSpecification;
         //console.log(urlApiRequest);
         fetchFilteredPosts(urlApiRequest);
     }; 
     console.log(state.posts);
 
     const fetchFilteredPosts = async (urlRequest) => {
-        //console.log("toto");
         await axios.get(urlRequest).then( resp=>{
               setData({
             ...state, posts: resp.data.data, 
     })});
-        console.log("tata");
-        console.log(state.posts);
     };
 
     const displayDatePost =  (item) => {
@@ -145,8 +133,6 @@ const ListAnnonces = () => {
         item.dateText = dateText; 
         console.log(item);*/
     };
-
-    
 
 
     return (
@@ -194,6 +180,7 @@ const ListAnnonces = () => {
                             <option value="15">15 mins</option> 
                             <option value="30">30 mins</option> 
                             <option value="45">45 mins</option> 
+                            <option value="60">1h</option> 
                             <option value="90">1h30 mins</option> 
                             <option value="120">2h</option> 
                             <option value="150">+ de 2h</option> 

@@ -71,7 +71,7 @@ const FormAnnonce = () => {
             "datetimePost" : date ? date.toISOString().slice(0, 19).replace('T', ' ') : '',
             "datetimeType" : datetimeType
         };
-        console.log(data);
+        //console.log(data);
         await axios.post(
             API_URL + "posts/add", 
             data, 
