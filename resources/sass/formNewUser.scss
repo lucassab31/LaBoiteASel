@@ -1,2 +1,30 @@
 // Variables
 @import 'variables';
+
+.main-formNewUser {
+    margin: $spacing-4;
+
+    .form {
+        margin: $spacing-4;
+        padding: $spacing-4;
+        border-radius: $spacing-4;
+
+        .form__inputsContainer {
+            display: flex;
+            flex-direction: column;
+
+            label {
+                
+            }
+
+            input {
+                width: fit-content;
+                margin-top: $spacing-6;
+            }
+        }
+
+        button {
+            margin: $spacing-6;
+        }
+    }
+}
