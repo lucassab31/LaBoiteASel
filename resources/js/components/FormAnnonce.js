@@ -56,14 +56,30 @@ const FormAnnonce = () => {
     };
 
     async function send(){
+        const date = dateTimePost ? new Date(dateTimePost) : "";
+        let data = {
+            "title" : titre, 
+            "category_id" : category_id,
+            "description" : description, 
+            "address" : address, 
+            "toolsProvided" : toolsProvided,
+            "zipCode" : zipCode,
+            "timeLength" : timeLength,
+            "toolsType" : toolsType,
+            "cost" : cost,
+            "city" : city,
+            "datetimePost" : date ? date.toISOString().slice(0, 19).replace('T', ' ') : '',
+            "datetimeType" : datetimeType
+        };
+        console.log(data);
         await axios.post(
             API_URL + "posts/add", 
-            result, 
+            data, 
             {
                 headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}
             }
         )
-        .then(res => (setCreated(res.data.validate_err ? false : true), setErrors(res.data.validate_err)));
+        .then(res => (console.log(res.data),setCreated(res.data.validate_err ? false : true), setErrors(res.data.validate_err)));
     }
 
 
@@ -76,8 +92,10 @@ const FormAnnonce = () => {
         return created ? <div> <p onBlur={destroyMessage} id="created" aria-live="polite"> Votre annonce a bien été créee !</p> </div> : null;
     }
 
-    function destroyMessage(){
-        setCreated(false);
+
+    function destroyMessage(e){
+        setTimeout(setCreated(false), 5000);
+        e.target.removeAttribute("tabindex");
     }
 
     useEffect(()=>{
@@ -87,13 +105,13 @@ const FormAnnonce = () => {
             message.setAttribute("tabindex", "-1");
             message.scrollIntoView( { behavior: 'smooth', block: 'start' } );
             message.focus();
-            message.onblur = message.removeAttribute("tabindex");
+            //message.onblur = message.removeAttribute("tabindex");
         }
     }, [CreateAnnonce])
 
     function setListResult(){
 
-        dateTimePost ? date = new Date(dateTimePost) : date = new Date();
+        const date = dateTimePost ? new Date(dateTimePost) : "";
         setResult({
             "title" : titre, 
             "category_id" : category_id,
@@ -105,14 +123,15 @@ const FormAnnonce = () => {
             "toolsType" : toolsType,
             "cost" : cost,
             "city" : city,
-            "datetimePost" : date.toISOString().slice(0, 19).replace('T', ' '),
+            "datetimePost" : date ? date.toISOString().slice(0, 19).replace('T', ' ') : '',
             "datetimeType" : datetimeType
-        })
+        });
+        console.log(result);
     }
 
     async function submitForm(e) {
         e.preventDefault();
-        setListResult();
+        //setListResult();
         send();
     }
 
@@ -188,7 +207,7 @@ const FormAnnonce = () => {
                                 id="title" 
                                 type="text" 
                                 value={titre}
-                                onChange={(e) => (setTitre(e.target.value), setListResult())}
+                                onChange={(e) => (setTitre(e.target.value))}
                                 placeholder="mon titre d'annonce..."/>
                             <DisplayErrors inputName="title"></DisplayErrors>
 
@@ -200,7 +219,7 @@ const FormAnnonce = () => {
                                 id="description" 
                                 type="text" 
                                 value={description}
-                                onChange={(e) => (setDescription(e.target.value), setListResult())}
+                                onChange={(e) => (setDescription(e.target.value))}
                                 placeholder="ma description..."
                             />
                             <DisplayErrors inputName="description"></DisplayErrors>
@@ -212,7 +231,7 @@ const FormAnnonce = () => {
 
                            
                             <label htmlFor="category"> Choisissez une catégorie </label>
-                            <select data-name="category_id" aria-required="true" value={category_id} onChange={(e) => (setCategoryId(e.target.value), setListResult())} id="category">
+                            <select data-name="category_id" aria-required="true" value={category_id} onChange={(e) => (setCategoryId(e.target.value))} id="category">
                                 <option disabled value=""> -- Choisir une option -- </option>
                                 {list}
                             </select>
@@ -223,7 +242,7 @@ const FormAnnonce = () => {
                             <input 
                                 aria-required="true"
                                 value={cost}
-                                onChange={(e) => (setCost(e.target.value), setListResult())}
+                                onChange={(e) => (setCost(e.target.value))}
                                 data-name="cost" 
                                 type="number" 
                                 id="saltNumber"
@@ -238,41 +257,17 @@ const FormAnnonce = () => {
 
                 <div className="form__block-2 form__block bloc--bg-yellow bloc--2-2">
                     <fieldset className="group-radios form__block__column">
-                        <legend className="form__block__title"> Des outils sont-ils nécessaires ? </legend>
-                        
-                        <div className="group-radios__radio form__block__wrapper">
-                            <input 
-                                id="tools_yes" 
-                                type="radio" 
-                                value="true" 
-                                name="toolsreq"
-                                checked={toolsReq === "true"}
-                                onChange={(e) => (setToolsReq(e.target.value))}
-                                />
-                            <label htmlFor="tools_yes"> Oui </label>
-                        </div>
-
-                        <div className="group-radios__radio form__block__wrapper">
-                            <input 
-                            id="tools_no" 
-                            type="radio" 
-                            value="false" 
-                            name="toolsreq"
-                            checked={toolsReq === "false"}
-                            onChange={(e) => (setToolsReq(e.target.value))}
-                            />
-                            <label htmlFor="tools_no"> Non </label>
-                        </div>
+                        <legend className="form__block__title"> Des outils sont-ils nécessaires ?</legend>
 
                         <div className="form__block__column form__block__wrapper">
-                            <label htmlFor="type_tools"> Veuillez renseignez les outils nécessaires (par exemple : "pelle, seau") </label>
+                            <label htmlFor="type_tools"> Veuillez renseignez les outils qui vont être utilisés (par exemple : "pelle, seau")</label>
                             <input 
                             data-name="toolsType" 
                             id="type_tools" 
                             type="text"
                             value={toolsType}
                             disabled={toolsReq === "false" ? true : false}
-                            onChange={(e) => (setToolsType(e.target.value), setListResult())}
+                            onChange={(e) => (setToolsType(e.target.value))}
                             />
                         </div>
                     </fieldset>
@@ -280,32 +275,12 @@ const FormAnnonce = () => {
                         <legend> Ces outils seront-ils fournis ? </legend>
                         <DisplayErrors inputName="toolsProvided"></DisplayErrors>
 
-                        <div className="group-radios__radio">
-                            <input 
-                                data-name="toolsProvided" 
-                                id="unrequired" 
-                                type="radio" 
-                                value="B"
-                                disabled={toolsReq === "false" ? true : false}
-                                onClick = {()=>{setToolsProvided("B")}}
-                                onChange={()=>{setListResult()}}
-                                name="gettools"/>
-                            <label htmlFor="unrequired"> Oui </label>
-                        </div>
-
-                        <div className="group-radios__radio">
-                            <input 
-                                data-name="toolsProvided" 
-                                id="required" 
-                                type="radio" 
-                                name="gettools"
-                                value="A"
-                                disabled={toolsReq === "false" ? true : false}
-                                onClick={()=> {setToolsProvided("A")}}
-                                onChange={()=> {setListResult()}}
-                            />
-                            <label htmlFor="required"> Non </label>
-                        </div>
+                        <select name="tools" data-name="toolsProvided" aria-required="true" value={toolsProvided} onChange={(e) => (setToolsProvided(e.target.value))} id="tools">
+                            <option value="" disabled>Choisir une option</option>
+                            <option value="Y">Oui</option>
+                            <option value="N">Non</option>
+                            <option value="A">Outils non nécessaires</option>
+                        </select>
                     </fieldset>
                 </div>
 
@@ -320,17 +295,17 @@ const FormAnnonce = () => {
                             <div className="form__block__column">
 
                                     <label htmlFor="dateType"> Choisissez si vous souhaitez mettre une date de fin, une date de début, ou une date précise </label>
-                                    <select data-name="datetimeType" id="dateType" value={datetimeType} onChange={(e) => (setDateTimeType(e.target.value), setListResult())}>
+                                    <select data-name="datetimeType" id="dateType" value={datetimeType} onChange={(e) => (setDateTimeType(e.target.value))}>
                                         <option disabled value=""> -- Choisir une option -- </option>
-                                        <option value='A'> Avant la date choisie </option>
-                                        <option value='B'> Seulement date choisie </option>
-                                        <option value='O'> A partir de la date choisie </option>
+                                        <option value='B'> Avant la date choisie </option>
+                                        <option value='O'> Seulement date choisie </option>
+                                        <option value='A'> A partir de la date choisie </option>
                                     </select>
 
                                 <label htmlFor="date"> Choisissez la date </label>
                                 <input  
                                     value={dateTimePost}
-                                    onChange={(e) => (setDateTimePost(e.target.value), setListResult())}
+                                    onChange={(e) => (setDateTimePost(e.target.value))}
                                     data-name="datetimePost" 
                                     id="date" 
                                     type="datetime-local"
@@ -338,14 +313,18 @@ const FormAnnonce = () => {
                             </div>
 
                             <div className="form__block__column">
-                                <label htmlFor="time"> Durée en heures (par exemple pour 3 heures marquer "3") </label>
-                                <input 
-                                    value={timeLength}
-                                    onChange={(e) => (setTimeLength(e.target.value), setListResult())}
-                                    data-name="timeLength" 
-                                    id="time" 
-                                    type="number"
-                                />
+                                <label htmlFor="lengthService"> Durée en heures </label>
+                            
+                                <select aria-required="true" data-name="timeLength" id="lengthService" value={timeLength} onChange={(e) => (setTimeLength(e.target.value))}>
+                                    <option disabled value=""> -- Choisir une durée -- </option>
+                                    <option value='15'>15 mins</option>
+                                    <option value='30'>30 mins</option>
+                                    <option value='45'>45 mins</option>
+                                    <option value='60'>1 heure</option>
+                                    <option value='90'>1h30</option>
+                                    <option value='120'>2h</option>
+                                    <option value='150'>+ de 2 heures</option>
+                                </select>
                             </div>
 
                         </div>
@@ -364,7 +343,7 @@ const FormAnnonce = () => {
                             <label htmlFor="address"> Votre numéro et nom de rue (ces informations ne sera pas visible sur l'annonce) </label>
                             <input 
                                 value={address}
-                                onChange={(e) => (setAddress(e.target.value), setListResult())}
+                                onChange={(e) => (setAddress(e.target.value))}
                                 aria-required="true" 
                                 autoComplete="street-address" 
                                 data-name="address" 
@@ -378,7 +357,7 @@ const FormAnnonce = () => {
                             <input 
                                 aria-required="true"
                                 value={city}
-                                onChange={(e) => (setCity(e.target.value), setListResult())}
+                                onChange={(e) => (setCity(e.target.value))}
                                 autoComplete="address-level2" 
                                 data-name="city" 
                                 id="city" 
@@ -394,7 +373,7 @@ const FormAnnonce = () => {
                             <label htmlFor="zipcode"> Votre code postal </label>
                             <input 
                                 value={zipCode}
-                                onChange={(e) => (setZipCode(e.target.value), setListResult())}
+                                onChange={(e) => (setZipCode(e.target.value))}
                                 aria-required="true" 
                                 autoComplete="postal-code" 
                                 data-name="zipCode" 

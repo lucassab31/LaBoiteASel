@@ -239,10 +239,6 @@ const ListAnnonces = () => {
                                 
                                 </div>
                                 
-                                <div className="annonce_btn">
-                                    <button className="button-blue"><Link to={`/annonce?id=${item.id}`} className="annonce__link--white">Voir l'annonce</Link></button>
-                                    <button className="yellowButton"><Link to="/validation" className="annonce__link--blue">Rendre service</Link></button>
-                                </div>
                             </div>
                             
                             <div className="annonce_btn">

@@ -161,7 +161,7 @@ const Annonce = () => {
                 </div>
 
                 <div id="annonce__btn">
-                    <button className="button-blue"><Link to="/annonces">Retour à la liste des annonces</Link></button>
+                    <Link to="/annonces" className="button-blue">Retour à la liste des annonces</Link>
                     <button className="button-blue">Voir le profil de la personne</button>
                 </div>
             </div>
