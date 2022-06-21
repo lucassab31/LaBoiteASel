@@ -55,15 +55,16 @@ class UsersController extends Controller
      */
     public function view($id) {
         if (Auth::id() == $id || $id == 0) {
-            return $this->sendResponse(true, User::findOrFail(Auth::user()->id));
+            return $this->sendResponse(true, User::where('id', Auth::id())->withCount('posts')->withCount('postsMaker')->first());
         } else {
-            $user = User::where('id', $id)->withCount('posts')->first();
+            $user = User::where('id', $id)->withCount('posts')->withCount('postsMaker')->first();
             $oUser = new stdClass();
             $oUser->id = $user->id;
             $oUser->firstName = $user->firstName;
             $oUser->lastName = substr($user->lastName, 0, 1);
             $oUser->profilePicture = $user->profilePicture;
             $oUser->posts_count = $user->posts_count;
+            $oUser->posts_maker_count = $user->posts_maker_count;
             $oUser->created_at = $user->created_at;
             return $this->sendResponse(true, $oUser);
         }
@@ -76,7 +77,7 @@ class UsersController extends Controller
      * @return Response
      */
     public function viewPosts($id) {
-        if (Auth::check() && Auth::user()->id == $id) {
+        if (Auth::id() == $id) {
             $user = User::where('id', $id)->with(['posts' => function ($query) {
                 $query->with('candidates')->orderByDesc('created_at');
             }])->first();
@@ -91,7 +92,7 @@ class UsersController extends Controller
      * @return Response
      */
     public function viewTransactions($id) {
-        if (Auth::check() && Auth::user()->id == $id) {
+        if (Auth::id() == $id) {
             $user = User::where('id', $id)->with(['transactions' => function ($query) {
                 $query->orderByDesc('created_at');
             }])->first();
@@ -106,7 +107,7 @@ class UsersController extends Controller
      * @return Response
      */
     public function viewReports($id) {
-        if (Auth::check() && Auth::user()->id == $id) {
+        if (Auth::id() == $id) {
             $user = User::where('id', $id)->with(['reports' => function ($query) {
                 $query->orderByDesc('created_at');
             }])->first();
@@ -121,7 +122,7 @@ class UsersController extends Controller
      * @return Response
      */
     public function update(Request $request) {
-        if (Auth::check() && Auth::user()->id == $request->id) {
+        if (Auth::id() == $request->id) {
             $input = $request->all();
             $validator = Validator::make($input, [
                 'firstName' => 'required|string',
@@ -177,14 +178,12 @@ class UsersController extends Controller
      * @return Response
      */
     public function report(Request $request) {
-        if (Auth::check()) {
-            $report = new Report();
-            $report->$request->reason;
-            $report->user()->associate(Auth::user()->id);
-            $report->userReported()->associate($request->user_reported_id);
-            $report->save();
-    
-            return $this->sendResponse();
-        } else return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
+        $report = new Report();
+        $report->$request->reason;
+        $report->user()->associate(Auth::user()->id);
+        $report->userReported()->associate($request->user_reported_id);
+        $report->save();
+
+        return $this->sendResponse();
     }
 }
