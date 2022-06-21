@@ -48,7 +48,7 @@ const ListAnnonces = () => {
             posts: await apiPosts.data.data, 
             listCategories: await apiCategories.data.data
         });
-        //console.log(apiPosts.data.data);
+        console.log(apiPosts.data.data);
 
 
         for (let post of apiPosts.data.data) {
@@ -230,7 +230,7 @@ const ListAnnonces = () => {
                             
                             <div className="annonce_btn">
                                 <Link to={`/annonce?id=${item.id}`} className="button-blue link">Voir l'annonce</Link>
-                                <Link to="/validation" className="button-yellow">Rendre service</Link>
+                                <Link to={`/validation?id=${item.user_id}`} className="button-yellow">Rendre service</Link>
                             </div>
                         </div>           
                     }
