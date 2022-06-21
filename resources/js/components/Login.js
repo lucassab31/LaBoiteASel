@@ -23,8 +23,10 @@ const Login = () => {
     const loginForm = async () => {
         let data = { "email": email, "password": password };
         const response = await axios.post(API_URL + "users/login", data);
-        if (response.data.success) navigate("/");
-        else {
+        if (response.data.success) {
+            window.sessionStorage.setItem('token', response.data.data);
+            navigate("/");
+        } else {
             // afficher l'erreur "response.data.error"
             let error = document.getElementById("error");
             error.textContent = response.data.error;

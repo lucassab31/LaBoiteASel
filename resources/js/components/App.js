@@ -12,6 +12,7 @@ import Messaging from "./Messaging";
 import Validation from "./Validation";
 import CompteUser from './CompteUser';
 import Faq from "./FAQ";
+import FormAnnonce from './FormAnnonce';
 import {Helmet} from "react-helmet";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
                     <Route path="/annonce" element={<Annonce/>} />
                     <Route path="/messaging/*" element={<Messaging/>}/>
                     <Route path="/tutoriel" element={<Faq/>}/>
+                    <Route path="/create" element={<FormAnnonce/>}/>
                 </Routes>
 
                 <Footer/>

@@ -22,9 +22,33 @@ class PostsController extends Controller
      * @return Request
      */
     public function index() {
+        //$posts = Post::where('visibility', 1)->orderByDesc('created_at')->get();
         $posts = Post::where('visibility', 1)->with('category')->orderByDesc('created_at')->get();
         return $this->sendResponse(true, $posts);
     }
+
+
+    /**
+     * Display the filtered posts 
+     * 
+     * @param String $category
+     * @param String $lengthService
+     * @param String $date
+     * @return Request
+     */
+    public function filteredPosts( $category, $lengthService, $date, $dateType) {        
+        $operator = '=';
+        if ($dateType === "B") {
+            $operator = "<"; 
+        } else if ($dateType === "A") {
+            $operator = ">"; 
+        } else if ($dateType === "O") {
+            $operator = "="; 
+        }
+        $posts = Post::where('category_id', $category)->where('timeLength', $lengthService)->with('category')->where('datetimePost',$operator, $date)->get();
+        return $this->sendResponse(true, $posts);
+    }
+
 
     /**
      * Display the specified post
@@ -91,7 +115,9 @@ class PostsController extends Controller
             'category_id.exists' => 'La catégorie doit exister',
         ]);
         if($validator->fails()){
-            return $this->sendResponse(false, $validator->errors());
+            return response()->json([
+                "validate_err"=> $validator->messages()
+            ]);
         }
 
         $post = new Post();
@@ -104,6 +130,8 @@ class PostsController extends Controller
         $post->address          = $request->address;
         $post->zipCode          = $request->zipCode;
         $post->city             = $request->city;
+        $post->datetimeType     = $request->datetimeType;
+        $post->datetimePost     = $request->datetimePost;
         $post->category()->associate(Category::findOrFail($request->category_id));
         $post->user()->associate(Auth::user()->id);
         $post->save();
@@ -152,7 +180,9 @@ class PostsController extends Controller
             'category_id.exists' => 'La catégorie doit exister',
         ]);
         if($validator->fails()){
-            return $this->sendResponse(false, $validator->errors());
+            return response()->json([
+                "validate_err"=> $validator->messages()
+            ]);
         }
 
         $post = Post::find($request->id);
@@ -166,6 +196,8 @@ class PostsController extends Controller
             $post->address          = $request->address;
             $post->zipCode          = $request->zipCode;
             $post->city             = $request->city;
+            $post->datetimeType     = $request->datetimeType;
+            $post->datetimePost     = $request->datetimePost;
             $post->save();
         } else return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
 

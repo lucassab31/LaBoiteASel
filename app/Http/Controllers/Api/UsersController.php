@@ -26,7 +26,8 @@ class UsersController extends Controller
         ];
 
         if (Auth::attempt($data)) {
-            return $this->sendResponse();
+            $token = Auth::user()->createToken('LaBoiteASel')->accessToken;
+            return $this->sendResponse(true, $token);
         } else {
             return $this->sendResponse(false, "Adresse mail ou mot de passe incorrect");
         }
@@ -53,7 +54,7 @@ class UsersController extends Controller
      * @return Response
      */
     public function view($id) {
-        if (Auth::check() && Auth::user()->id == $id || $id == 0) {
+        if (Auth::id() == $id || $id == 0) {
             return $this->sendResponse(true, User::findOrFail(Auth::user()->id));
         } else {
             $user = User::where('id', $id)->withCount('posts')->first();

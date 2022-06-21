@@ -20,3 +20,13 @@
 la compilation puis importer le fichier css (contenu dans public/css) dans le component correspondant.
 - Penser à utiliser les variables dans le fichier _variables, et à créer des mixins pour éviter de dupliquer la scss si possible
 - npm run watch pour compiler en temps réeel - npm run dev pour compiler une seule fois
+
+## Checklist accessibilité
+
+### formulaires
+- vérifier que l'ordre de tabulation sur la page est correct
+- vérifier que tous les champs ont le bon comportement clavier
+- pour les checkboxes et les radios, rendre la zone contenant le label cliquable
+- de préférence, créer des formulaires multi-pages
+- attributs aria (aria-required, aria-invalid, aria-describedby="id-erreur")
+
