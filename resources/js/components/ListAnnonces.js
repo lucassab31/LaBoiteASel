@@ -16,7 +16,21 @@ const ListAnnonces = () => {
     // Fetch data from database to get list of posts and category
     let  baseUrl = API_URL+"posts/"; 
     const [state, setData] = useState({
-        posts: '', 
+        posts: [{
+            title : "",
+            category : {title:""},
+            category_id : "",
+            toolsType : "",
+            toolsProvided : "",
+            description : "",
+            timeLength : "",
+            cost : "",
+            address : "",
+            zipCode : "",
+            city : "",
+            datetimePost : "",
+            datetimeType : ""
+        }], 
         listCategories:'',
     });
 
@@ -28,7 +42,7 @@ const ListAnnonces = () => {
             posts: await apiPosts.data.data, 
             listCategories: await apiCategories.data.data
         });
-        console.log(apiPosts.data.data);
+        //console.log(apiPosts.data.data);
 
 
         for (let post of apiPosts.data.data) {
@@ -45,7 +59,7 @@ const ListAnnonces = () => {
                     break; 
             } 
             post.dateText = dateText; 
-            console.log(post);
+            //console.log(post);
         }
     };
     
@@ -80,11 +94,11 @@ const ListAnnonces = () => {
 
     const handleClick = event => {
         event.preventDefault();
-        console.log('-- result of the form --')
+        /*console.log('-- result of the form --')
         console.log('category ', category);
         console.log('length of the service ', lengthService);
         console.log('date limit is ', date);
-        console.log('search operator ', searchDateSpecification);
+        console.log('search operator ', searchDateSpecification);*/
         let idCategory;
         // à rendre dynamique
         let dateFilter ; 
@@ -98,21 +112,23 @@ const ListAnnonces = () => {
         }
         
         let urlApiRequest = baseUrl+"postsFiltered/"+idCategory+"/"+lengthService+"/"+dateFilter+"/"+searchDateSpecification;
-        console.log(urlApiRequest);
+        //console.log(urlApiRequest);
         fetchFilteredPosts(urlApiRequest);
     }; 
+    console.log(state.posts);
 
     const fetchFilteredPosts = async (urlRequest) => {
-        console.log("toto");
-        const apiFilteredPosts = await axios.get(urlRequest);
-        console.log(apiFilteredPosts.data.data);
-        /*setData({
-            posts: apiFilteredPosts.data.data, 
-        });*/
+        //console.log("toto");
+        await axios.get(urlRequest).then( resp=>{
+              setData({
+            ...state, posts: resp.data.data, 
+    })});
+        console.log("tata");
+        console.log(state.posts);
     };
 
     const displayDatePost =  (item) => {
-        console.log(item);
+        //console.log(item);
        
         /*let dateText = ""; 
         switch (item.datetimeType) {
@@ -152,15 +168,15 @@ const ListAnnonces = () => {
                 <form>
                     <div className="filtres_container">
                         <label htmlFor="category">Catégorie</label>
-                        <select value={category}  onChange={handleCategoryChange} id="category" name="list" >
-                            <FlatList list={state.listCategories} renderItem={item =>
-                            <option value={item.title}>{item.title}</option> }/>
+                        <select value={category}  onChange={handleCategoryChange} id="category" name="list">
+                            <option value="" disabled>Entrez une catégorie</option> 
+                            <FlatList list={state.listCategories} renderItem={item=><option value={item.title}>{item.title}</option>}/>
                         </select>
                     </div>
 
                     <div className="filtres_container">
                         <label htmlFor="category">Chercher les postes dont le service est à faire : </label>
-                        <select value={searchDateSpecification}  onChange={handleSearchDateSpecificationChange} id="category" name="list" >
+                        <select value={searchDateSpecification}  onChange={handleSearchDateSpecificationChange} id="category" name="list">
                             <option value="B">Avant le</option>
                             <option value="O">Le</option>
                             <option value="A">Après le</option>
@@ -173,7 +189,8 @@ const ListAnnonces = () => {
                     </div>
                     <div className="filtres_container">
                         <label htmlFor="lengthService">Durée du service (en heures)</label>
-                        <select value={lengthService} onChange={handleLengthServiceChange} id="lengthService" name="lengthService" >
+                        <select value={lengthService} onChange={handleLengthServiceChange} id="lengthService" name="lengthService">
+                            <option value="" disabled>Entrez une durée</option> 
                             <option value="15">15 mins</option> 
                             <option value="30">30 mins</option> 
                             <option value="45">45 mins</option> 
@@ -197,10 +214,12 @@ const ListAnnonces = () => {
                                 <h3>{item.title}</h3>
 
                                 <div className="annonce__infos">
-                                    <div className="annonce__infosCategorie">
+
+                                     <div className="annonce__infosCategorie">
                                         <CategoryIcon style={{ color: '#5BB286', fontSize:30}}/>
                                         <p> {item.category.title}</p>
                                     </div>
+                                   
 
                                     {(() => {
                                         if (item.datetimePost) {

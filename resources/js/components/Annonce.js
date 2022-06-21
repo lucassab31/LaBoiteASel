@@ -3,7 +3,6 @@ import CategoryIcon from '@mui/icons-material/Category';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import TimelapseIcon from '@mui/icons-material/Timelapse';
 import {Helmet} from "react-helmet";
 import {Link} from "react-router-dom";
 import { useState, useEffect } from 'react';
@@ -147,7 +146,7 @@ const Annonce = () => {
                        
                        <div className="secondRow">
                             <div id="annonce_basicInfos-Length">
-                                <TimelapseIcon style={{ color: '#5BB286', fontSize:30}}/>
+                                <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
                                 <p>{state.dataPost.timeLength} minutes</p>
                             </div>
                             <div id="annonce_basicInfos-salt">
