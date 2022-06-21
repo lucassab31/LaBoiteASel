@@ -38,8 +38,7 @@ class UsersController extends Controller
      *
      * @return Response
      */
-    public function logout()
-    {
+    public function logout() {
         if (Auth::check()) {
             Auth::logout();
             return $this->sendResponse();
@@ -54,13 +53,11 @@ class UsersController extends Controller
      * @param String $id
      * @return Response
      */
-    public function view($id)
-    {
+    public function view($id) {
         if (Auth::id() == $id || $id == 0) {
             return $this->sendResponse(true, User::findOrFail(Auth::user()->id));
         } else {
             $user = User::where('id', $id)->withCount('posts')->first();
-            if ($user == null) return $this->sendResponse(false, "Aucun utilisateur ne correspond");
             $oUser = new stdClass();
             $oUser->id = $user->id;
             $oUser->firstName = $user->firstName;
@@ -78,8 +75,7 @@ class UsersController extends Controller
      * @param String $id
      * @return Response
      */
-    public function viewPosts($id)
-    {
+    public function viewPosts($id) {
         if (Auth::check() && Auth::user()->id == $id) {
             $user = User::where('id', $id)->with(['posts' => function ($query) {
                 $query->with('candidates')->orderByDesc('created_at');
@@ -94,8 +90,7 @@ class UsersController extends Controller
      * @param String $id
      * @return Response
      */
-    public function viewTransactions($id)
-    {
+    public function viewTransactions($id) {
         if (Auth::check() && Auth::user()->id == $id) {
             $user = User::where('id', $id)->with(['transactions' => function ($query) {
                 $query->orderByDesc('created_at');
@@ -110,8 +105,7 @@ class UsersController extends Controller
      * @param String $id
      * @return Response
      */
-    public function viewReports($id)
-    {
+    public function viewReports($id) {
         if (Auth::check() && Auth::user()->id == $id) {
             $user = User::where('id', $id)->with(['reports' => function ($query) {
                 $query->orderByDesc('created_at');
@@ -126,8 +120,7 @@ class UsersController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function update(Request $request)
-    {
+    public function update(Request $request) {
         if (Auth::check() && Auth::user()->id == $request->id) {
             $input = $request->all();
             $validator = Validator::make($input, [
@@ -139,7 +132,7 @@ class UsersController extends Controller
                 'address' => 'required|string',
                 'zipCode' => 'required|string',
                 'city' => 'required|string'
-            ], [
+            ],[
                 'firstName.required' => 'Vous devez renseigner un prénom',
                 'firstName.string' => 'Le prénom doit être une chaîne de caractères',
                 'lastName.required' => 'Vous devez renseigner un nom',
@@ -158,10 +151,10 @@ class UsersController extends Controller
                 'city.required' => 'Vous devez renseigner une ville en France',
                 'city.string' => 'La ville doit être une chaîne de caractères'
             ]);
-            if ($validator->fails()) {
+            if($validator->fails()) {
                 return $this->sendResponse(false, $validator->errors());
             }
-
+    
             $user = User::find($request->id);
             $user->firstName        = $request->firstName;
             $user->lastName         = $request->lastName;
@@ -172,7 +165,7 @@ class UsersController extends Controller
             $user->zipCode          = $request->zipCode;
             $user->city             = $request->city;
             $user->save();
-
+    
             return $this->sendResponse();
         } else return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
     }
@@ -183,15 +176,14 @@ class UsersController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function report(Request $request)
-    {
+    public function report(Request $request) {
         if (Auth::check()) {
             $report = new Report();
             $report->$request->reason;
             $report->user()->associate(Auth::user()->id);
             $report->userReported()->associate($request->user_reported_id);
             $report->save();
-
+    
             return $this->sendResponse();
         } else return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
     }
