@@ -5,7 +5,7 @@ body {
     .bloc-white {
         background-color: $white;
         padding : 1rem;
-        min-height: 150px;
+        max-height: 332px;
     }
 
     .bloc-red {
@@ -57,36 +57,49 @@ body {
         background-color: #e0e0e0;
         color: $blue;
         margin: $spacing-6;
-        display : inline-block;
-        text-align: end;
-        margin-left: 300px;
+        margin-left: 800px;
+        margin-top: -48px;
+        padding: 0;
+        padding-right: 5px;
     }
 
     .menu-option {
+        display: inline;
+        margin: $spacing-4;
+        text-decoration: none;
+    }
+
+    .menu-option-info {
         border-radius: 5%;
         border-bottom: 3px solid $blue;
         width: fit-content;
-        margin-bottom: $spacing-5;
+        text-decoration: none;
+        padding: 5px;
     }
 
     .bloc-menu {
-        
+        display: inline;
+        margin-left: 350px;
     }
 
     .user-image {
         text-align: center;
         align-items: center;
-        z-index: 1;
+        margin-top: -50px;
+        margin-left: 200px;
+        width: 70%;
+        border-bottom: 1.5px solid hsl(0, 0%, 95%);
+        margin-bottom: 15px;
     }
 
     .bg-image {
         align-items: center;
         border-radius: 0 0 $border-rd-lg $border-rd-lg ;
-        z-index: 0;
         box-shadow: 2px 2px 4px 3px rgba(0, 0, 0, 0.25);
         max-height: 180px;
         margin-left: auto;
         margin-right: auto;
         display: block;
+        min-width: 900px;
     }
 }
