@@ -30,6 +30,7 @@ const CompteUser = () => {
             <div className="bloc-white">
                 <img className="bg-image" alt="" src="../../../images/jardin-profile.jpg"></img>
                 <div className="user-image"><img alt="" src="../../../images/exemple-profile.png"></img><p>{resp.firstName} {resp.lastName}</p></div>
+                <div className="bloc-menu-line"></div>
                 <div className="bloc-menu">
                     <Link className="menu-option" to="/annonces">Voir mes annonces</Link>
                     <Link className="menu-option-info" to="">À propos</Link>
