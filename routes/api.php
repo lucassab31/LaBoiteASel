@@ -30,6 +30,7 @@ Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/finish/{id}', [PostsController::class, 'finish']);
     
     Route::get('/delete/{id}', [PostsController::class, 'delete']);
+    Route::get('/postsFiltered/{category}/{lengthservice}/{date}/{dateType}', [PostsController::class, 'filteredPosts']);
 });
 // Users
 Route::prefix('users')->name('users.')->group(function () {

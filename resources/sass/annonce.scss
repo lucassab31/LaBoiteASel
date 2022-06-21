@@ -1,9 +1,7 @@
 // Variables
 @import 'variables';
 
-
 #annonce {
-
     p {
         font-size: $spacing-5;
     }
@@ -12,6 +10,10 @@
         background-color: white;
         border-radius: 9px;
         padding: 20px;
+
+        .annonce_basicInfosDateCreation {
+            margin: 0 0.4rem;
+        }
     }  
 
     #annonce_basicInfosContainer {
@@ -41,9 +43,8 @@
             margin-top: 20px;
             justify-content: center;
 
-            a {
-                color: $white;
-                text-decoration: none;
+            button {
+                margin-right: $spacing-5;
             }
         }
     
