@@ -33,6 +33,7 @@ const ListAnnonces = () => {
             datetimeType : ""
         }], 
         listCategories:'',
+        defaultValue:'',
     });
 
     const fetchPosts = async () => {
@@ -45,9 +46,13 @@ const ListAnnonces = () => {
             headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}
         });
 
+        let today = new Date();
+        let dateTimePicker = new Date(today).toISOString().split('T')[0];
+
         setData({
             posts: await apiPosts.data.data, 
-            listCategories: await apiCategories.data.data
+            listCategories: await apiCategories.data.data,
+            defaultValue : await dateTimePicker
         });
 
         for (let post of apiPosts.data.data) {
@@ -143,41 +148,47 @@ const ListAnnonces = () => {
 
                 {/* form to filter the posts */}
                 <form>
-                    <div className="filtres_container">
-                        <label htmlFor="category">Catégorie</label>
-                        <select value={category}  onChange={handleCategoryChange} id="category" name="list">
-                            <option value="" disabled>Entrez une catégorie</option> 
-                            <FlatList list={state.listCategories} renderItem={item=><option value={item.title}>{item.title}</option>}/>
-                        </select>
-                    </div>
+                    <div className="filtres_row">
+                        <div className="filtres_container">
+                            <label htmlFor="listCategory">Catégorie</label>
+                            <select value={category}  onChange={handleCategoryChange} id="listCategory" name="list">
+                                <option value="" disabled>Entrez une catégorie</option> 
+                                <FlatList list={state.listCategories} renderItem={item=><option value={item.title}>{item.title}</option>}/>
+                            </select>
+                        </div>
 
-                    <div className="filtres_container">
-                        <label htmlFor="category">Chercher les postes dont le service est à faire : </label>
-                        <select value={searchDateSpecification}  onChange={handleSearchDateSpecificationChange} id="category" name="list">
-                            <option value="B">Avant le</option>
-                            <option value="O">Le</option>
-                            <option value="A">Après le</option>
-                        </select>
-                    </div>
 
-                    <div className="filtres_container">
-                        <label htmlFor="date">Date</label>
-                        <input type="datetime-local" id="date" name="date" value={date} onChange={handleDateChange}></input>
+                        <div className="filtres_container">
+                            <label htmlFor="lengthService">Durée du service (en heures)</label>
+                            <select value={lengthService} onChange={handleLengthServiceChange} id="lengthService" name="lengthService">
+                                <option value="" disabled>Entrez une durée</option> 
+                                <option value="15">15 mins</option> 
+                                <option value="30">30 mins</option> 
+                                <option value="45">45 mins</option> 
+                                <option value="60">1h</option> 
+                                <option value="90">1h30 mins</option> 
+                                <option value="120">2h</option> 
+                                <option value="150">+ de 2h</option> 
+                            </select>
+                        </div>
+                        
                     </div>
-                    <div className="filtres_container">
-                        <label htmlFor="lengthService">Durée du service (en heures)</label>
-                        <select value={lengthService} onChange={handleLengthServiceChange} id="lengthService" name="lengthService">
-                            <option value="" disabled>Entrez une durée</option> 
-                            <option value="15">15 mins</option> 
-                            <option value="30">30 mins</option> 
-                            <option value="45">45 mins</option> 
-                            <option value="60">1h</option> 
-                            <option value="90">1h30 mins</option> 
-                            <option value="120">2h</option> 
-                            <option value="150">+ de 2h</option> 
-                        </select>
+                    <div>
+                        <div className="filtres_container">
+                            <label htmlFor="category">Chercher les postes dont le service est à faire : </label>
+                            <select value={searchDateSpecification}  onChange={handleSearchDateSpecificationChange} id="category" name="categoryList">
+                                <option value="B">Avant le</option>
+                                <option value="O">Le</option>
+                                <option value="A">Après le</option>
+                            </select>
+                        </div>
+                        
+                        <div className="filtres_container">
+                            <label htmlFor="date">Date</label>
+                            <input type="datetime-local" id="date" name="date" value={date} onChange={handleDateChange} defaultValue={state.defaultValue}></input>
+                        </div>
                     </div>
-
+                   
                     <button onClick={handleClick} className="button-blue">Filtrez les annonces</button>
                 </form>
             </div>
@@ -204,8 +215,7 @@ const ListAnnonces = () => {
                                             return (
                                                 <div className="annonce__infosDate">
                                                 <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                                <p>
-                                                    {displayDatePost()}
+                                                <p>                                                    
                                                     <Moment format="DD/MM/YYYY">
                                                         {item.datetimePost}
                                                     </Moment>
