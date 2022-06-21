@@ -3,11 +3,24 @@ import {Link, useLocation} from "react-router-dom";
 
 const Header = () => {
     let location = useLocation();
-    const firstFocus = React.createRef();
+    const firstFocus = createRef();
 
     useEffect(() => { 
         firstFocus.current.focus();
     }, [location]);
+
+    if (window.sessionStorage.getItem('token') != undefined) {
+        console.log('token');
+    } else {
+        
+    }
+    const LinkLogin = () => {
+        if (window.sessionStorage.getItem('token') != undefined) {
+            return <Link className="menu__lien" to="/profile">Mon compte</Link>;
+        } else {
+            return <Link className="menu__lien" to="/connexion">Se connecter</Link>;
+        }
+    }
 
     return (
         <header>
@@ -18,9 +31,8 @@ const Header = () => {
 
             <div id="menu">
                 <Link className="menu__lien" to="/">Accueil</Link>
-                <Link className="menu__lien" to="/test">Test</Link>
                 <Link className="menu__lien" to="/annonces">Annonces</Link>
-                <Link to="/messaging">Messagerie</Link>
+                <LinkLogin />
             </div>
         </header>
     );
