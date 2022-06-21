@@ -53,7 +53,11 @@ class User extends Authenticatable
     ];
 
     public function posts() {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class, 'user_id');
+    }
+
+    public function postsMaker() {
+        return $this->hasMany(Post::class, 'user_maker_id');
     }
 
     public function transactions() {
