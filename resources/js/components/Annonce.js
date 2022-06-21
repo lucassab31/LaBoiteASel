@@ -98,7 +98,7 @@ const Annonce = () => {
 
     
     return (
-        <section id="annonce">
+        <main id="annonce">
             <Helmet>
                     <title>{title}</title>
             </Helmet>
@@ -188,7 +188,7 @@ const Annonce = () => {
             
             </div>
 
-        </section>
+        </main>
     );
 }
 

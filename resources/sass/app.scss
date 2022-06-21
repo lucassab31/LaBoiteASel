@@ -48,6 +48,25 @@ header {
     }
 }
 
+.bm-burger-button {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    top: 78px;
+    left: 10px;
+    background-color: white;
+  }
+
+ .menu-item {
+     padding: 5px;
+     color: white;
+ }
+
+ .menu-item:hover {
+     background-color: #808090;
+ }
+ 
+
 // Footer
 
 footer {
@@ -121,6 +140,7 @@ h4 {
 
 input {
     padding: 7px;
+    height: 45px;
 }
 
 
