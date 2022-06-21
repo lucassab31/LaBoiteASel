@@ -5,11 +5,13 @@ body {
     .bloc-white {
         background-color: $white;
         padding : 1rem;
+        min-height: 150px;
     }
 
     .bloc-red {
         background-color: $red;
         padding : 1rem;
+        min-height: 400px;
     }
 
     .left-panel {
@@ -64,8 +66,11 @@ body {
         border-radius: 5%;
         border-bottom: 3px solid $blue;
         width: fit-content;
-        margin: auto;
         margin-bottom: $spacing-5;
+    }
+
+    .bloc-menu {
+        
     }
 
     .user-image {
