@@ -76,6 +76,15 @@
             border-radius: 10px;
             padding: 20px;
 
+            .annonce_btn {
+                display: flex;
+                margin-top: $spacing-5;
+            
+                a {
+                    margin-right: $spacing-5;
+                }
+            }
+
             .annonce__infos {
                 h3 {
                     margin-left: 6px;
@@ -94,15 +103,7 @@
                     }
                 }
 
-                .annonce_btn {
-                    display: flex;
-                    margin-top: $spacing-5;
-
-                    a {
-                        margin-right: $spacing-5;
-                    }
-
-                }
+                
             }
         }
 

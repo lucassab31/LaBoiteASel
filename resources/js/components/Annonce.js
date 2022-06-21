@@ -150,7 +150,7 @@ const Annonce = () => {
                        </div>
                     </div>
                     <div id="annonce_actionBtn">
-                        <button className="yellowButton"><Link to="/validation">Rendre service</Link></button>
+                        <Link  className="yellowButton" to={`/validation?id=${state.dataPost.user_id}`}>Rendre service</Link>
                     </div>
                 </div>
 
