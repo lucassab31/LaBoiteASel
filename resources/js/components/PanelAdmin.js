@@ -8,19 +8,17 @@ const PanelAdmin = () => {
     require ("../../../public/css/panelAdmin.css");
 
     return(
-        <main className="block--1-5">
-                {/*<Helmet titleTemplate="La Boîte à sel | %s">
-                </Helmet> */}
-                {/* possible de les mettre dans des components */}
+        <main>
+                <h2> Administration du site </h2>
+                <div className="block--1-5">
+                    <NavigationPanelAdmin/>
 
-                <NavigationPanelAdmin/>
-
-                <Routes>
-                    <Route index path="/" element={<PanelAdminHome />} />
-                    {/* <Route path="/members/list" element={<Component/>} /> */}
-                    {/* <Route path="/members/add" element={<Component />} /> */}
-                </Routes>
-
+                    <Routes>
+                        <Route index path="/" element={<PanelAdminHome />} />
+                        {/* <Route path="/members/list" element={<Component/>} /> */}
+                        {/* <Route path="/members/add" element={<Component />} /> */}
+                    </Routes>
+                </div>
         </main>
     )
 }
