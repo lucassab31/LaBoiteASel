@@ -38,7 +38,7 @@ Route::prefix('posts')->name('posts.')->group(function () {
 Route::post('/users/login', [UsersController::class, 'login']);
 
 // Routes connected
-Route::middleware('auth:api')->group(function () {
+Route::group(function () {
     // Users
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('/logout', [UsersController::class, 'logout']);
@@ -52,7 +52,7 @@ Route::middleware('auth:api')->group(function () {
     });
     
     // Routes admin
-    Route::middleware('isAdmin')->prefix('admin')->group(function () {
+    Route::prefix('admin')->group(function () {
         // Users
         Route::prefix('users')->name('users.')->group(function () {
             Route::get('/', [AdminUsersController::class, 'index']);
