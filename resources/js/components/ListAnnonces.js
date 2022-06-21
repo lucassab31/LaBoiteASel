@@ -194,9 +194,9 @@ const ListAnnonces = () => {
             <div id="listAnnonces">
                 <h2>Liste des annonces</h2>
                 <div id="listAnnonces__container">
-                    <FlatList list={state.posts}  renderItem={item => 
+                    <div id="listAnnonces__annonces">
+                    <FlatList list={state.posts}  renderItem={item =>
                         <div className="annonce">
-                            <img src="#" alt=""/>
                             <div className="annonce__infos">
                                 <h3>{item.title}</h3>
 
@@ -221,7 +221,7 @@ const ListAnnonces = () => {
                                                 </p>
                                             </div>
                                             )
-                                        }
+                                          }
                                     })()}
                                 
                                 </div>
@@ -229,12 +229,13 @@ const ListAnnonces = () => {
                             </div>
                             
                             <div className="annonce_btn">
-                                <Link to={`/annonce?id=${item.id}`} className="button-blue">Voir l'annonce</Link>
+                                <Link to={`/annonce?id=${item.id}`} className="button-blue link">Voir l'annonce</Link>
                                 <Link to="/validation" className="button-yellow">Rendre service</Link>
                             </div>
                         </div>           
                     }
-                />                    
+                />   
+                </div>      
                 </div>
             </div>
         </main>

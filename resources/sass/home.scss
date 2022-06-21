@@ -29,10 +29,10 @@ body {
             margin-bottom: $spacing-5;
         }
 
-        .button {
+        .linkAnnonce {
            align-self : end;
+           width: fit-content;
         }
-
     }
  
     @media  (min-width : $laptop) {
