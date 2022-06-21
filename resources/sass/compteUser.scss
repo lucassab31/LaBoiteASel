@@ -63,15 +63,6 @@ body {
         padding-right: 5px;
     }
 
-    .bloc-menu-line {
-        background-color: #e0e0e0;
-        border-radius: $border-rd-sm;
-        width: 70%;
-        height: 1.5px;
-        margin: auto;
-        margin-bottom: 16px;
-    }
-
     .menu-option {
         border-radius: 5%;
         border-bottom: 3px solid $blue;
@@ -91,6 +82,10 @@ body {
         text-align: center;
         align-items: center;
         margin-top: -50px;
+        margin-left: 200px;
+        width: 70%;
+        border-bottom: 1.5px solid hsl(0, 0%, 95%);
+        margin-bottom: 15px;
     }
 
     .bg-image {
