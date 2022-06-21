@@ -38,7 +38,8 @@ class UsersController extends Controller
      *
      * @return Response
      */
-    public function logout() {
+    public function logout()
+    {
         if (Auth::check()) {
             Auth::logout();
             return $this->sendResponse();
@@ -53,7 +54,8 @@ class UsersController extends Controller
      * @param String $id
      * @return Response
      */
-    public function view($id) {
+    public function view($id)
+    {
         if (Auth::id() == $id || $id == 0) {
             return $this->sendResponse(true, User::where('id', Auth::id())->withCount('posts')->withCount('postsMaker')->first());
         } else {
@@ -134,7 +136,7 @@ class UsersController extends Controller
                 'address' => 'required|string',
                 'zipCode' => 'required|string',
                 'city' => 'required|string'
-            ],[
+            ], [
                 'firstName.required' => 'Vous devez renseigner un prénom',
                 'firstName.string' => 'Le prénom doit être une chaîne de caractères',
                 'lastName.required' => 'Vous devez renseigner un nom',
@@ -153,10 +155,10 @@ class UsersController extends Controller
                 'city.required' => 'Vous devez renseigner une ville en France',
                 'city.string' => 'La ville doit être une chaîne de caractères'
             ]);
-            if($validator->fails()) {
+            if ($validator->fails()) {
                 return $this->sendResponse(false, $validator->errors());
             }
-    
+
             $user = User::find($request->id);
             $user->firstName        = $request->firstName;
             $user->lastName         = $request->lastName;
@@ -167,7 +169,7 @@ class UsersController extends Controller
             $user->zipCode          = $request->zipCode;
             $user->city             = $request->city;
             $user->save();
-    
+
             return $this->sendResponse();
         } else return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
     }
