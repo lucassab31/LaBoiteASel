@@ -189,7 +189,10 @@ input {
         display: flex;
         flex-direction: column;
     }
+}
 
+.block--1-5 {
+    @include bloc--2-columns(20%, 80%);
 }
 
 .yellowButton {
