@@ -59,6 +59,10 @@
         margin-left: 5px;
         flex-grow: 1;
 
+        /*#listAnnonces__annonces p {
+            font-size: 22px;
+        }*/
+
         h2 {
             padding: 10px 10px 10px 42px;
             background-color: white;
@@ -92,9 +96,10 @@
 
                 .annonce_btn {
                     display: flex;
+                    margin-top: $spacing-5;
 
-                    button {
-                         margin: 0 $spacing-5 0 0;
+                    .link {
+                        margin-right: $spacing-5;
                     }
 
                 }
