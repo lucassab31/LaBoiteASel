@@ -16,7 +16,7 @@ const Header = () => {
     }
     const LinkLogin = () => {
         if (window.sessionStorage.getItem('token') != undefined) {
-            return <Link className="menu__lien" to="/profile">Mon compte</Link>;
+            return <Link className="menu__lien" to="/utilisateur">Mon compte</Link>;
         } else {
             return <Link className="menu__lien" to="/connexion">Se connecter</Link>;
         }
