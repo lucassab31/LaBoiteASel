@@ -58,6 +58,7 @@ class UsersController extends Controller
             return $this->sendResponse(true, User::where('id', Auth::id())->withCount('posts')->withCount('postsMaker')->first());
         } else {
             $user = User::where('id', $id)->withCount('posts')->withCount('postsMaker')->first();
+            if ($user == null) return $this->sendResponse(false, "Aucun utilisateur ne correspond");
             $oUser = new stdClass();
             $oUser->id = $user->id;
             $oUser->firstName = $user->firstName;
