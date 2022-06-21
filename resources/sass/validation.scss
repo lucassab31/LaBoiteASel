@@ -28,8 +28,8 @@ body {
     }
 
     .bloc--icon {
-        margin-left: 615px;
-        margin-bottom: $spacing-4;
+        display: flex;
+        justify-content: center;
     }
 
     .main-validation p {
