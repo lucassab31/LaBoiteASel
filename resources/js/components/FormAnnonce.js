@@ -2,7 +2,7 @@ import React, {useState, useEffect, useFocus} from "react";
 import {Helmet} from "react-helmet";
 
 const FormAnnonce = () => {
-    const API_URL = process.env.MIX_APP_URL +'/api/'
+    const API_URL = process.env.MIX_APP_URL +'api/'
     require("../../../public/css/basePage.css");
     const title = "Créez votre annonce";
     const [errors, setErrors] = useState();
