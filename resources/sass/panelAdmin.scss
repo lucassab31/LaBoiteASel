@@ -1,6 +1,37 @@
 @import 'variables';
 @import 'mixins';
 
+.bloc-panel{
+    border-radius: $border-rd-sm;
+    background-color : $white;
+    padding : $spacing-3;
+    margin : $spacing-4;
+}
 
+table {
+    border-collapse : collapse;
+    text-align : center;
+    padding : $spacing-2;
+    table-layout: auto;
+    width: 100%;
+    background-color : #fff;
 
+    tr:nth-child(even){
+        background-color : $white;
+    }
 
+    tbody {
+        tr {
+            height : 40px;
+            td {
+                border-bottom: 1px solid $blue;
+            }
+        }
+    }
+
+    thead {
+        height : 50px;
+        background-color : $blue;
+        color : #fff;
+    }
+}
