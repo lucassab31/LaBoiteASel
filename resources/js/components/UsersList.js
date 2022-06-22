@@ -11,12 +11,6 @@ const UsersList = () => {
         <main>
                 <h2> Administration du site </h2>
                 <div className="block--1-5">
-
-                    <Routes>
-                        <Route index path="/" element={<PanelAdminHome />} />
-                        {/* <Route path="/members/list" element={<Component/>} /> */}
-                        {/* <Route path="/members/add" element={<Component />} /> */}
-                    </Routes>
                 </div>
         </main>
     )

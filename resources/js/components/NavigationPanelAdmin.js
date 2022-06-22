@@ -15,7 +15,7 @@ const NavigationPanelAdmin = () => {
             <div className="menu">
                 <div className="title-accueil">
                     <p>Accueil</p> 
-                    {/* <Link> Accueil </Link> : à ajouter */}
+                    <Link to="/admin"> Accueil </Link>
                 </div>
                 <div className="membres">
                     <div className="title">

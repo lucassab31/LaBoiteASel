@@ -134,12 +134,16 @@ h3 {
     font-size:1.75rem;
 }
 
-h4 {
+h4, label {
     font-size:  1rem;
 }
 
+label {
+    margin-top : $spacing-6;
+}
+
 input {
-    padding: 7px;
+    padding: $spacing-6;
     height: 45px;
 }
 
@@ -202,6 +206,14 @@ input {
     }
 }
 
+.bloc--3-1 {
+    @include bloc--2-columns(70%, 30%);
+   
+    &>*:first-child {
+        background-color : #fff;
+    }
+}
+
 .bloc--2-2 {
     @include bloc--2-columns(50%, 50%);
 
@@ -215,9 +227,29 @@ input {
     @include bloc--2-columns(20%, 80%);
 }
 
+.bloc--3-columns {
+    display : flex;
+    flex-direction : column;
+    align-items: center;
+
+    @media screen and (min-width : $laptop){
+        flex-direction : row;
+    }
+
+    &>*{
+       display : flex;
+       flex-direction : column; 
+       width : 30%;
+    }
+}
+
 .yellowButton {
     @include button($yellow, $blue);
 
+}
+
+label {
+    color : $blue;
 }
 
 .field_error {
