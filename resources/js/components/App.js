@@ -1,4 +1,4 @@
-import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, {lazy} from 'react';
 import ReactDOM from 'react-dom';
 import Header from './Header';
@@ -15,7 +15,6 @@ import Faq from "./FAQ";
 import FormAnnonce from './FormAnnonce';
 import {Helmet} from "react-helmet";
 import PanelAdmin from "./PanelAdmin";
-import FormNewUser from "./FormNewUser";
 
 function App() {
     return (
