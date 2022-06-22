@@ -35,8 +35,7 @@ const NavigationPanelAdmin = () => {
                         <KeyboardArrowDownRoundedIcon aria-hidden="true" style={{ color: '#F07C63', fontSize: 20 }} />
                     </div>
                     <div>
-                        <a>Balance des services</a>
-                        <a>Volume des échanges</a>
+                        <Link to="adminTable">Balance des services et volume des échanges </Link>
                         <a>Export des données</a>
                     </div>
                 </div>
