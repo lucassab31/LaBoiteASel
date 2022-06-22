@@ -74,4 +74,6 @@ Route::middleware('auth:api')->group(function () {
 Route::prefix('stats')->name('stats.')->group(function () {
     Route::get('/', [AdminStatsController::class, 'index']);
     Route::post('/services', [AdminStatsController::class, 'services']);
+    Route::post('/balance', [AdminStatsController::class, 'balance']);
+    Route::post('/volume', [AdminStatsController::class, 'volume']);
 });
