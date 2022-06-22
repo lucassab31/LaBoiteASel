@@ -73,7 +73,7 @@ Route::prefix('admin')->group(function () {
     // Stats
     Route::prefix('stats')->name('stats.')->group(function () {
         Route::get('/', [AdminStatsController::class, 'index']);
-        Route::post('/services', [AdminStatsController::class, 'services']);
         Route::post('/balance', [AdminStatsController::class, 'balance']);
+        Route::get('/export', [AdminStatsController::class, 'exportCsv']);
     });
 });
