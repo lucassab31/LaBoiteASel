@@ -189,10 +189,6 @@ class UsersController extends Controller
         ],[
             'role.required' => 'Vous devez renseigner un rôle'
         ]);
-        /*if($validator->fails()) {
-            return $this->sendResponse(false, $validator->errors());
-        }*/
-
         if($validator->fails()){
             return response()->json([
                 "success" => false,
