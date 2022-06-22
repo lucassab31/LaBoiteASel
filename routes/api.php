@@ -36,20 +36,20 @@ Route::prefix('posts')->name('posts.')->group(function () {
 });
 
 Route::post('/users/login', [UsersController::class, 'login']);
+// Users
+Route::prefix('users')->name('users.')->group(function () {
+    Route::get('/logout', [UsersController::class, 'logout']);
+
+    Route::get('/view/{id}', [UsersController::class, 'view']);
+    Route::get('/viewPosts/{id}', [UsersController::class, 'viewPosts']);
+    Route::get('/viewTransactions/{id}', [UsersController::class, 'viewTransactions']);
+    Route::get('/viewReports/{id}', [UsersController::class, 'viewReports']);
+    
+    Route::get('/delete/{id}', [UsersController::class, 'delete']);
+});
 
 // Routes connected
 Route::middleware('auth:api')->group(function () {
-    // Users
-    Route::prefix('users')->name('users.')->group(function () {
-        Route::get('/logout', [UsersController::class, 'logout']);
-
-        Route::get('/view/{id}', [UsersController::class, 'view']);
-        Route::get('/viewPosts/{id}', [UsersController::class, 'viewPosts']);
-        Route::get('/viewTransactions/{id}', [UsersController::class, 'viewTransactions']);
-        Route::get('/viewReports/{id}', [UsersController::class, 'viewReports']);
-        
-        Route::get('/delete/{id}', [UsersController::class, 'delete']);
-    });
     
     // Routes admin
     Route::middleware('isAdmin')->prefix('admin')->group(function () {
@@ -69,4 +69,11 @@ Route::middleware('auth:api')->group(function () {
             Route::get('/', [AdminStatsController::class, 'index']);
         });
     });
+});
+
+Route::prefix('stats')->name('stats.')->group(function () {
+    Route::get('/', [AdminStatsController::class, 'index']);
+    Route::post('/services', [AdminStatsController::class, 'services']);
+    Route::post('/balance', [AdminStatsController::class, 'balance']);
+    Route::post('/volume', [AdminStatsController::class, 'volume']);
 });
