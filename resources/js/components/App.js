@@ -39,7 +39,6 @@ function App() {
                     <Route path="/tutoriel" element={<Faq/>}/>
                     <Route path="/create" element={<FormAnnonce/>}/>
                     <Route path="/admin/*" element={<PanelAdmin/>}/>
-                    <Route path="/createNewUser" element={<FormNewUser/>}/>
                 </Routes>
 
                 <Footer/>
