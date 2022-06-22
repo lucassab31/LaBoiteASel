@@ -53,27 +53,26 @@ Route::middleware('auth:api')->group(function () {
     
     // Routes admin
     Route::middleware('isAdmin')->prefix('admin')->group(function () {
-        // Users
-        Route::prefix('users')->name('users.')->group(function () {
-            Route::get('/', [AdminUsersController::class, 'index']);
-            Route::get('/view/{id}', [AdminUsersController::class, 'view']);
-        
-            Route::get('/add', [AdminUsersController::class, 'add']);
-            Route::post('/add', [AdminUsersController::class, 'store']);
-    
-            Route::get('/delete/{id}', [AdminUsersController::class, 'delete']);
-        });
-    
-        // Stats
-        Route::prefix('stats')->name('stats.')->group(function () {
-            Route::get('/', [AdminStatsController::class, 'index']);
-        });
+
     });
 });
+// Routes admin
+Route::prefix('admin')->group(function () {
+    // Users
+    Route::prefix('users')->name('users.')->group(function () {
+        Route::get('/', [AdminUsersController::class, 'index']);
+        Route::get('/view/{id}', [AdminUsersController::class, 'view']);
+    
+        Route::get('/add', [AdminUsersController::class, 'add']);
+        Route::post('/add', [AdminUsersController::class, 'store']);
 
-Route::prefix('stats')->name('stats.')->group(function () {
-    Route::get('/', [AdminStatsController::class, 'index']);
-    Route::post('/services', [AdminStatsController::class, 'services']);
-    Route::post('/balance', [AdminStatsController::class, 'balance']);
-    Route::post('/volume', [AdminStatsController::class, 'volume']);
+        Route::get('/delete/{id}', [AdminUsersController::class, 'delete']);
+    });
+
+    // Stats
+    Route::prefix('stats')->name('stats.')->group(function () {
+        Route::get('/', [AdminStatsController::class, 'index']);
+        Route::post('/services', [AdminStatsController::class, 'services']);
+        Route::post('/balance', [AdminStatsController::class, 'balance']);
+    });
 });
