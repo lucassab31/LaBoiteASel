@@ -25,17 +25,24 @@ const Header = () => {
                 <h1 id="laBoiteASel__nom">La Boîte à Sel</h1>
             </div>
 
-            <div id="menu">
+           {/*<div id="menu">
                 <Link className="menu__lien" to="/">Accueil</Link>
                 <Link className="menu__lien" to="/annonces">Annonces</Link>
                 <LinkLogin />
-            </div>
+            </div>*/}
 
-            {/*<Menu className="menuBurger" customBurgerIcon={ <img src="../../../images/menu.png" /> }>
-                <a id="home" className="menu-item" href="/">Home</a>
-                <a id="about" className="menu-item" href="/about">About</a>
-                <a id="contact" className="menu-item" href="/contact">Contact</a>
-            </Menu>*/}
+            <div class="top-nav">
+                <input id="menu-toggle" type="checkbox" />
+                <label class='menu-button-container' for="menu-toggle">
+                <div class='menu-button'></div>
+                </label>
+                <ul class="menu">
+                    <li><Link className="menu__lien" to="/">Accueil</Link></li>
+                    <li><Link className="menu__lien" to="/annonces">Annonces</Link></li>
+                    <li><LinkLogin /></li>
+                </ul>
+            </div>
+            
         </header>
         
     );
