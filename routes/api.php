@@ -84,6 +84,7 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('categories')->name('categories.')->group(function () {
         Route::post('/add', [AdminCategoriesController::class, 'store']);
         Route::get('/', [AdminCategoriesController::class, 'index']);
+
+        Route::get('/delete/{id}', [AdminCategoriesController::class, 'delete']);
     });
-    
 });
