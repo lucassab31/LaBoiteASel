@@ -40,14 +40,14 @@ class StatsController extends Controller
         return $this->sendResponse(true, $users);
     }
 
-    public function volume(Request $request) {
-        $users = User::withCount(['posts' => function ($query) {
-            global $request;
-            $query->whereRaw("DATE(created_at) BETWEEN '$request->dateDebut' AND '$request->dateFin'");
-        }])->withCount(['postsMaker' => function ($query) {
-            global $request;
-            $query->whereRaw("DATE(created_at) BETWEEN '$request->dateDebut' AND '$request->dateFin'");
-        }])->get();
-        return $this->sendResponse(true, $users);
-    }
+    // public function volume(Request $request) {
+    //     $users = User::withCount(['posts' => function ($query) {
+    //         global $request;
+    //         $query->whereRaw("DATE(created_at) BETWEEN '$request->dateDebut' AND '$request->dateFin'");
+    //     }])->withCount(['postsMaker' => function ($query) {
+    //         global $request;
+    //         $query->whereRaw("DATE(created_at) BETWEEN '$request->dateDebut' AND '$request->dateFin'");
+    //     }])->get();
+    //     return $this->sendResponse(true, $users);
+    // }
 }
