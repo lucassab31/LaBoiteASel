@@ -11,7 +11,6 @@ const UsersList = () => {
         <main>
                 <h2> Administration du site </h2>
                 <div className="block--1-5">
-                    <NavigationPanelAdmin/>
 
                     <Routes>
                         <Route index path="/" element={<PanelAdminHome />} />
