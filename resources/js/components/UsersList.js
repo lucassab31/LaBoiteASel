@@ -1,6 +1,7 @@
 import React from "react";
 import FlatList from 'flatlist-react';
 import { useState, useEffect } from 'react';
+import {Link } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
 const API_URL = process.env.MIX_APP_URL +'api/'; 
 
@@ -34,32 +35,33 @@ const UsersList = () => {
 
     return(
         <main>
-                <h2> Liste des membres </h2>
+            <h2 className="adminPanelList_title"> Liste des membres </h2>
+            <Link className="button-blue" to="addMembers">Ajouter un membre</Link>
 
-                <div className="listUsers">
+            <div className="listUsers">
                 <table>
-                        <caption> Affichage des informations des membres</caption>
-                        <thead>
-                            <tr>
-                                <th scope="col">Nom & Prénom</th>
-                                <th scope="col">Adresse mail</th>
-                                <th scope="col">Grains de sels restants</th>
-                                <th scope="col">Supprimer l'utilisateur</th>                   
-                             </tr>
-                        </thead>
-                        <tbody>
-                        <FlatList keyExtractor={(item) => item.id} list={state.listUsers}  renderItem={item => 
-                            <tr>
-                                <td>{item.firstName} {item.lastName}</td>
-                                <td>{item.email}</td>
-                                <td>{item.money}</td>
-                                <td onClick={() => handleUserDelete(item.id)}><DeleteIcon style={{ color: '#5bb385', fontSize:28 }}/> Supprimer</td>
-                            </tr>          
-                            }
-                        />  
-                        </tbody>
-                    </table>       
-                </div>
+                    <caption> Affichage des informations des membres</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Nom & Prénom</th>
+                            <th scope="col">Adresse mail</th>
+                            <th scope="col">Grains de sels restants</th>
+                            <th scope="col">Supprimer l'utilisateur</th>                   
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <FlatList keyExtractor={(item) => item.id} list={state.listUsers}  renderItem={item => 
+                        <tr>
+                            <td>{item.firstName} {item.lastName}</td>
+                            <td>{item.email}</td>
+                            <td>{item.money}</td>
+                            <td onClick={() => handleUserDelete(item.id)}><DeleteIcon style={{ color: '#5bb385', fontSize:28 }}/> Supprimer</td>
+                        </tr>          
+                        }
+                    />  
+                    </tbody>
+                </table>       
+            </div>
         </main>
     )
 }
