@@ -74,46 +74,37 @@ class UsersController extends Controller
     /**
      * View user's posts
      *
-     * @param String $id
      * @return Response
      */
-    public function viewPosts($id) {
-        if (Auth::id() == $id) {
-            $user = User::where('id', $id)->with(['posts' => function ($query) {
-                $query->with('candidates')->orderByDesc('created_at');
-            }])->first();
-            return $this->sendResponse(true, $user);
-        } else return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
+    public function viewPosts() {
+        $user = User::where('id', Auth::id())->with(['posts' => function ($query) {
+            $query->with('candidates')->orderByDesc('created_at');
+        }])->first();
+        return $this->sendResponse(true, $user);
     }
 
     /**
      * View user's transactions
      *
-     * @param String $id
      * @return Response
      */
-    public function viewTransactions($id) {
-        if (Auth::id() == $id) {
-            $user = User::where('id', $id)->with(['transactions' => function ($query) {
-                $query->orderByDesc('created_at');
-            }])->first();
-            return $this->sendResponse(true, $user);
-        } else return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
+    public function viewTransactions() {
+        $user = User::where('id', Auth::id())->with(['transactions' => function ($query) {
+            $query->orderByDesc('created_at');
+        }])->first();
+        return $this->sendResponse(true, $user);
     }
 
     /**
      * View user's reports
      *
-     * @param String $id
      * @return Response
      */
-    public function viewReports($id) {
-        if (Auth::id() == $id) {
-            $user = User::where('id', $id)->with(['reports' => function ($query) {
-                $query->orderByDesc('created_at');
-            }])->first();
-            return $this->sendResponse(true, $user);
-        } else return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
+    public function viewReports() {
+        $user = User::where('id', Auth::id())->with(['reports' => function ($query) {
+            $query->orderByDesc('created_at');
+        }])->first();
+        return $this->sendResponse(true, $user);
     }
 
     /**
