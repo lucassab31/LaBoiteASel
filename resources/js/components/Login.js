@@ -7,7 +7,7 @@ import {Helmet} from "react-helmet";
 
 import "../../../public/css/login.css"
 
-const API_URL = process.env.MIX_APP_URL +'/api/';
+const API_URL = process.env.MIX_APP_URL +'api/';
 
 const Login = () => {
     require("../../../public/css/login.css");

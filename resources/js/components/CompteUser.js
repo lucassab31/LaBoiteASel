@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 const CompteUser = () => {
 
-    const API_URL = process.env.MIX_APP_URL + '/api/';
+    const API_URL = process.env.MIX_APP_URL + 'api/';
     console.log(API_URL);
 
     const [resp, setResp] = useState({});
