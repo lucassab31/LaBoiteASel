@@ -67,10 +67,20 @@ Route::middleware('auth:api')->group(function () {
             Route::get('/add', [AdminUsersController::class, 'add']);
             Route::post('/add', [AdminUsersController::class, 'store']);
 
-            Route::post('changeUserStatus/{id}', [AdminUsersController::class, 'changeUserStatus']);
-
-            Route::get('/delete/{id}', [AdminUsersController::class, 'delete']);
-        });
+    });
+});
+// Routes admin
+Route::prefix('admin')->group(function () {
+    // Users
+    Route::prefix('users')->name('users.')->group(function () {
+        Route::get('/', [AdminUsersController::class, 'index']);
+        Route::get('/view/{id}', [AdminUsersController::class, 'view']);
+    
+        Route::get('/add', [AdminUsersController::class, 'add']);
+        Route::post('/add', [AdminUsersController::class, 'store']);
+        Route::post('changeUserStatus/{id}', [AdminUsersController::class, 'changeUserStatus']);
+        Route::get('/delete/{id}', [AdminUsersController::class, 'delete']);
+    });
 
         // Stats
         Route::prefix('stats')->name('stats.')->group(function () {
