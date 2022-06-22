@@ -15,6 +15,7 @@ const PanelAdmin = () => {
 
                     <Routes>
                         <Route index path="/" element={<PanelAdminHome />} />
+                        <Route path="/createNewUser" element={<FormNewUser/>}/>
                         {/* <Route path="/members/list" element={<Component/>} /> */}
                         {/* <Route path="/members/add" element={<Component />} /> */}
                     </Routes>
