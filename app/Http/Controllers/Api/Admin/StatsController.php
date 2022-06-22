@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use stdClass;
 
 class StatsController extends Controller
@@ -28,8 +29,25 @@ class StatsController extends Controller
         return $this->sendResponse(true, $oPosts);
     }
 
-    public function (Request $request) {
-        $posts = Post::whereRaw("DATE(created_at) BETWEEN $request->dateDebut AND $request->dateFin")->get();
-        return $this->sendResponse(true, $posts);
+    public function balance(Request $request) {
+        $users = User::withCount(['posts' => function ($query) {
+            global $request;
+            $query->whereRaw("DATE(created_at) BETWEEN '$request->dateDebut' AND '$request->dateFin'");
+        }])->withCount(['postsMaker' => function ($query) {
+            global $request;
+            $query->whereRaw("DATE(created_at) BETWEEN '$request->dateDebut' AND '$request->dateFin'");
+        }])->get();
+        return $this->sendResponse(true, $users);
     }
+
+    // public function volume(Request $request) {
+    //     $users = User::withCount(['posts' => function ($query) {
+    //         global $request;
+    //         $query->whereRaw("DATE(created_at) BETWEEN '$request->dateDebut' AND '$request->dateFin'");
+    //     }])->withCount(['postsMaker' => function ($query) {
+    //         global $request;
+    //         $query->whereRaw("DATE(created_at) BETWEEN '$request->dateDebut' AND '$request->dateFin'");
+    //     }])->get();
+    //     return $this->sendResponse(true, $users);
+    // }
 }
