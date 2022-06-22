@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\PostsController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\Admin\UsersController as AdminUsersController;
 use App\Http\Controllers\Api\Admin\StatsController as AdminStatsController;
+use App\Http\Controllers\Api\Admin\CategoriesController as AdminCategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,4 +77,11 @@ Route::prefix('admin')->group(function () {
         Route::post('/services', [AdminStatsController::class, 'services']);
         Route::post('/balance', [AdminStatsController::class, 'balance']);
     });
+
+    // Category
+    Route::prefix('categories')->name('categories.')->group(function () {
+        Route::post('/add', [AdminCategoriesController::class, 'store']);
+        Route::get('/', [AdminCategoriesController::class, 'index']);
+    });
+    
 });
