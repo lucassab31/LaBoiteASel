@@ -117,7 +117,7 @@ class PostsController extends Controller
         ]);
         if($validator->fails()){
             return response()->json([
-                "validate_err"=> $validator->messages()
+                "error"=> $validator->messages()
             ]);
         }
 
@@ -135,6 +135,8 @@ class PostsController extends Controller
         $post->datetimePost     = $request->datetimePost;
         $post->category()->associate(Category::findOrFail($request->category_id));
         $post->user()->associate(Auth::user()->id);
+        //$post->user()->associate(1);
+
         $post->save();
 
         return $this->sendResponse();
@@ -183,7 +185,7 @@ class PostsController extends Controller
         ]);
         if($validator->fails()){
             return response()->json([
-                "validate_err"=> $validator->messages()
+                "error"=> $validator->messages()
             ]);
         }
 

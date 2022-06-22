@@ -71,7 +71,7 @@ const FormAnnonce = () => {
             "datetimePost" : date ? date.toISOString().slice(0, 19).replace('T', ' ') : '',
             "datetimeType" : datetimeType
         };
-        console.log(data);
+        //console.log(data);
         await axios.post(
             API_URL + "posts/add", 
             data, 
@@ -79,7 +79,7 @@ const FormAnnonce = () => {
                 headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}
             }
         )
-        .then(res => (console.log(res.data),setCreated(res.data.validate_err ? false : true), setErrors(res.data.validate_err)));
+        .then(res => (console.log(res.data),setCreated(res.data.error ? false : true), setErrors(res.data.error)));
     }
 
 
@@ -270,17 +270,16 @@ const FormAnnonce = () => {
                             onChange={(e) => (setToolsType(e.target.value))}
                             />
                         </div>
-                    </fieldset>
-                    <fieldset className="group-radios">
-                        <legend> Ces outils seront-ils fournis ? </legend>
-                        <DisplayErrors inputName="toolsProvided"></DisplayErrors>
-
-                        <select name="tools" data-name="toolsProvided" aria-required="true" value={toolsProvided} onChange={(e) => (setToolsProvided(e.target.value))} id="tools">
-                            <option value="" disabled>Choisir une option</option>
-                            <option value="Y">Oui</option>
-                            <option value="N">Non</option>
-                            <option value="A">Outils non nécessaires</option>
-                        </select>
+                        <div className="form__block__column form__block__wrapper">
+                            <label htmlFor="tools">Ces outils seront-ils fournis ?</label>
+                            <select name="tools" data-name="toolsProvided" aria-required="true" value={toolsProvided} onChange={(e) => (setToolsProvided(e.target.value))} id="tools">
+                                <option value="" disabled>Choisir une option</option>
+                                <option value="Y">Oui</option>
+                                <option value="N">Non</option>
+                                <option value="A">Outils non nécessaires</option>
+                            </select>
+                            <DisplayErrors inputName="toolsProvided"></DisplayErrors>
+                        </div>
                     </fieldset>
                 </div>
 

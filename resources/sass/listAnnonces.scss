@@ -25,7 +25,7 @@
         .filtres_container {
             display: flex;
             flex-direction: column;
-            margin : 30px 0;
+            margin : 30px $spacing-4 30px 0;
 
             p {
                 font-size: 19px;
@@ -38,7 +38,7 @@
             }
 
             select {
-                padding: 8px;
+                padding: 12px;
             }
 
             label {
@@ -54,7 +54,7 @@
     }
 
     #listAnnonces {
-        padding: 15px 10px 10px 0;
+        padding: 15px 10px 40px 0;
         background-color: $red;
         margin-left: 5px;
         flex-grow: 1;
@@ -71,6 +71,15 @@
             margin : 29px 23px 0 42px; 
             border-radius: 10px;
             padding: 20px;
+
+            .annonce_btn {
+                display: flex;
+                margin-top: $spacing-5;
+            
+                a {
+                    margin-right: $spacing-5;
+                }
+            }
 
             .annonce__infos {
                 h3 {
@@ -90,17 +99,27 @@
                     }
                 }
 
-                .annonce_btn {
-                    display: flex;
-
-                    button {
-                         margin: 0 $spacing-5 0 0;
-                    }
-
-                }
+                
             }
         }
 
     }
 }
 
+@media  (max-width : 960px) {
+
+    #annonces {
+        display: flex;
+        flex-direction: column;
+
+        /*.filtres_row{
+            display: flex;
+            flex-direction: row;
+        }*/
+
+        #listAnnonces{
+            margin-left: 0;
+        }
+    }
+    
+}

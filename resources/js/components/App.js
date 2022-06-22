@@ -15,6 +15,7 @@ import Faq from "./FAQ";
 import FormAnnonce from './FormAnnonce';
 import {Helmet} from "react-helmet";
 import PanelAdmin from "./PanelAdmin";
+import FormNewUser from "./FormNewUser";
 
 function App() {
     return (

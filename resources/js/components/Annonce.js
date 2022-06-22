@@ -13,8 +13,6 @@ const API_URL = process.env.MIX_APP_URL +'api/';
 
 const Annonce = () => {
 
-    // taille des champs + texte claires 
-
     let  baseUrl = API_URL+"posts/"; 
     console.log(baseUrl);
 
@@ -29,14 +27,19 @@ const Annonce = () => {
         postCreatedAt:''
     });
     const fetchDataPost = async () => {
-        const apiPost = await axios.get(baseUrl+"view/"+id);
-        const apiCategories = await axios.get(baseUrl+"add");
-        console.log(apiPost.data.data); 
+        const apiPost = await axios.get(baseUrl+"view/"+id, 
+        {
+            headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}
+        });
 
-        //console.log(apiPost.data.data.created_at);
+        const apiCategories = await axios.get(baseUrl+"add",
+        {
+            headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}
+        });
+        //console.log(apiPost.data.data); 
+
         let date = apiPost.data.data.created_at;
         date = new Date(apiPost.data.data.created_at).toISOString().slice(0,10);
-        //console.log(date);
         apiPost.data.data.created_at = date; 
         //console.log(apiPost.data.data.created_at);
      
@@ -65,16 +68,7 @@ const Annonce = () => {
     require("../../../public/css/annonce.css");
     const title = state.dataPost.title;
 
-    //console.log(state.category);
-    //console.log(state);
-
     const datePost = () => {
-        console.log (state.dataPost.datetimeType);
-        //let date = new Date(state.dataPost.datetimeType).toISOString().slice(0,10);
-        //console.log(date);
-        console.log (state.dataPost.datetimePost);
-        console.log(new Date(state.dataPost.datetimePost));
-
         switch (state.dataPost.datetimeType) {
             case "B":
                 return "Avant le ";
@@ -104,7 +98,7 @@ const Annonce = () => {
 
     
     return (
-        <section id="annonce">
+        <main id="annonce">
             <Helmet>
                     <title>{title}</title>
             </Helmet>
@@ -156,7 +150,7 @@ const Annonce = () => {
                        </div>
                     </div>
                     <div id="annonce_actionBtn">
-                        <button className="yellowButton"><Link to="/validation">Rendre service</Link></button>
+                        <Link  className="yellowButton" to={`/validation?id=${state.dataPost.user_id}`}>Rendre service</Link>
                     </div>
                 </div>
 
@@ -194,7 +188,7 @@ const Annonce = () => {
             
             </div>
 
-        </section>
+        </main>
     );
 }
 
