@@ -22,9 +22,9 @@ use App\Http\Controllers\Api\Admin\StatsController as AdminStatsController;
 Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/', [PostsController::class, 'index']);
     Route::get('/view/{id}', [PostsController::class, 'view']);
+    Route::get('/add', [PostsController::class, 'add']);
 
     Route::middleware('auth:api')->group(function () {
-        Route::get('/add', [PostsController::class, 'add']);
         Route::post('/add', [PostsController::class, 'store']);
         Route::get('/candidate/{id}', [PostsController::class, 'candidate']);
         Route::get('/progress/{id}', [PostsController::class, 'inProgress']);
