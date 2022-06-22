@@ -46,8 +46,13 @@ Route::middleware('auth:api')->group(function () {
 
         Route::get('/view/{id}', [UsersController::class, 'view']);
         Route::get('/viewPosts', [UsersController::class, 'viewPosts']);
+<<<<<<< HEAD
         Route::get('/viewTransactions', [UsersController::class, 'viewTransactions']);
         Route::get('/viewReports', [UsersController::class, 'viewReports']);
+=======
+        Route::get('/viewTransactions/{id}', [UsersController::class, 'viewTransactions']);
+        Route::get('/viewReports/{id}', [UsersController::class, 'viewReports']);
+>>>>>>> 92b8c65 (user account - posts and profile finalized)
         
         Route::post('/edit', [UsersController::class, 'update']);
         

@@ -2,6 +2,39 @@
 @import 'mixins';
 
 body {
+
+    .list-posts{
+        list-style-type: none;
+        display: flex;
+        flex-direction: row;
+
+        li {
+            margin: $spacing-2;
+            padding: $spacing-2;
+            width : 25%;
+            position : relative;
+            border-radius: $border-rd-sm;
+        }
+
+        &--date {
+            display : flex;
+            gap : 2%;
+            align-items : flex-start;
+        }
+
+        a {
+            position: absolute;
+            bottom: $spacing-4;
+            right: $spacing-4;
+        }
+
+        h4 {
+            border-bottom : 1px solid $blue;
+            font-size : 1.3rem;
+            padding-bottom : $spacing-6;
+        }
+    }
+
     .bloc-white {
         background-color: $white;
         padding : 1rem;
@@ -83,17 +116,11 @@ body {
         text-decoration: none;
     }
 
-    .menu-option-info {
-        border-radius: 5%;
-        border-bottom: 3px solid $blue;
-        width: fit-content;
-        text-decoration: none;
-        padding: 5px;
-    }
-
     .bloc-menu {
-        display: inline;
-        margin-left: 350px;
+        text-align: center;
+        a {
+            margin : $spacing-5;
+        }
     }
 
     .user-image {
