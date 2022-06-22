@@ -4,6 +4,7 @@ import PanelAdminHome from './PanelAdminHome';
 import {Routes, Route } from "react-router-dom";
 import FormNewUser from "./FormNewUser";
 import PanelAdminTable from "./PanelAdminTable";
+import UsersList from "./UsersList";
 
 
 const PanelAdmin = () => {
@@ -18,7 +19,8 @@ const PanelAdmin = () => {
                     <Routes>
                         <Route index path="/" element={<PanelAdminHome />} />
                         <Route path="addMembers" element={<FormNewUser/>}/>
-                        <Route path="listMembers" element={<PanelAdminTable/>} />
+                        <Route path="listMembers" element={<UsersList/>} />
+                        <Route path="adminTable" element={<PanelAdminTable/>} />
                         {/* <Route path="/members/add" element={<Component />} /> */}
                     </Routes>
                 </div>
