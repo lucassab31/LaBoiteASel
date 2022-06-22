@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useFocus} from "react";
 import {Helmet} from "react-helmet";
 const API_URL = process.env.MIX_APP_URL +'api/'; 
-import { Redirect } from 'react-router-dom';
 
 const FormEditUser = () => {
 
@@ -14,17 +13,16 @@ const FormEditUser = () => {
     const [errors, setErrors] = useState();
     const [edited, setEdited] = useState();
     const [focusInput, setFocusInput] = useState();
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
+    //const [password, setPassword] = useState("");
+    const [role, setRole] = useState("");
 
     async function send(){
         let data = {
-            "title": title, 
-            "description": description,
+            "role": role,
         };
         console.log(data);
         await axios.post(
-            API_URL + "admin/categories/update/"+urlSplit[6], 
+            API_URL + "admin/users/changeUserStatus/"+urlSplit[6], 
             data, 
             { headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}}
         )
@@ -82,7 +80,7 @@ const FormEditUser = () => {
 
     const MessageUserEdited = () => {
         //aria-live="polite" : to indicate a message for screen-readers
-        return edited ? <div className="bloc--bg-red"> <p onBlur={destroyMessage} id="edited" aria-live="polite"> Votre venez de modifier une catégorie !</p> </div> : null;
+        return edited ? <div className="bloc--bg-red"> <p onBlur={destroyMessage} id="edited" aria-live="polite"> Votre venez de modifier le statut de cet utilisateur !</p> </div> : null;
     }
 
     useEffect(()=>{
@@ -104,39 +102,36 @@ const FormEditUser = () => {
     return (
         <main className="main-formEditCategory">
             <Helmet>
-                <title> Modifier une catégorie</title>
+                <title> Modifier le statut de cet utilisateur</title>
             </Helmet>
-            <p role="status" className="visually-hidden"> La Boite à Sel - Modifier les informations de cet utilisateur</p>
+            <p role="status" className="visually-hidden"> La Boite à Sel - Modifier le statut de cet utilisateur</p>
   
             <MessageUserEdited/>
-           <h2>Modifier les informations de cet utilisateur</h2>
+           <h2>Modifier le statut de cet utilisateur</h2>
             <form onSubmit={submitForm}>
                 <div className="bloc--bg-yellow form">
                     <div className="form__inputsContainer">
-                        <label htmlFor="title">Nom de la catégorie</label>
-                        <input 
-                            aria-required="true" 
-                            data-name="title" 
-                            value={title} onChange={(e) => (setTitle(e.target.value))}
-                            id="title" 
-                            type="text" 
-                            placeholder="Nom de la catégorie"/>
-                        <DisplayErrors inputName="title"></DisplayErrors>
+                        <label htmlFor="role">Rôle de l'utilisateur</label>
+                        <select name="role" data-name="role" aria-required="true" value={role} onChange={(e) => (setRole(e.target.value))} id="role">
+                                <option value="" disabled>Choisir un rôle pour l'utilisateur</option>
+                                <option value="U">Utilisateur</option>
+                                <option value="A">Membre du conseil d'administration (admin)</option>
+                        </select>
+                        <DisplayErrors inputName="role"></DisplayErrors>
                     </div>
 
-                    <div className="form__inputsContainer">
-                        <label htmlFor="description">Description</label>
+                    {/*<div className="form__inputsContainer">
+                        <label htmlFor="password">Mot de passe</label>
                         <input 
-                            aria-required="true" data-name="description"
-                            value={description} onChange={(e) => (setDescription(e.target.value))}
-                            id="description" type="text" 
-                            placeholder="Description de la catégorie"/>
-                        <DisplayErrors inputName="description"></DisplayErrors>
-                    </div>
+                            aria-required="true" data-name="password"
+                            value={password} onChange={(e) => (setPassword(e.target.value))}
+                            id="password" type="text" 
+                            placeholder="Mot de passe"/>
+                        <DisplayErrors inputName="password"></DisplayErrors>
+                    </div>*/}
                 </div>
-                <button className="button-yellow"> Modifiez les informations de cet utilisateur</button>
+                <button className="button-yellow"> Modifiez le statut de cet utilisateur</button>
             </form>
-        
         </main>
     );
 }

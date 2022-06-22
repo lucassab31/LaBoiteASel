@@ -67,7 +67,7 @@ Route::prefix('admin')->group(function () {
     
         Route::get('/add', [AdminUsersController::class, 'add']);
         Route::post('/add', [AdminUsersController::class, 'store']);
-
+        Route::post('changeUserStatus/{id}', [AdminUsersController::class, 'changeUserStatus']);
         Route::get('/delete/{id}', [AdminUsersController::class, 'delete']);
     });
 
