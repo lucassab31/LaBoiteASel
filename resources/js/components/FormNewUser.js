@@ -11,7 +11,7 @@ const FormNewUser = () => {
     const [lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
-    //const [password, setPassword] = useState("");
+    const [created, setCreated] = useState();
     const [dateBirth, setDateBirth] = useState("");
     const [city, setCity] = useState("");
     const [zipCode, setZipCode] = useState("");
@@ -51,7 +51,7 @@ const FormNewUser = () => {
             data, 
             { headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}}
         )
-        .then(res => (console.log(res.data), setErrors(res.data.error)));
+        .then(res => (console.log(res.data),setCreated(res.data.error ? false : true), setErrors(res.data.error)));
     }
 
     useEffect(() => {
@@ -107,6 +107,27 @@ const FormNewUser = () => {
         }
     }
 
+    const MessageMemberCreated = () => {
+        //aria-live="polite" : to indicate a message for screen-readers
+        return created ? <div className="bloc--bg-red"> <p onBlur={destroyMessage} id="created" aria-live="polite"> Votre venez d'ajouter un nouveau membre sur la plateforme !</p> </div> : null;
+    }
+
+    useEffect(()=>{
+        const message = document.querySelector( '#created' );
+        //set tabindex to focus on the message when scroll then remove it when the focus on the element is lost
+        if(message){
+            message.setAttribute("tabindex", "-1");
+            message.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+            message.focus();
+            //message.onblur = message.removeAttribute("tabindex");
+        }
+    }, [MessageMemberCreated])
+
+    function destroyMessage(e){
+        setTimeout(setCreated(false), 5000);
+        e.target.removeAttribute("tabindex");
+    }
+
     return (
         <main className="main-formNewUser">
             <Helmet>
@@ -114,6 +135,7 @@ const FormNewUser = () => {
             </Helmet>
             <p role="status" className="visually-hidden"> La Boite à Sel - Ajouter un membre </p>
             
+            <MessageMemberCreated/>
             <h2>Ajouter un nouveau membre</h2>
             <form onSubmit={submitForm}>
                 <div className="bloc--bg-yellow form">
