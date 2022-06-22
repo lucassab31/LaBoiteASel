@@ -34,7 +34,7 @@ const ListCategories = () => {
 
     return(
         <main>
-                <h2> Liste des membres </h2>
+                <h2> Liste des catégories </h2>
                 <div className="listUsers">
                 <table>
                         <caption> Affichage des informations des catégories</caption>
