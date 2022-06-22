@@ -6,7 +6,7 @@ import {Routes, Route } from "react-router-dom";
 import PanelAdminTable from "./PanelAdminTable";
 import UsersList from "./UsersList";
 import ListCategories from "./ListCategories";
-
+import FormNewCategory from "./formNewCategory";
 
 const PanelAdmin = () => {
     require ("../../../public/css/panelAdmin.css");
@@ -22,6 +22,7 @@ const PanelAdmin = () => {
                         <Route path="addMembers" element={<FormNewUser/>}/>
                         <Route path="listMembers" element={<UsersList/>} />
                         <Route path="listCategories" element={<ListCategories/>} />
+                        <Route path="addCategory" element={<FormNewCategory/>} />
                         <Route path="adminTable" element={<PanelAdminTable/>} />
                         {/* <Route path="/members/add" element={<Component />} /> */}
                     </Routes>

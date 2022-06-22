@@ -30,7 +30,7 @@ const NavigationPanelAdmin = () => {
 
                     <div>
                         <Link to="listCategories">Liste des catégories</Link>
-                        <a>Ajouter une catégorie</a>
+                        <Link to="addCategory">Ajouter une catégorie</Link>
                     </div>
                 </div>
                 <div className="statistiques">

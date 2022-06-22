@@ -6,6 +6,7 @@ const FormNewUser = () => {
     require("../../../public/css/formNewUser.css");
 
     const [errors, setErrors] = useState();
+    const [created, setCreated] = useState();
     const [focusInput, setFocusInput] = useState();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -17,7 +18,7 @@ const FormNewUser = () => {
         };
         console.log(data);
         await axios.post(
-            API_URL + "admin/users/add", 
+            API_URL + "admin/categories/add", 
             data, 
             { headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}}
         )
@@ -101,7 +102,7 @@ const FormNewUser = () => {
             </Helmet>
             <p role="status" className="visually-hidden"> La Boite à Sel - Ajouter une catégorie</p>
             
-            <MessageMemberCreated/>
+            <MessageCategoryCreated/>
             <h2>Ajouter une nouvelle catégorie</h2>
             <form onSubmit={submitForm}>
                 <div className="bloc--bg-yellow form">
