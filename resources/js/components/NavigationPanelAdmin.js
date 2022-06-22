@@ -24,13 +24,11 @@ const NavigationPanelAdmin = () => {
                         <KeyboardArrowDownRoundedIcon aria-hidden="true" style={{ color: '#F07C63', fontSize: 20 }} />
                     </div>
                     <div>
-                        <Link to="listMembers">Liste des membres</Link>
-                        <Link to="addMembers">Ajouter un membre</Link>
+                        <Link to="listMembers">Gestion des membres</Link>
                     </div>
 
                     <div>
-                        <Link to="listCategories">Liste des catégories</Link>
-                        <Link to="addCategory">Ajouter une catégorie</Link>
+                        <Link to="listCategories">Gestion des catégories</Link>
                     </div>
                 </div>
                 <div className="statistiques">
