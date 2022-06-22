@@ -124,7 +124,8 @@ class UsersController extends Controller
                 'dateOfBirth' => 'required|date',
                 'address' => 'required|string',
                 'zipCode' => 'required|string',
-                'city' => 'required|string'
+                'city' => 'required|string',
+                'password' => 'string'
             ],[
                 'firstName.required' => 'Vous devez renseigner un prénom',
                 'firstName.string' => 'Le prénom doit être une chaîne de caractères',
@@ -142,7 +143,8 @@ class UsersController extends Controller
                 'zipCode.required' => 'Vous devez renseigner un code postal',
                 'zipCode.string' => 'Le code postal doit être une chaîne de caractères',
                 'city.required' => 'Vous devez renseigner une ville en France',
-                'city.string' => 'La ville doit être une chaîne de caractères'
+                'city.string' => 'La ville doit être une chaîne de caractères',
+                'password.string' => 'Le mot de passe doit être une chaîne de caractères',
             ]);
             if($validator->fails()) {
                 return $this->sendResponse(false, $validator->errors());
@@ -157,6 +159,7 @@ class UsersController extends Controller
             $user->address          = $request->address;
             $user->zipCode          = $request->zipCode;
             $user->city             = $request->city;
+            if ($request->password != "") $user->password = bcrypt($request->password);
             $user->save();
     
             return $this->sendResponse();
