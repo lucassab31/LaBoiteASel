@@ -31,7 +31,7 @@ const ListCategories = () => {
                 <h2> Liste des membres </h2>
                 <div className="listUsers">
                 <table>
-                        <caption> Affichage des informations des membres</caption>
+                        <caption> Affichage des informations des catégories</caption>
                         <thead>
                             <tr>
                                 <th scope="col">Nom de la catégorie</th>

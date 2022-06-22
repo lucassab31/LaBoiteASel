@@ -27,6 +27,11 @@ const NavigationPanelAdmin = () => {
                         <Link to="listMembers">Liste des membres</Link>
                         <Link to="addMembers">Ajouter un membre</Link>
                     </div>
+
+                    <div>
+                        <Link to="listCategories">Liste des catégories</Link>
+                        <a>Ajouter une catégorie</a>
+                    </div>
                 </div>
                 <div className="statistiques">
                     <div className="title">
