@@ -45,7 +45,7 @@ const FormNewUser = () => {
             "zipCode" : zipCode,
             "city" : city,
         };
-        console.log(data);
+        //console.log(data);
         await axios.post(
             API_URL + "admin/users/add", 
             data, 
@@ -93,13 +93,9 @@ const FormNewUser = () => {
     }
 
     const DisplayErrors = (inputName) => {
-        console.log(inputName);
-        console.log(errors);
         if(errors){
-            console.log("toto");
             //formError(inputName.inputName);
             let contentErr = `${errors[inputName.inputName]}`;
-            console.log(contentErr);
             return contentErr && contentErr !== "undefined" ? (formError(inputName.inputName), <p id={inputName.inputName + "__error"} className="field_error"> {contentErr} </p>) : (removeError(inputName.inputName), null);
         }
         else {
