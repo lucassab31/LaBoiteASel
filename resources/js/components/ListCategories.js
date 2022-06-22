@@ -3,9 +3,6 @@ import FlatList from 'flatlist-react';
 import { useState, useEffect } from 'react';
 import {Link } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
-import {Routes, Route } from "react-router-dom";
-import FormNewCategory from "./FormNewCategory";
-import FormEditCategory from "./FormEditCategory";
 const API_URL = process.env.MIX_APP_URL +'api/'; 
 
 const ListCategories = () => {
@@ -57,7 +54,6 @@ const ListCategories = () => {
                             <tr>
                                 <td>{item.title} {item.lastName}</td>
                                 <td>{item.description}</td>
-                                {/*to={`/validation?id=${state.dataPost.user_id}`} {"/editCategory/:"+item.id}*/}
                                 <td><Link to={"editCategory/"+parseInt(item.id)}> Mettre à jour la catégorie</Link></td>
                                 <td onClick={() => handleCategoryDelete(item.id)}><DeleteIcon style={{ color: '#5bb385', fontSize:28 }}/> Supprimer</td>
                             </tr>          
