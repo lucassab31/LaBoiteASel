@@ -3,7 +3,6 @@ import NavigationPanelAdmin from './NavigationPanelAdmin';
 import PanelAdminHome from './PanelAdminHome';
 import FormNewUser from './FormNewUser';
 import {Routes, Route } from "react-router-dom";
-import FormNewUser from "./FormNewUser";
 import PanelAdminTable from "./PanelAdminTable";
 import UsersList from "./UsersList";
 

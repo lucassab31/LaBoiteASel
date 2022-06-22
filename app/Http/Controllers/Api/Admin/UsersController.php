@@ -42,7 +42,7 @@ class UsersController extends Controller
      * @return Request
      */
     public function store(Request $request) {
-        if (!Auth::check()) return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
+        //if (!Auth::check()) return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
         $input = $request->all();
         $validator = Validator::make($input, [
             'firstName' => 'required|string',

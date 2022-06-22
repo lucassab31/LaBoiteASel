@@ -33,26 +33,15 @@ const ListAnnonces = () => {
             datetimeType : ""
         }], 
         listCategories:'',
-        defaultValue:'',
     });
 
     const fetchPosts = async () => {
-        const apiPosts = await axios.get(baseUrl,
-        {
-            headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}
-        });
-        const apiCategories = await axios.get(baseUrl+"add", 
-        {
-            headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}
-        });
-
-        let today = new Date();
-        let dateTimePicker = new Date(today).toISOString().split('T')[0];
+        const apiPosts = await axios.get(baseUrl);
+        const apiCategories = await axios.get(baseUrl+"add");
 
         setData({
             posts: await apiPosts.data.data, 
-            listCategories: await apiCategories.data.data,
-            defaultValue : await dateTimePicker
+            listCategories: await apiCategories.data.data
         });
 
         for (let post of apiPosts.data.data) {
@@ -69,12 +58,14 @@ const ListAnnonces = () => {
                     break; 
             } 
             post.dateText = dateText; 
+            //console.log(post);
         }
     };
     
     useEffect(() => {
             fetchPosts();
     }, []);
+    //console.log(state.listCategories);
 
 
     // Filter part - form 
@@ -85,20 +76,33 @@ const ListAnnonces = () => {
 
     const handleCategoryChange = event => {
         setCategory(event.target.value);
+       // console.log('The value of category is :', event.target.value);
     };
     const handleDateChange = event => {
         setDate(event.target.value);
+        //console.log('The date is :', event.target.value);
     };
     const handleLengthServiceChange = event => {
         setLenghtService(event.target.value);
+        //console.log('The value of category is :', event.target.value);
     };
     const handleSearchDateSpecificationChange = event => {
         setSearchDateSpecification(event.target.value);
+       // console.log('The value of category is :', event.target.value);
     };
 
     const handleClick = event => {
         event.preventDefault();
+        /*console.log('-- result of the form --')
+        console.log('category ', category);
+        console.log('length of the service ', lengthService);
+        console.log('date limit is ', date);
+        console.log('search operator ', searchDateSpecification);*/
         let idCategory;
+        // à rendre dynamique
+        let dateFilter ; 
+        //dateFilter= "2022-06-20%2011:44:17"; 
+        dateFilter = date; 
 
         for (const item of state.listCategories) {
             if (item.title == category) {
@@ -106,17 +110,20 @@ const ListAnnonces = () => {
             }
         }
         
-        let urlApiRequest = baseUrl+"postsFiltered/"+idCategory+"/"+lengthService+"/"+date+"/"+searchDateSpecification;
+        let urlApiRequest = baseUrl+"postsFiltered/"+idCategory+"/"+lengthService+"/"+dateFilter+"/"+searchDateSpecification;
         //console.log(urlApiRequest);
         fetchFilteredPosts(urlApiRequest);
     }; 
     
 
     const fetchFilteredPosts = async (urlRequest) => {
+        //console.log("toto");
         await axios.get(urlRequest).then( resp=>{
               setData({
             ...state, posts: resp.data.data, 
     })});
+        console.log("tata");
+        console.log(state.posts);
     };
 
     async function changeStatutPost(id) {
@@ -148,47 +155,40 @@ const ListAnnonces = () => {
 
                 {/* form to filter the posts */}
                 <form>
-                    <div className="filtres_row">
-                        <div className="filtres_container">
-                            <label htmlFor="listCategory">Catégorie</label>
-                            <select value={category}  onChange={handleCategoryChange} id="listCategory" name="list">
-                                <option value="" disabled>Entrez une catégorie</option> 
-                                <FlatList list={state.listCategories} renderItem={item=><option value={item.title}>{item.title}</option>}/>
-                            </select>
-                        </div>
-
-
-                        <div className="filtres_container">
-                            <label htmlFor="lengthService">Durée du service (en heures)</label>
-                            <select value={lengthService} onChange={handleLengthServiceChange} id="lengthService" name="lengthService">
-                                <option value="" disabled>Entrez une durée</option> 
-                                <option value="15">15 mins</option> 
-                                <option value="30">30 mins</option> 
-                                <option value="45">45 mins</option> 
-                                <option value="60">1h</option> 
-                                <option value="90">1h30 mins</option> 
-                                <option value="120">2h</option> 
-                                <option value="150">+ de 2h</option> 
-                            </select>
-                        </div>
-                        
+                    <div className="filtres_container">
+                        <label htmlFor="category">Catégorie</label>
+                        <select value={category}  onChange={handleCategoryChange} id="category" name="list">
+                            <option value="" disabled>Entrez une catégorie</option> 
+                            <FlatList keyExtractor={(item) => item.id} list={state.listCategories} renderItem={item=><option key={item.id} value={item.title}>{item.title}</option>}/>
+                        </select>
                     </div>
-                    <div>
-                        <div className="filtres_container">
-                            <label htmlFor="category">Chercher les postes dont le service est à faire : </label>
-                            <select value={searchDateSpecification}  onChange={handleSearchDateSpecificationChange} id="category" name="categoryList">
-                                <option value="B">Avant le</option>
-                                <option value="O">Le</option>
-                                <option value="A">Après le</option>
-                            </select>
-                        </div>
-                        
-                        <div className="filtres_container">
-                            <label htmlFor="date">Date</label>
-                            <input type="datetime-local" id="date" name="date" value={date} onChange={handleDateChange} defaultValue={state.defaultValue}></input>
-                        </div>
+
+                    <div className="filtres_container">
+                        <label htmlFor="category">Chercher les postes dont le service est à faire : </label>
+                        <select value={searchDateSpecification}  onChange={handleSearchDateSpecificationChange} id="category" name="list">
+                            <option value="B">Avant le</option>
+                            <option value="O">Le</option>
+                            <option value="A">Après le</option>
+                        </select>
                     </div>
-                   
+
+                    <div className="filtres_container">
+                        <label htmlFor="date">Date</label>
+                        <input type="datetime-local" id="date" name="date" value={date} onChange={handleDateChange}></input>
+                    </div>
+                    <div className="filtres_container">
+                        <label htmlFor="lengthService">Durée du service (en heures)</label>
+                        <select value={lengthService} onChange={handleLengthServiceChange} id="lengthService" name="lengthService">
+                            <option value="" disabled>Entrez une durée</option> 
+                            <option value="15">15 mins</option> 
+                            <option value="30">30 mins</option> 
+                            <option value="45">45 mins</option> 
+                            <option value="90">1h30 mins</option> 
+                            <option value="120">2h</option> 
+                            <option value="150">+ de 2h</option> 
+                        </select>
+                    </div>
+
                     <button onClick={handleClick} className="button-blue">Filtrez les annonces</button>
                 </form>
             </div>
@@ -196,9 +196,9 @@ const ListAnnonces = () => {
             <div id="listAnnonces">
                 <h2>Liste des annonces</h2>
                 <div id="listAnnonces__container">
-                    <div id="listAnnonces__annonces">
-                    <FlatList list={state.posts}  renderItem={item =>
+                    <FlatList keyExtractor={(item) => item.id} list={state.posts}  renderItem={item => 
                         <div className="annonce">
+                            <img src="#" alt=""/>
                             <div className="annonce__infos">
                                 <h3>{item.title}</h3>
 
@@ -215,14 +215,15 @@ const ListAnnonces = () => {
                                             return (
                                                 <div className="annonce__infosDate">
                                                 <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                                <p>                                                    
+                                                <p>
+                                                    {displayDatePost()}
                                                     <Moment format="DD/MM/YYYY">
                                                         {item.datetimePost}
                                                     </Moment>
                                                 </p>
                                             </div>
                                             )
-                                          }
+                                        }
                                     })()}
                                 
                                 </div>
@@ -235,8 +236,7 @@ const ListAnnonces = () => {
                             </div>
                         </div>           
                     }
-                />   
-                </div>      
+                />                    
                 </div>
             </div>
         </main>
