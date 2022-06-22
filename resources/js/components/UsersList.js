@@ -46,6 +46,7 @@ const UsersList = () => {
                             <th scope="col">Nom & Prénom</th>
                             <th scope="col">Adresse mail</th>
                             <th scope="col">Grains de sels restants</th>
+                            <th scope="col">Modifier les informations de cet utilisateur</th>
                             <th scope="col">Supprimer l'utilisateur</th>                   
                         </tr>
                     </thead>
@@ -55,6 +56,7 @@ const UsersList = () => {
                             <td>{item.firstName} {item.lastName}</td>
                             <td>{item.email}</td>
                             <td>{item.money}</td>
+                            <td><Link to={"editMember/"+parseInt(item.id)}> Mettre à jour les informations de cet utilisateurs</Link></td>
                             <td onClick={() => handleUserDelete(item.id)}><DeleteIcon style={{ color: '#5bb385', fontSize:28 }}/> Supprimer</td>
                         </tr>          
                         }

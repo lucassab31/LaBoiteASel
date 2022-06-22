@@ -6,7 +6,7 @@ import FormNewCategory from "./FormNewCategory";
 import FormEditCategory from "./FormEditCategory";
 
 
-const PanelAdmin = () => {
+const NavigationCategories = () => {
     require ("../../../public/css/panelAdmin.css");
 
     return(
@@ -20,4 +20,4 @@ const PanelAdmin = () => {
     )
 }
 
-export default PanelAdmin;
+export default NavigationCategories;
