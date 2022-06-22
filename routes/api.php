@@ -49,7 +49,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/viewTransactions/{id}', [UsersController::class, 'viewTransactions']);
         Route::get('/viewReports/{id}', [UsersController::class, 'viewReports']);
         
-        Route::get('/edit', [UsersController::class, 'update']);
+        Route::post('/edit', [UsersController::class, 'update']);
         
         Route::get('/delete/{id}', [UsersController::class, 'delete']);
     });
