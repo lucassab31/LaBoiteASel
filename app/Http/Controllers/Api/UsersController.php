@@ -6,6 +6,7 @@ use stdClass;
 use App\Models\User;
 use App\Models\Report;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -118,7 +119,12 @@ class UsersController extends Controller
         $validator = Validator::make($input, [
             'firstName' => 'required|string',
             'lastName' => 'required|string',
-            'email' => 'required|email|unique:users,email',
+            // 'email' => 'required|email|unique:users,email',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore(Auth::id())
+            ],
             'phone' => 'required|string',
             'address' => 'required|string',
             'zipCode' => 'required|string',
@@ -142,8 +148,10 @@ class UsersController extends Controller
             'city.string' => 'La ville doit être une chaîne de caractères',
             'password.string' => 'Le mot de passe doit être une chaîne de caractères',
         ]);
-        if($validator->fails()) {
-            return $this->sendResponse(false, $validator->errors());
+        if($validator->fails()){
+            return response()->json([
+                "validate_err"=> $validator->messages()
+            ]);
         }
 
         $user = User::find(Auth::id());
@@ -151,7 +159,6 @@ class UsersController extends Controller
         $user->lastName         = $request->lastName;
         $user->email            = $request->email;
         $user->phone            = $request->phone;
-        $user->dateOfBirth      = $request->dateOfBirth;
         $user->address          = $request->address;
         $user->zipCode          = $request->zipCode;
         $user->city             = $request->city;
