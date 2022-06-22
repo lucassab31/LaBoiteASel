@@ -1,9 +1,9 @@
-import React, {Link} from "react";
+import React from "react";
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-
+import {Routes, Route, Link } from "react-router-dom";
 
 
 const NavigationPanelAdmin = () => {
@@ -24,8 +24,8 @@ const NavigationPanelAdmin = () => {
                         <KeyboardArrowDownRoundedIcon aria-hidden="true" style={{ color: '#F07C63', fontSize: 20 }} />
                     </div>
                     <div>
-                        <a>Liste des membres</a>
-                        <a>Ajouter un membre</a>
+                        <Link to="listMembers">Liste des membres</Link>
+                        <Link to="addMembers">Ajouter un membre</Link>
                     </div>
                 </div>
                 <div className="statistiques">
