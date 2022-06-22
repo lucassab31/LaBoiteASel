@@ -53,7 +53,8 @@ class StatsController extends Controller
         }])->get();
 
         $headers = array(
-            "Content-type"        => "text/csv",
+            "Content-Encoding"    => "UTF-8",
+            "Content-type"        => "text/csv; charset=UTF-8",
             "Content-Disposition" => "attachment; filename=$fileName",
             "Pragma"              => "no-cache",
             "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
@@ -64,15 +65,16 @@ class StatsController extends Controller
 
         $callback = function() use($users, $columns) {
             $file = fopen('php://output', 'w');
+            fprintf($file, chr(0xEF).chr(0xBB).chr(0xBF));
             fputcsv($file, $columns);
 
             foreach ($users as $user) {
-                $row['Nom & Prénom']  = $user->firstName . " " . $user->lastName;
-                $row['Service reçu']  = $user->posts_count;
-                $row['Service donné']  = $user->posts_maker_count;
-                $row['Total']  = intval($user->posts_maker_count) + intval($user->posts_count);
+                $row['name']  = $user->firstName . " " . $user->lastName;
+                $row['posts']  = $user->posts_count;
+                $row['postsMaker']  = $user->posts_maker_count;
+                $row['total']  = intval($user->posts_maker_count) + intval($user->posts_count);
 
-                fputcsv($file, array($row['Nom & Prénom'], $row['Service reçu'], $row['Service donné'], $row['Total']));
+                fputcsv($file, array($row['name'], $row['posts'], $row['postsMaker'], $row['total']));
             }
 
             fclose($file);
