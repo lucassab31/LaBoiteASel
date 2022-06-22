@@ -114,56 +114,54 @@ class UsersController extends Controller
      * @return Response
      */
     public function update(Request $request) {
-        if (Auth::id() == $request->id) {
-            $input = $request->all();
-            $validator = Validator::make($input, [
-                'firstName' => 'required|string',
-                'lastName' => 'required|string',
-                'email' => 'required|email|unique:users,email',
-                'phone' => 'required|string',
-                'dateOfBirth' => 'required|date',
-                'address' => 'required|string',
-                'zipCode' => 'required|string',
-                'city' => 'required|string',
-                'password' => 'string'
-            ],[
-                'firstName.required' => 'Vous devez renseigner un prénom',
-                'firstName.string' => 'Le prénom doit être une chaîne de caractères',
-                'lastName.required' => 'Vous devez renseigner un nom',
-                'lastName.string' => 'Le nom doit être une chaîne de caractères',
-                'email.required' => 'Vous devez renseigner une adresse email',
-                'email.email' => 'L\'email doit être valide (par exemple : nom.prenom@exemple.com)',
-                'email.unique' => 'Un compte existe déjà avec cette adresse email',
-                'phone.required' => 'Vous devez renseigner un numéro de téléphone',
-                'phone.string' => 'Le numéro de téléphone doit être une chaîne de caractères',
-                'dateOfBirth.required' => 'Vous devez renseigner une date de naissance',
-                'dateOfBirth.date' => 'La date de naissance doit être une date',
-                'address.required' => 'Vous devez renseigner une adresse',
-                'address.string' => 'L\'adresse doit être une chaîne de caractères',
-                'zipCode.required' => 'Vous devez renseigner un code postal',
-                'zipCode.string' => 'Le code postal doit être une chaîne de caractères',
-                'city.required' => 'Vous devez renseigner une ville en France',
-                'city.string' => 'La ville doit être une chaîne de caractères',
-                'password.string' => 'Le mot de passe doit être une chaîne de caractères',
-            ]);
-            if($validator->fails()) {
-                return $this->sendResponse(false, $validator->errors());
-            }
-    
-            $user = User::find($request->id);
-            $user->firstName        = $request->firstName;
-            $user->lastName         = $request->lastName;
-            $user->email            = $request->email;
-            $user->phone            = $request->phone;
-            $user->dateOfBirth      = $request->dateOfBirth;
-            $user->address          = $request->address;
-            $user->zipCode          = $request->zipCode;
-            $user->city             = $request->city;
-            if ($request->password != "") $user->password = bcrypt($request->password);
-            $user->save();
-    
-            return $this->sendResponse();
-        } else return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'firstName' => 'required|string',
+            'lastName' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|string',
+            'dateOfBirth' => 'required|date',
+            'address' => 'required|string',
+            'zipCode' => 'required|string',
+            'city' => 'required|string',
+            'password' => 'string'
+        ],[
+            'firstName.required' => 'Vous devez renseigner un prénom',
+            'firstName.string' => 'Le prénom doit être une chaîne de caractères',
+            'lastName.required' => 'Vous devez renseigner un nom',
+            'lastName.string' => 'Le nom doit être une chaîne de caractères',
+            'email.required' => 'Vous devez renseigner une adresse email',
+            'email.email' => 'L\'email doit être valide (par exemple : nom.prenom@exemple.com)',
+            'email.unique' => 'Un compte existe déjà avec cette adresse email',
+            'phone.required' => 'Vous devez renseigner un numéro de téléphone',
+            'phone.string' => 'Le numéro de téléphone doit être une chaîne de caractères',
+            'dateOfBirth.required' => 'Vous devez renseigner une date de naissance',
+            'dateOfBirth.date' => 'La date de naissance doit être une date',
+            'address.required' => 'Vous devez renseigner une adresse',
+            'address.string' => 'L\'adresse doit être une chaîne de caractères',
+            'zipCode.required' => 'Vous devez renseigner un code postal',
+            'zipCode.string' => 'Le code postal doit être une chaîne de caractères',
+            'city.required' => 'Vous devez renseigner une ville en France',
+            'city.string' => 'La ville doit être une chaîne de caractères',
+            'password.string' => 'Le mot de passe doit être une chaîne de caractères',
+        ]);
+        if($validator->fails()) {
+            return $this->sendResponse(false, $validator->errors());
+        }
+
+        $user = User::find($request->id);
+        $user->firstName        = $request->firstName;
+        $user->lastName         = $request->lastName;
+        $user->email            = $request->email;
+        $user->phone            = $request->phone;
+        $user->dateOfBirth      = $request->dateOfBirth;
+        $user->address          = $request->address;
+        $user->zipCode          = $request->zipCode;
+        $user->city             = $request->city;
+        if ($request->password != "") $user->password = bcrypt($request->password);
+        $user->save();
+
+        return $this->sendResponse();
     }
 
     /**
