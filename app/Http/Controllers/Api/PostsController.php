@@ -268,16 +268,14 @@ class PostsController extends Controller
      * @return Response
      */
     public function candidate($id) {
-        if (Auth::check()) {
-            $post = Post::findOrFail($id);
-            if ($post->user_id != Auth::user()->id) {
-                $candidate = new Candidate();
-                $candidate->user()->associate(Auth::user()->id);
-                $candidate->post()->associate($id);
-                $candidate->save();
-                return $this->sendResponse();
-            } else return $this->sendResponse(false, "Vous ne pouvez pas postuler à votre annonce !");
-        } else return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
+        $post = Post::findOrFail($id);
+        if ($post->user_id != Auth::id()) {
+            $candidate = new Candidate();
+            $candidate->user()->associate(Auth::id());
+            $candidate->post()->associate($id);
+            $candidate->save();
+            return $this->sendResponse();
+        } else return $this->sendResponse(false, "Vous ne pouvez pas postuler à votre annonce !");
     }
 
     /**
