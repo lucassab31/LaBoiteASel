@@ -94,13 +94,7 @@ const ListAnnonces = () => {
 
     const handleClick = event => {
         event.preventDefault();
-        /*console.log('-- result of the form --')
-        console.log('category ', category);
-        console.log('length of the service ', lengthService);
-        console.log('date limit is ', date);
-        console.log('search operator ', searchDateSpecification);*/
         let idCategory;
-        // à rendre dynamique
         let dateFilter ; 
         //dateFilter= "2022-06-20%2011:44:17"; 
         dateFilter = date; 
@@ -118,7 +112,6 @@ const ListAnnonces = () => {
     console.log(state.posts);
 
     const fetchFilteredPosts = async (urlRequest) => {
-        //console.log("toto");
         await axios.get(urlRequest).then( resp=>{
               setData({
             ...state, posts: resp.data.data, 
@@ -126,28 +119,6 @@ const ListAnnonces = () => {
         console.log("tata");
         console.log(state.posts);
     };
-
-    const displayDatePost =  (item) => {
-        //console.log(item);
-       
-        /*let dateText = ""; 
-        switch (item.datetimeType) {
-            case "B":
-                dateText =  "Avant le ";
-                break;
-            case "O":
-                dateText =  "À faire le ";
-                break;
-            case "A":
-                dateText =  "Après le ";
-                break; 
-        } 
-        item.dateText = dateText; 
-        console.log(item);*/
-    };
-
-    
-
 
     return (
         <main id="annonces">
@@ -227,7 +198,6 @@ const ListAnnonces = () => {
                                                 <div className="annonce__infosDate">
                                                 <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
                                                 <p>
-                                                    {displayDatePost()}
                                                     <Moment format="DD/MM/YYYY">
                                                         {item.datetimePost}
                                                     </Moment>

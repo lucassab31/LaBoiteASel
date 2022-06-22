@@ -5,28 +5,25 @@ import FormNewUser from './FormNewUser';
 import {Routes, Route } from "react-router-dom";
 import PanelAdminTable from "./PanelAdminTable";
 import UsersList from "./UsersList";
-import ListCategories from "./ListCategories";
-import FormNewCategory from "./formNewCategory";
+import NavigationCategories from "./NavigationCategories";
 
 const PanelAdmin = () => {
     require ("../../../public/css/panelAdmin.css");
 
     return(
         <main>
-                <h2> Administration du site </h2>
-                <div className="block--1-5">
-                    <NavigationPanelAdmin/>
+            <h2> Administration du site </h2>
+            <div className="block--1-5">
+                <NavigationPanelAdmin/>
 
-                    <Routes>
-                        <Route index path="/" element={<PanelAdminHome />} />
-                        <Route path="addMembers" element={<FormNewUser/>}/>
-                        <Route path="listMembers" element={<UsersList/>} />
-                        <Route path="listCategories" element={<ListCategories/>} />
-                        <Route path="addCategory" element={<FormNewCategory/>} />
-                        <Route path="adminTable" element={<PanelAdminTable/>} />
-                        {/* <Route path="/members/add" element={<Component />} /> */}
-                    </Routes>
-                </div>
+                <Routes>
+                    <Route index path="/" element={<PanelAdminHome />} />
+                    <Route path="addMembers" element={<FormNewUser/>}/>
+                    <Route path="listMembers" element={<UsersList/>} />
+                    <Route path="adminTable" element={<PanelAdminTable/>} />
+                    <Route path="listCategories/*" element={<NavigationCategories/>} />
+                </Routes>
+            </div>
         </main>
     )
 }
