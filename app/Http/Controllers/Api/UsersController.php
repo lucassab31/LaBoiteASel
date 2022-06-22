@@ -120,7 +120,6 @@ class UsersController extends Controller
             'lastName' => 'required|string',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|string',
-            'dateOfBirth' => 'required|date',
             'address' => 'required|string',
             'zipCode' => 'required|string',
             'city' => 'required|string',
@@ -135,8 +134,6 @@ class UsersController extends Controller
             'email.unique' => 'Un compte existe déjà avec cette adresse email',
             'phone.required' => 'Vous devez renseigner un numéro de téléphone',
             'phone.string' => 'Le numéro de téléphone doit être une chaîne de caractères',
-            'dateOfBirth.required' => 'Vous devez renseigner une date de naissance',
-            'dateOfBirth.date' => 'La date de naissance doit être une date',
             'address.required' => 'Vous devez renseigner une adresse',
             'address.string' => 'L\'adresse doit être une chaîne de caractères',
             'zipCode.required' => 'Vous devez renseigner un code postal',
@@ -149,7 +146,7 @@ class UsersController extends Controller
             return $this->sendResponse(false, $validator->errors());
         }
 
-        $user = User::find($request->id);
+        $user = User::find(Auth::id());
         $user->firstName        = $request->firstName;
         $user->lastName         = $request->lastName;
         $user->email            = $request->email;
