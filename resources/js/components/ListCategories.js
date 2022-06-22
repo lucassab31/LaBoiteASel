@@ -1,11 +1,12 @@
 import React from "react";
 import FlatList from 'flatlist-react';
 import { useState, useEffect } from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
 const API_URL = process.env.MIX_APP_URL +'api/'; 
 
 const ListCategories = () => {
     require ("../../../public/css/panelAdmin.css");
-    let  baseUrl = API_URL+"posts/"; 
+    let  baseUrl = API_URL+"admin/categories/"; 
 
     const [state, setData] = useState({
         listCategories:'',
@@ -13,9 +14,9 @@ const ListCategories = () => {
 
     // API request to fetch list of users 
     const fetchCategories = async () => {
-        const apiCategories = await axios.get(baseUrl+"add");
-        console.log(apiCategories);
-        
+        const apiCategories = await axios.get(baseUrl);
+        //console.log(apiCategories);
+    
         setData({
             listCategories: await apiCategories.data.data, 
         });
@@ -25,6 +26,11 @@ const ListCategories = () => {
     useEffect(() => {
         fetchCategories();
     }, []);
+
+    const handleCategoryDelete = async (id) => {
+       const deleteCategory = await axios.get(baseUrl+"delete/"+id);
+       fetchCategories();
+    };
 
     return(
         <main>
@@ -36,6 +42,7 @@ const ListCategories = () => {
                             <tr>
                                 <th scope="col">Nom de la catégorie</th>
                                 <th scope="col">Description</th>
+                                <th scope="col">Supprimer la catégorie</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,8 +50,9 @@ const ListCategories = () => {
                             <tr>
                                 <td>{item.title} {item.lastName}</td>
                                 <td>{item.description}</td>
+                                <td onClick={() => handleCategoryDelete(item.id)}><DeleteIcon style={{ color: '#5bb385', fontSize:28 }}/> Supprimer</td>
                             </tr>          
-                            }
+                          }
                         />  
                         </tbody>
                     </table>       

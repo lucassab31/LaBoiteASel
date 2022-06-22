@@ -76,7 +76,7 @@ const FormNewUser = () => {
 
     const MessageCategoryCreated = () => {
         //aria-live="polite" : to indicate a message for screen-readers
-        return created ? <div className="bloc--bg-red"> <p onBlur={destroyMessage} id="created" aria-live="polite"> Votre venez d'ajouter un nouveau membre sur la plateforme !</p> </div> : null;
+        return created ? <div className="bloc--bg-red"> <p onBlur={destroyMessage} id="created" aria-live="polite"> Votre venez d'ajouter une nouvelle catégorie !</p> </div> : null;
     }
 
     useEffect(()=>{
@@ -128,7 +128,7 @@ const FormNewUser = () => {
                         <DisplayErrors inputName="description"></DisplayErrors>
                     </div>
                 </div>
-                <button className="button-yellow"> Ajouter un nouveau membre </button>
+                <button className="button-yellow"> Ajouter une nouvelle catégorie</button>
             </form>
         </main>
     );
