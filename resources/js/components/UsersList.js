@@ -2,11 +2,9 @@ import React from "react";
 import NavigationPanelAdmin from './NavigationPanelAdmin';
 import PanelAdminHome from './PanelAdminHome';
 import {Routes, Route } from "react-router-dom";
-import FormNewUser from "./FormNewUser";
-import PanelAdminTable from "./PanelAdminTable";
 
 
-const PanelAdmin = () => {
+const UsersList = () => {
     require ("../../../public/css/panelAdmin.css");
 
     return(
@@ -17,8 +15,7 @@ const PanelAdmin = () => {
 
                     <Routes>
                         <Route index path="/" element={<PanelAdminHome />} />
-                        <Route path="addMembers" element={<FormNewUser/>}/>
-                        <Route path="listMembers" element={<PanelAdminTable/>} />
+                        {/* <Route path="/members/list" element={<Component/>} /> */}
                         {/* <Route path="/members/add" element={<Component />} /> */}
                     </Routes>
                 </div>
@@ -26,4 +23,4 @@ const PanelAdmin = () => {
     )
 }
 
-export default PanelAdmin;
+export default UsersList;
