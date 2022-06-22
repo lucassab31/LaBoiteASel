@@ -44,7 +44,8 @@ const UsersList = () => {
                                 <th scope="col">Nom & Prénom</th>
                                 <th scope="col">Adresse mail</th>
                                 <th scope="col">Grains de sels restants</th>
-                                <th scope="col">Supprimer l'utilisateur</th>                            </tr>
+                                <th scope="col">Supprimer l'utilisateur</th>                   
+                             </tr>
                         </thead>
                         <tbody>
                         <FlatList keyExtractor={(item) => item.id} list={state.listUsers}  renderItem={item => 
