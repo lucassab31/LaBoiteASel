@@ -24,20 +24,6 @@ const FormAnnonce = () => {
 
     const [focusInput, setFocusInput] = useState();
     const [list, setList] = useState("");
-    const [result, setResult] = useState({
-        title : "",
-        category_id : "",
-        toolsType : "",
-        toolsProvided : "",
-        description : "",
-        timeLength : "",
-        cost : "",
-        address : "",
-        zipCode : "",
-        city : "",
-        datetimePost : "",
-        datetimeType : ""
-    });
 
     async function fetchCategory() {
         await axios.get(
@@ -108,26 +94,6 @@ const FormAnnonce = () => {
             //message.onblur = message.removeAttribute("tabindex");
         }
     }, [CreateAnnonce])
-
-    function setListResult(){
-
-        const date = dateTimePost ? new Date(dateTimePost) : "";
-        setResult({
-            "title" : titre, 
-            "category_id" : category_id,
-            "description" : description, 
-            "address" : address, 
-            "toolsProvided" : toolsProvided,
-            "zipCode" : zipCode,
-            "timeLength" : timeLength,
-            "toolsType" : toolsType,
-            "cost" : cost,
-            "city" : city,
-            "datetimePost" : date ? date.toISOString().slice(0, 19).replace('T', ' ') : '',
-            "datetimeType" : datetimeType
-        });
-        console.log(result);
-    }
 
     async function submitForm(e) {
         e.preventDefault();
