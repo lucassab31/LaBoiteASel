@@ -38,8 +38,6 @@ Route::prefix('posts')->name('posts.')->group(function () {
 
 // Connection
 Route::post('/users/login', [UsersController::class, 'login']);
-// User profile
-Route::prefix('users')->get('/view/{id}', [UsersController::class, 'view']);
 
 // Routes connected
 Route::middleware('auth:api')->group(function () {
@@ -47,6 +45,7 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('/logout', [UsersController::class, 'logout']);
 
+        Route::get('/view/{id}', [UsersController::class, 'view']);
         Route::get('/viewPosts', [UsersController::class, 'viewPosts']);
         Route::get('/viewTransactions', [UsersController::class, 'viewTransactions']);
         Route::get('/viewReports', [UsersController::class, 'viewReports']);
