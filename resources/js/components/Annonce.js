@@ -116,7 +116,7 @@ const Annonce = () => {
                     <div>
                         <div className="firstRow">
                             <div id="annonce_basicInfos-Category">
-                                <CategoryIcon style={{ color: '#5BB286', fontSize:30}}/>
+                                <CategoryIcon focusable="false" aria-hidden="true" style={{ color: '#5BB286', fontSize:30}}/>
                                 <p>{state.dataPost.category_name}</p>
                             </div>
 
@@ -124,7 +124,7 @@ const Annonce = () => {
                                 if (state.dataPost.datetimePost) {
                                     return (
                                         <div id="annonce_basicInfos-Date">
-                                            <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
+                                            <CalendarMonthIcon focusable="false" aria-hidden="true" style={{ color: '#5BB286', fontSize:30}}/>
                                             <p>
                                                 {datePost()} 
                                                 <Moment format="DD/MM/YYYY">
@@ -139,7 +139,7 @@ const Annonce = () => {
                        
                        <div className="secondRow">
                             <div id="annonce_basicInfos-Length">
-                                <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
+                                <CalendarMonthIcon focusable="false" aria-hidden="true" style={{ color: '#5BB286', fontSize:30}}/>
                                 <p>{state.dataPost.timeLength} minutes</p>
                             </div>
                             <div id="annonce_basicInfos-salt">
@@ -149,7 +149,7 @@ const Annonce = () => {
                        </div>
                     </div>
                     <div id="annonce_actionBtn">
-                        <Link  className="yellowButton" to={`/validation?id=${state.dataPost.user_id}`}>Rendre service</Link>
+                        <Link className="yellowButton" to={`/validation?id=${state.dataPost.user_id}`}>Rendre service</Link>
                     </div>
                 </div>
 
@@ -172,12 +172,12 @@ const Annonce = () => {
                 <h3>Autres détails</h3>
                 <div id="details__infos">
                     <div>
-                        <LocationOnIcon style={{ color: '#5BB286', fontSize:30}} />
+                        <LocationOnIcon focusable="false" aria-hidden="true" style={{ color: '#5BB286', fontSize:30}} />
                         <p>Localisation : {state.dataPost.city}</p>
                     </div>
 
                     <div>
-                        <ConstructionIcon style={{ color: '#5BB286', fontSize:30}}/>
+                        <ConstructionIcon focusable="false" aria-hidden="true" style={{ color: '#5BB286', fontSize:30}}/>
                         <p>{tools()}</p>
                     </div>
                 </div>

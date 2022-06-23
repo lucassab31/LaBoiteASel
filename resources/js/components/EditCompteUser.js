@@ -148,7 +148,7 @@ const EditCompteUser = () => {
                 <div className="user-image"><img alt="" src="../../../images/exemple-profile.png"></img><p>{resp.firstName} {resp.lastName}</p></div>
                 <div className="bloc-menu">
                     <Button className="button-form">
-                        <ArrowBackIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} /> <Link to="/utilisateur">Retour au profil</Link>
+                        <ArrowBackIcon focusable="false" aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} /> <Link to="/utilisateur">Retour au profil</Link>
                     </Button>
                 </div>
             </div>
@@ -248,7 +248,7 @@ const EditCompteUser = () => {
                             <DisplayErrors inputName="password"></DisplayErrors>
                         </fieldset>
                         <button className="button-form">
-                            <PlaylistAddCheckIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 30 }} />Enregistrer mes informations
+                            <PlaylistAddCheckIcon focusable="false" aria-hidden="true" style={{ color: '#5BB286', fontSize: 30 }} />Enregistrer mes informations
                         </button>
                         
                     </form>

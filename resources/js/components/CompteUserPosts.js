@@ -58,7 +58,7 @@ const CompteUserPosts = () => {
                                         if (item.datetimePost) {
                                             return (
                                                 <div className="list-posts--date">
-                                                    <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
+                                                    <CalendarMonthIcon focusable="false" aria-hidden="true" style={{ color: '#5BB286', fontSize:30}}/>
                                                 <p> 
                                                     <Moment format="DD/MM/YYYY">
                                                         {item.datetimePost}

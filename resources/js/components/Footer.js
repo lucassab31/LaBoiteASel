@@ -9,10 +9,10 @@ const Footer = () => {
         <footer>
             <div>
                 <div id="reseauxSociaux">
-                    <a href="https://fr-fr.facebook.com/"><FacebookIcon className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50 }}> <span className="visually-hidden">Lien vers la page Facebook de l' association</span> </FacebookIcon></a>
-                    <a href="mailto:laboiteaseladmin@example.com"><EmailIcon className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50 }}> <span className="visually-hidden"> Email de la l'association</span> </EmailIcon></a>
-                    <a href="https://www.youtube.com/?hl=FR"><YouTubeIcon className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50 }}> <span className="visually-hidden"> Lien vers la page Youtube de l' association</span> </YouTubeIcon></a>
-                    <a href="https://twitter.com/home?lang=fr"><TwitterIcon className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50}}> <span className="visually-hidden"> Lien vers la page Twitter de l' association</span> </TwitterIcon></a>
+                    <a href="https://fr-fr.facebook.com/"><FacebookIcon aria-hidden="true" focusable="false" className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50 }}>  </FacebookIcon> <span className="visually-hidden"> Page Facebook de l'association la boite à sel</span></a>
+                    <a href="mailto:laboiteaseladmin@example.com"><EmailIcon aria-hidden="true" focusable="false" className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50 }}>  </EmailIcon> <span className="visually-hidden"> Email de la l'association la boite à sel</span></a>
+                    <a href="https://www.youtube.com/?hl=FR"><YouTubeIcon aria-hidden="true" focusable="false" className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50 }}> </YouTubeIcon> <span className="visually-hidden"> Page Youtube de l'association la boite à sel</span> </a>
+                    <a href="https://twitter.com/home?lang=fr"><TwitterIcon aria-hidden="true" focusable="false" className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50}}> </TwitterIcon> <span className="visually-hidden"> Twitter de l'association la boite à sel</span> </a>
                  </div>
              </div>
             <p>Tout droits réservés © 2022 La Boîte à Sel, inc.</p>
