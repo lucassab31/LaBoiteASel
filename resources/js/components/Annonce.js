@@ -155,8 +155,8 @@ const Annonce = () => {
                 </div>
 
                 <div id="annonce__btn">
-                    <Link to="/annonces" className="button-blue">Retour à la liste des annonces</Link>
-                    <button className="button-blue">Voir le profil de la personne</button>
+                    <Link to="/annonces" className="button-blue btn_listPosts">Retour à la liste des annonces</Link>
+                    <Link className="button-blue"  to={`/utilisateur?id=${state.dataPost.user_id}`}>Voir le profil de la personne</Link>
                 </div>
             </div>
 
