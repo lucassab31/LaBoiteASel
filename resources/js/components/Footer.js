@@ -9,14 +9,12 @@ const Footer = () => {
         <footer>
             <div>
                 <div id="reseauxSociaux">
-                    <FacebookIcon className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50 }}> <span className="visually-hidden"> Lien vers la page Facebook de l' association</span> </FacebookIcon>
-                    <EmailIcon className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50 }}> <span className="visually-hidden"> Lien vers la page Facebook de l' association</span> </EmailIcon>
-                    <YouTubeIcon className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50 }}> <span className="visually-hidden"> Lien vers la page Facebook de l' association</span> </YouTubeIcon>
-                    <TwitterIcon className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50}}> <span className="visually-hidden"> Lien vers la page Facebook de l' association</span> </TwitterIcon>
-                </div>
-            </div>
-
-
+                    <a href="https://fr-fr.facebook.com/"><FacebookIcon className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50 }}> <span className="visually-hidden">Lien vers la page Facebook de l' association</span> </FacebookIcon></a>
+                    <a href="mailto:laboiteaseladmin@example.com"><EmailIcon className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50 }}> <span className="visually-hidden"> Lien vers la page Facebook de l' association</span> </EmailIcon></a>
+                    <a href="https://www.youtube.com/?hl=FR"><YouTubeIcon className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50 }}> <span className="visually-hidden"> Lien vers la page Facebook de l' association</span> </YouTubeIcon></a>
+                    <a href="https://twitter.com/home?lang=fr"><TwitterIcon className="reseauxSociaux__icon" style={{ color: 'white', fontSize:50}}> <span className="visually-hidden"> Lien vers la page Facebook de l' association</span> </TwitterIcon></a>
+                 </div>
+             </div>
             <p>Tout droits réservés © 2022 La Boîte à Sel, inc.</p>
             <div id="rgpd">
                 <a href="#">Mentions Légales</a>
