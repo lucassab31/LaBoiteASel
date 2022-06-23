@@ -3,6 +3,7 @@ import { Link, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import CompteUserProfile from "./CompteUserProfile";
 import CompteUserPosts from "./CompteUserPosts";
+import CompteUserCandidates from "./CompteUserCandidates";
 import { Button } from "react-bootstrap";
 import EditIcon from '@mui/icons-material/Edit';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
@@ -66,8 +67,9 @@ const CompteUser = () => {
                     <h2>{resp.firstName} {resp.lastName}</h2>
                 </div>
                 <nav className="bloc-menu">
-                    <Link className="" to={"myPosts/"}>Voir mes annonces</Link>
-                    <Link className="" to="/utilisateur">Mes infos de profil</Link>
+                    <Link to={"myPosts/"}>Voir mes annonces</Link>
+                    <Link to="/utilisateur">Mes infos de profil</Link>
+                    <Link to={"candidatures/"}> Gérer les candidatures à mes annonces </Link>
                     <ButtonProfile />
                     <Link className="" to="/create"> Créer une nouvelle annonce </Link>
                 </nav>
@@ -76,6 +78,7 @@ const CompteUser = () => {
             <Routes>
                 <Route index path="/" element={<CompteUserProfile />} />
                 <Route path={"myPosts/"} element={<CompteUserPosts />} /> 
+                <Route path={"candidatures/"} element={<CompteUserCandidates />} />
             </Routes>
         </main>
     );

@@ -6,7 +6,7 @@ import Moment from 'react-moment';
 import CategoryIcon from '@mui/icons-material/Category';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
-const CompteUserProfile = () => {
+const CompteUserPosts = () => {
 
     const API_URL = process.env.MIX_APP_URL + 'api/';
 
@@ -93,4 +93,4 @@ const CompteUserProfile = () => {
 
 }
 
-export default CompteUserProfile;
+export default CompteUserPosts;
