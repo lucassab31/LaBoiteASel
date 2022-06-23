@@ -187,7 +187,7 @@ const ListAnnonces = () => {
                                 <div className="annonce__infos">
 
                                      <div className="annonce__infosCategorie">
-                                        <CategoryIcon style={{ color: '#5BB286', fontSize:30}}/>
+                                        <CategoryIcon aria-hidden="true" focusable="false" style={{ color: '#5BB286', fontSize:30}}/>
                                         <p>{item.category.title}</p>
                                     </div>
                                    

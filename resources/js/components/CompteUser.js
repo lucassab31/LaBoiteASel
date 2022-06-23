@@ -41,24 +41,24 @@ const CompteUser = () => {
                 return (
                     <span>
                         <Link to="edit" className="">
-                            <EditIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} />Modifier le profil
+                            <EditIcon focusable="false" aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} />Modifier le profil
                         </Link>
                         <Link to="/admin" className="">
-                            <AdminPanelSettingsIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} />Panel admin
+                            <AdminPanelSettingsIcon focusable="false" aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} />Panel admin
                         </Link>
                     </span>
                 );
             } else {
                 return (
                     <Link to="edit" className="">
-                        <EditIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} />Modifier le profil
+                        <EditIcon focusable="false" aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} />Modifier le profil
                     </Link>
                 );
             }
         } else {
             return (
                 <Link to="" className="">
-                    <ReportProblemIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} />Signaler le profil
+                    <ReportProblemIcon focusable="false" aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} />Signaler le profil
                 </Link>
             );
         }

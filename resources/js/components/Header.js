@@ -27,7 +27,7 @@ const Header = () => {
 
             <nav class="top-nav">
                 <input id="menu-toggle" type="checkbox" />
-                <label class='menu-button-container' for="menu-toggle">
+                <label class='menu-button-container' htmlFor="menu-toggle">
                 <MenuIcon style={{ color: '#1f294c', fontSize:50 }}/>
                 <div class='menu-button'></div>
                 </label>
