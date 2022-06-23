@@ -24,11 +24,11 @@ const Header = () => {
                 <h1 id="laBoiteASel__nom">La Boîte à Sel</h1>
             </div>
 
-            <div id="menu">
+            <nav id="menu">
                 <Link className="menu__lien" to="/">Accueil</Link>
                 <Link className="menu__lien" to="/annonces">Annonces</Link>
                 <LinkLogin />
-            </div>
+            </nav>
         </header>
     );
 }

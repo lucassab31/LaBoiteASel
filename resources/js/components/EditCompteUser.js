@@ -2,6 +2,7 @@ import React, { useState, useEffect, useFocus } from "react";
 import { Button } from "react-bootstrap";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
+import { Link, Routes, Route } from "react-router-dom";
 
 const EditCompteUser = () => {
     const API_URL = process.env.MIX_APP_URL + 'api/';
@@ -147,7 +148,7 @@ const EditCompteUser = () => {
                 <div className="user-image"><img alt="" src="../../../images/exemple-profile.png"></img><p>{resp.firstName} {resp.lastName}</p></div>
                 <div className="bloc-menu">
                     <Button className="button-form">
-                        <ArrowBackIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} navigate="./CompteUser.js" />Retour au profil
+                        <ArrowBackIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} /> <Link to="/utilisateur">Retour au profil</Link>
                     </Button>
                 </div>
             </div>
