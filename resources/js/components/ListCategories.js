@@ -16,12 +16,10 @@ const ListCategories = () => {
     // API request to fetch list of users 
     const fetchCategories = async () => {
         const apiCategories = await axios.get(baseUrl);
-        //console.log(apiCategories);
     
         setData({
             listCategories: await apiCategories.data.data, 
         });
-        //console.log(apiCategories.data.data);
     };
     
     useEffect(() => {

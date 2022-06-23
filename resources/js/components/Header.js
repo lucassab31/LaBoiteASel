@@ -25,7 +25,7 @@ const Header = () => {
                 <h1 id="laBoiteASel__nom">La Boîte à Sel</h1>
             </div>
 
-            <div class="top-nav">
+            <nav class="top-nav">
                 <input id="menu-toggle" type="checkbox" />
                 <label class='menu-button-container' for="menu-toggle">
                 <MenuIcon style={{ color: '#1f294c', fontSize:50 }}/>
@@ -36,7 +36,7 @@ const Header = () => {
                     <li><Link className="menu__lien" to="/annonces">Annonces</Link></li>
                     <li><LinkLogin /></li>
                 </ul>
-            </div>
+            </nav>
         </header>
     );
 }

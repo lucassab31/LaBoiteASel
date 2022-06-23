@@ -90,7 +90,6 @@ const ListAnnonces = () => {
         event.preventDefault();
         let idCategory;
         let dateFilter ; 
-        //dateFilter= "2022-06-20%2011:44:17"; 
         dateFilter = date; 
 
         for (const item of state.listCategories) {
@@ -98,7 +97,6 @@ const ListAnnonces = () => {
                  idCategory = item.id; 
             }
         }
-        
         let urlApiRequest = baseUrl+"postsFiltered/"+idCategory+"/"+lengthService+"/"+dateFilter+"/"+searchDateSpecification;
         fetchFilteredPosts(urlApiRequest);
     }; 
