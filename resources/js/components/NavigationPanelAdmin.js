@@ -12,16 +12,16 @@ const NavigationPanelAdmin = () => {
     return(
         <nav role="navigation" className="bloc-panel bloc--bg-white">
             <h2>Navigation</h2>
-            <div className="menu">
+            <div className="adminPanel_menu">
                 <div className="title-accueil">
-                    <p>Accueil</p> 
+                    {/*<p>Accueil</p> */}
                     <Link to="/admin"> Accueil </Link>
                 </div>
                 <div className="membres">
-                    <div className="title">
-                        <GroupsOutlinedIcon aria-hidden="true" style={{ color: '#1F294C', fontSize: 20 }} />
+                    <div> {/* className="title" */}
+                        {/*<GroupsOutlinedIcon aria-hidden="true" style={{ color: '#1F294C', fontSize: 20 }} /> */}
                         {/* <Link> Membres </Link> : à ajouter */}
-                        <KeyboardArrowDownRoundedIcon aria-hidden="true" style={{ color: '#F07C63', fontSize: 20 }} />
+                        {/*<KeyboardArrowDownRoundedIcon aria-hidden="true" style={{ color: '#F07C63', fontSize: 20 }} /> */}
                     </div>
                     <div>
                         <Link to="listMembers">Gestion des membres</Link>
@@ -32,10 +32,10 @@ const NavigationPanelAdmin = () => {
                     </div>
                 </div>
                 <div className="statistiques">
-                    <div className="title">
-                        <QueryStatsIcon aria-hidden="true" style={{ color: '#1F294C', fontSize: 20 }} />
+                    <div> {/* className="title" */}
+                        {/*<QueryStatsIcon aria-hidden="true" style={{ color: '#1F294C', fontSize: 20 }} */}
                         {/* <Link> Statistiques </Link> : à ajouter */}
-                        <KeyboardArrowDownRoundedIcon aria-hidden="true" style={{ color: '#F07C63', fontSize: 20 }} />
+                        {/*<KeyboardArrowDownRoundedIcon aria-hidden="true" style={{ color: '#F07C63', fontSize: 20 }} /> */}
                     </div>
                     <div>
                         <Link to="adminTable">Balance des services et volume des échanges </Link>
