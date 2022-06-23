@@ -157,7 +157,8 @@ const FormAnnonce = () => {
 
             <CreateAnnonce/>
            
-            <form onSubmit={submitForm} >
+            <form onSubmit={submitForm}>
+                <p> Les champs marqués d'une étoile (*) sont requis.</p> 
                 <fieldset className="form__block-1 form__block bloc--bg-yellow">
                     <legend className="form__block__title">Création d'annonce</legend>
 
@@ -166,7 +167,7 @@ const FormAnnonce = () => {
                         <div className="form__block__column">
 
                             
-                            <label htmlFor="title"> Titre de votre annonce (par exemple : "Besoin d'aide pour tailler ma haie") </label>
+                            <label htmlFor="title"> Titre de votre annonce (par exemple : "Besoin d'aide pour tailler ma haie") * </label>
                             <input 
                                 aria-required="true" 
                                 data-name="title" 
@@ -178,7 +179,7 @@ const FormAnnonce = () => {
                             <DisplayErrors inputName="title"></DisplayErrors>
 
                            
-                            <label htmlFor="description">  Votre description </label>
+                            <label htmlFor="description">  Votre description * </label>
                             <textarea 
                                 aria-required="true" 
                                 data-name="description" 
@@ -196,7 +197,7 @@ const FormAnnonce = () => {
                         <div className="form__block__column">
 
                            
-                            <label htmlFor="category"> Choisissez une catégorie </label>
+                            <label htmlFor="category"> Choisissez une catégorie * </label>
                             <select data-name="category_id" aria-required="true" value={category_id} onChange={(e) => (setCategoryId(e.target.value))} id="category">
                                 <option disabled value=""> -- Choisir une option -- </option>
                                 {list}
@@ -204,7 +205,7 @@ const FormAnnonce = () => {
                             <DisplayErrors inputName="category_id"></DisplayErrors>
 
                             
-                            <label htmlFor="saltNumber"> Nombre de grains de sel </label>
+                            <label htmlFor="saltNumber"> Nombre de grains de sel * </label>
                             <input 
                                 aria-required="true"
                                 value={cost}
@@ -231,13 +232,14 @@ const FormAnnonce = () => {
                             data-name="toolsType" 
                             id="type_tools" 
                             type="text"
+                            placeholder="outils utilisés lors de cette tache..."
                             value={toolsType}
                             disabled={toolsReq === "false" ? true : false}
                             onChange={(e) => (setToolsType(e.target.value))}
                             />
                         </div>
                         <div className="form__block__column form__block__wrapper">
-                            <label htmlFor="tools">Ces outils seront-ils fournis ?</label>
+                            <label htmlFor="tools">Ces outils seront-ils fournis ? *</label>
                             <select name="tools" data-name="toolsProvided" aria-required="true" value={toolsProvided} onChange={(e) => (setToolsProvided(e.target.value))} id="tools">
                                 <option value="" disabled>Choisir une option</option>
                                 <option value="Y">Oui</option>
@@ -278,7 +280,7 @@ const FormAnnonce = () => {
                             </div>
 
                             <div className="form__block__column">
-                                <label htmlFor="lengthService"> Durée en heures </label>
+                                <label htmlFor="lengthService"> Durée en heures * </label>
                             
                                 <select aria-required="true" data-name="timeLength" id="lengthService" value={timeLength} onChange={(e) => (setTimeLength(e.target.value))}>
                                     <option disabled value=""> -- Choisir une durée -- </option>
@@ -305,7 +307,7 @@ const FormAnnonce = () => {
 
                         <div className="form__block__column">
 
-                            <label htmlFor="address"> Votre numéro et nom de rue (ces informations ne sera pas visible sur l'annonce) </label>
+                            <label htmlFor="address"> Votre numéro et nom de rue (ces informations ne sera pas visible sur l'annonce) * </label>
                             <input 
                                 value={address}
                                 onChange={(e) => (setAddress(e.target.value))}
@@ -318,7 +320,7 @@ const FormAnnonce = () => {
                             />
                             <DisplayErrors inputName="address"></DisplayErrors>
 
-                            <label htmlFor="city"> Votre ville </label>
+                            <label htmlFor="city"> Votre ville *</label>
                             <input 
                                 aria-required="true"
                                 value={city}
@@ -335,7 +337,7 @@ const FormAnnonce = () => {
 
                         <div className="form__block__column">
 
-                            <label htmlFor="zipcode"> Votre code postal </label>
+                            <label htmlFor="zipcode"> Votre code postal *</label>
                             <input 
                                 value={zipCode}
                                 onChange={(e) => (setZipCode(e.target.value))}

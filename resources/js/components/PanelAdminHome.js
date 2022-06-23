@@ -157,7 +157,7 @@ const PanelAdminHome = () => {
             <div>
                 <h2 id="title-infos"> Changements de status par date (mensuel) </h2>
                 <Line aria-labelledby="title-infos" aria-describedby="desc" options={options} data={data}/>
-                <button aria-expanded={desc === false ? "false" : "true"}className="button-blue charts-btnDescription" onClick={()=>{setDesc(desc === true ? false : true)}}> {desc === false ? "Connaitre les informations de changements de status" : "Fermer la description des changements de status"} </button>
+                <button aria-controls="desc" aria-expanded={desc === false ? "false" : "true"}className="button-blue charts-btnDescription" onClick={()=>{setDesc(desc === true ? false : true)}}> {desc === false ? "Connaitre les informations de changements de status" : "Fermer la description des changements de status"} </button>
                 <InfosDesc/>
             </div>
         );

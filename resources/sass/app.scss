@@ -362,6 +362,16 @@ label {
     margin-top : $spacing-6;
 }
 
+input[aria-invalid]{
+    border : 2px solid red;
+    background-color :rgb(255, 238, 238);
+}
+
 .menu li:focus-within {
     outline: 3px dashed #1F294C !important;
+}
+
+::placeholder {
+    color: rgb(32, 32, 32);
+    opacity: 1; 
 }
