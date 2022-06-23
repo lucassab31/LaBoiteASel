@@ -59,7 +59,7 @@ const PanelAdminTable = () => {
             }
         );
         if(results){
-            console.log(values);
+            //console.log(values);
         }
     }
 

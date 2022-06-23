@@ -20,7 +20,7 @@ const UsersList = () => {
         setData({
             listUsers: await apiUsers.data.data, 
         });
-        console.log(apiUsers.data.data);
+        //console.log(apiUsers.data.data);
     };
     
     useEffect(() => {
@@ -29,7 +29,6 @@ const UsersList = () => {
 
     const handleUserDelete = async (id) => {
         const deleteUser = await axios.get(baseUrl+"delete/"+id);
-        console.log(deleteUser);
         fetchUsers();
      };
 

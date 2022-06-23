@@ -14,7 +14,6 @@ const API_URL = process.env.MIX_APP_URL +'api/';
 const Annonce = () => {
 
     let  baseUrl = API_URL+"posts/"; 
-    console.log(baseUrl);
 
     // get the id of the post from the url 
     const queryParams = new URLSearchParams(window.location.search);
