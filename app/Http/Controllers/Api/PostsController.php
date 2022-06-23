@@ -80,7 +80,7 @@ class PostsController extends Controller
      * @return Request
      */
     public function store(Request $request) {
-        //if (!Auth::check()) return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
+        if (!Auth::check()) return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
         $input = $request->all();
         $validator = Validator::make($input, [
             'title' => 'required|max:80|string',
@@ -134,8 +134,8 @@ class PostsController extends Controller
         $post->datetimeType     = $request->datetimeType;
         $post->datetimePost     = $request->datetimePost;
         $post->category()->associate(Category::findOrFail($request->category_id));
-        //$post->user()->associate(Auth::user()->id);
-        $post->user()->associate(1);
+        $post->user()->associate(Auth::user()->id);
+        //$post->user()->associate(1);
 
         $post->save();
 
