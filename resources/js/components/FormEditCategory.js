@@ -22,7 +22,7 @@ const FormEditCategory = () => {
             "title": title, 
             "description": description,
         };
-        console.log(data);
+        //console.log(data);
         await axios.post(
             API_URL + "admin/categories/update/"+urlSplit[6], 
             data, 
