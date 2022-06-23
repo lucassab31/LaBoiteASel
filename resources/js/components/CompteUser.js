@@ -31,7 +31,7 @@ const CompteUser = () => {
                 return (
                     <span>
                         <Button className="menu-button">
-                            <EditIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} href="./EditCompteUser.js"/>Modifier le profil
+                            <EditIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }}/>Modifier le profil
                         </Button>
                         <Button className="menu-button">
                             <AdminPanelSettingsIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} />Panel admin
@@ -89,9 +89,9 @@ const CompteUser = () => {
                     <div className="user-image"><img alt="" src="../../../images/exemple-profile.png"></img><p></p></div>
                 </div>
                 <div className="bloc-red">
-                    <div className="panel">
+                    <div className="left-panel">
                         <h3 className="panel-title">Informations</h3>
-                        <p className="not-found">Aucun profil ne correspond à votre demande</p>
+                        <p>Aucun profil ne correspond à votre demande</p>
                     </div>
                 </div>
             </main>
