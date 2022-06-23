@@ -15,17 +15,13 @@ class AdminMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next)
     {
-        if (Auth::check()) {
-            if (Auth::user()->role == 'A') {
-                return $next($request);
-            }
-        } else {
+        if (Auth::user()->role != 'A') {
             return response()->json([
                 "success" => false,
                 "error" => "Vous ne pouvez pas accéder à cette partie !"
             ]);
-        }
+        } else return $next($request);
     }
 }
