@@ -5,6 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import ListAnnonces from './ListAnnonces';
 import Annonce from './Annonce';
+import EditCompteUser from './EditCompteUser';
 import Home from "./Home";
 import Login from "./Login";
 import Test from "./Test";
@@ -28,6 +29,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/connexion" element={<Login />} />
                     <Route path="/utilisateur" element={<CompteUser />} />
+                    <Route path="/modificationUtilisateur" element={<EditCompteUser />} />
                     <Route path="/test" element={<Test />} />
                     <Route path="/annonces" element={<ListAnnonces/>} />
                     <Route path="/validation" element={<Validation />} />

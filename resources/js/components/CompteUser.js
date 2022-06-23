@@ -31,7 +31,7 @@ const CompteUser = () => {
                 return (
                     <span>
                         <Button className="menu-button">
-                            <EditIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} />Modifier le profil
+                            <EditIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }}/>Modifier le profil
                         </Button>
                         <Button className="menu-button">
                             <AdminPanelSettingsIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} />Panel admin
