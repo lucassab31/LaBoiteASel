@@ -6,7 +6,6 @@ use App\Http\Controllers\Api\PostsController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\Admin\UsersController as AdminUsersController;
 use App\Http\Controllers\Api\Admin\StatsController as AdminStatsController;
-use App\Http\Controllers\Api\Admin\CategoriesController as AdminCategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,20 +65,10 @@ Route::middleware('auth:api')->group(function () {
             Route::get('/add', [AdminUsersController::class, 'add']);
             Route::post('/add', [AdminUsersController::class, 'store']);
 
-    });
-});
-// Routes admin
-Route::prefix('admin')->group(function () {
-    // Users
-    Route::prefix('users')->name('users.')->group(function () {
-        Route::get('/', [AdminUsersController::class, 'index']);
-        Route::get('/view/{id}', [AdminUsersController::class, 'view']);
-    
-        Route::get('/add', [AdminUsersController::class, 'add']);
-        Route::post('/add', [AdminUsersController::class, 'store']);
-        Route::post('changeUserStatus/{id}', [AdminUsersController::class, 'changeUserStatus']);
-        Route::get('/delete/{id}', [AdminUsersController::class, 'delete']);
-    });
+            Route::post('changeUserStatus/{id}', [AdminUsersController::class, 'changeUserStatus']);
+
+            Route::get('/delete/{id}', [AdminUsersController::class, 'delete']);
+        });
 
         // Stats
         Route::prefix('stats')->name('stats.')->group(function () {
@@ -87,13 +76,5 @@ Route::prefix('admin')->group(function () {
             Route::post('/balance', [AdminStatsController::class, 'balance']);
             Route::get('/export', [AdminStatsController::class, 'exportCsv']);
         });
-    });
-
-    // Category
-    Route::prefix('categories')->name('categories.')->group(function () {
-        Route::post('/add', [AdminCategoriesController::class, 'store']);
-        Route::get('/', [AdminCategoriesController::class, 'index']);
-        Route::post('update/{id}', [AdminCategoriesController::class, 'update']);
-        Route::get('/delete/{id}', [AdminCategoriesController::class, 'delete']);
     });
 });
