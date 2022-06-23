@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, componentDidUpdate } from "react";
 import { Link, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import CompteUserProfile from "./CompteUserProfile";
