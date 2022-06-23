@@ -1,5 +1,6 @@
 import React, {useEffect, createRef} from "react";
 import {Link, useLocation} from "react-router-dom";
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Header = () => {
     let location = useLocation();
@@ -24,10 +25,17 @@ const Header = () => {
                 <h1 id="laBoiteASel__nom">La Boîte à Sel</h1>
             </div>
 
-            <nav id="menu">
-                <Link className="menu__lien" to="/">Accueil</Link>
-                <Link className="menu__lien" to="/annonces">Annonces</Link>
-                <LinkLogin />
+            <nav class="top-nav">
+                <input id="menu-toggle" type="checkbox" />
+                <label class='menu-button-container' for="menu-toggle">
+                <MenuIcon style={{ color: '#1f294c', fontSize:50 }}/>
+                <div class='menu-button'></div>
+                </label>
+                <ul class="menu">
+                    <li><Link className="menu__lien" to="/">Accueil</Link></li>
+                    <li><Link className="menu__lien" to="/annonces">Annonces</Link></li>
+                    <li><LinkLogin /></li>
+                </ul>
             </nav>
         </header>
     );

@@ -3,39 +3,47 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import {Routes, Route, Link } from "react-router-dom";
 
-import "../../../public/css/navigationPanelAdmin.css"
 
 const NavigationPanelAdmin = () => {
-    <main>
-        <div className="bloc-white">
+    require ("../../../public/css/panelAdmin.css");
+
+    return(
+        <nav role="navigation" className="bloc-panel bloc--bg-white">
             <h2>Navigation</h2>
-            <div className="menu">
-                <h1 className="title-accueil">
-                    <HomeRoundedIcon aria-hidden="true" style={{ color: '#1F294C', fontSize: 20 }} />Accueil
-                </h1>
+            <div className="adminPanel_menu">
+                <div className="title-accueil">
+                    {/*<p>Accueil</p> */}
+                    <Link to="/admin"> Accueil </Link>
+                </div>
                 <div className="membres">
-                    <h3 className="title">
-                        <GroupsOutlinedIcon aria-hidden="true" style={{ color: '#1F294C', fontSize: 20 }} />
-                        Membres
-                        <KeyboardArrowDownRoundedIcon aria-hidden="true" style={{ color: '#F07C63', fontSize: 20 }} />
-                    </h3>
-                    <link>Liste des membres</link>
-                    <link>Ajouter un membre</link>
+                    <div> {/* className="title" */}
+                        {/*<GroupsOutlinedIcon aria-hidden="true" style={{ color: '#1F294C', fontSize: 20 }} /> */}
+                        {/* <Link> Membres </Link> : à ajouter */}
+                        {/*<KeyboardArrowDownRoundedIcon aria-hidden="true" style={{ color: '#F07C63', fontSize: 20 }} /> */}
+                    </div>
+                    <div>
+                        <Link to="listMembers">Gestion des membres</Link>
+                    </div>
+
+                    <div>
+                        <Link to="listCategories">Gestion des catégories</Link>
+                    </div>
                 </div>
                 <div className="statistiques">
-                    <h3 className="title">
-                        <QueryStatsIcon aria-hidden="true" style={{ color: '#1F294C', fontSize: 20 }} />
-                        Statistiques
-                        <KeyboardArrowDownRoundedIcon aria-hidden="true" style={{ color: '#F07C63', fontSize: 20 }} />
-                    </h3>
-                    <link>Balance des services</link>
-                    <link>Volume des échanges</link>
-                    <link>Export des données</link>
+                    <div> {/* className="title" */}
+                        {/*<QueryStatsIcon aria-hidden="true" style={{ color: '#1F294C', fontSize: 20 }} */}
+                        {/* <Link> Statistiques </Link> : à ajouter */}
+                        {/*<KeyboardArrowDownRoundedIcon aria-hidden="true" style={{ color: '#F07C63', fontSize: 20 }} /> */}
+                    </div>
+                    <div>
+                        <Link to="adminTable">Balance des services et volume des échanges </Link>
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </nav>
+    );
 }
 
 export default NavigationPanelAdmin;

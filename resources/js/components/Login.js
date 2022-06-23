@@ -38,7 +38,7 @@ const Login = () => {
     }
 
     return (
-        <div className="Login bloc--bg-white">
+        <main className="Login bloc--bg-white">
             <Helmet>
                 <title>{title}</title>
             </Helmet>
@@ -48,18 +48,22 @@ const Login = () => {
                 <h1 className="title">Connectez-vous</h1>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="group" size="lg">
-                        <Form.Label>Nom d'utilisateur</Form.Label>
+                        <Form.Label htmlFor="email">Adresse mail</Form.Label>
                         <Form.Control
                             autoFocus
                             type="email"
+                            id="email"
+                            placeholder="Votre adresse mail"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </Form.Group>
                     <Form.Group className="group" size="lg">
-                        <Form.Label>Mot de passe</Form.Label>
+                        <Form.Label htmlFor="password">Mot de passe</Form.Label>
                         <Form.Control
                             type="password"
+                            id="password"
+                            placeholder="Votre mot de passe"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
@@ -70,7 +74,7 @@ const Login = () => {
                     <p id="error"></p>
                 </Form>
             </div>
-        </div>
+        </main>
     );
 }
 

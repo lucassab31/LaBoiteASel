@@ -70,7 +70,8 @@ class CategoriesController extends Controller
      * @return Request
      */
     public function update(Request $request) {
-        $request->validate([
+        $input = $request->all();
+        $validator = Validator::make($input, [
             'title' => 'required|max:100|string',
             'description' => 'required|string',
         ],[
@@ -80,6 +81,12 @@ class CategoriesController extends Controller
             'description.required' => 'Vous devez renseigner une description',
             'description.string' => 'La description doit être une chaîne de caractères'
         ]);
+        if($validator->fails()){
+            return response()->json([
+                "success" => false,
+                "error" => $validator->errors()
+            ]);
+        }
 
         $category = Category::find($request->id);
         $category->title            = $request->title;

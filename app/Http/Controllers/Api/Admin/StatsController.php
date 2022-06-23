@@ -29,6 +29,7 @@ class StatsController extends Controller
         return $this->sendResponse(true, $oPosts);
     }
 
+
     public function balance(Request $request) {
         $users = User::withCount(['posts' => function ($query) {
             global $request;

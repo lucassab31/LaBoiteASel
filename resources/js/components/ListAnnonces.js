@@ -88,9 +88,7 @@ const ListAnnonces = () => {
     const handleClick = event => {
         event.preventDefault();
         let idCategory;
-        // à rendre dynamique
         let dateFilter ; 
-        //dateFilter= "2022-06-20%2011:44:17"; 
         dateFilter = date; 
 
         for (const item of state.listCategories) {
@@ -98,19 +96,17 @@ const ListAnnonces = () => {
                  idCategory = item.id; 
             }
         }
-        
         let urlApiRequest = baseUrl+"postsFiltered/"+idCategory+"/"+lengthService+"/"+dateFilter+"/"+searchDateSpecification;
-        //console.log(urlApiRequest);
         fetchFilteredPosts(urlApiRequest);
     }; 
     
 
     const fetchFilteredPosts = async (urlRequest) => {
-        //console.log("toto");
         await axios.get(urlRequest).then( resp=>{
               setData({
             ...state, posts: resp.data.data, 
     })});
+        //console.log(state.posts);
     };
 
     async function changeStatutPost(id) {
@@ -146,7 +142,7 @@ const ListAnnonces = () => {
                         <label htmlFor="category">Catégorie</label>
                         <select value={category}  onChange={handleCategoryChange} id="category" name="list">
                             <option value="" disabled>Entrez une catégorie</option> 
-                            <FlatList list={state.listCategories} renderItem={item=><option value={item.title}>{item.title}</option>}/>
+                            <FlatList keyExtractor={(item) => item.id} list={state.listCategories} renderItem={item=><option key={item.id} value={item.title}>{item.title}</option>}/>
                         </select>
                     </div>
 
@@ -183,9 +179,8 @@ const ListAnnonces = () => {
             <div id="listAnnonces">
                 <h2>Liste des annonces</h2>
                 <div id="listAnnonces__container">
-                    <FlatList list={state.posts}  renderItem={item => 
+                    <FlatList keyExtractor={(item) => item.id} list={state.posts}  renderItem={item => 
                         <div className="annonce">
-                            <img src="#" alt=""/>
                             <div className="annonce__infos">
                                 <h3>{item.title}</h3>
 
@@ -193,7 +188,7 @@ const ListAnnonces = () => {
 
                                      <div className="annonce__infosCategorie">
                                         <CategoryIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                        <p> {item.category.title}</p>
+                                        <p>{item.category.title}</p>
                                     </div>
                                    
 
@@ -203,7 +198,6 @@ const ListAnnonces = () => {
                                                 <div className="annonce__infosDate">
                                                 <CalendarMonthIcon style={{ color: '#5BB286', fontSize:30}}/>
                                                 <p>
-                                                    {displayDatePost()}
                                                     <Moment format="DD/MM/YYYY">
                                                         {item.datetimePost}
                                                     </Moment>

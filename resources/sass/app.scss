@@ -10,6 +10,7 @@ header {
     padding: 20px;
     display: flex;
     align-items: center;
+    height:20vh;
     background-color: $white;
     justify-content: space-between;
     box-shadow: 10px 5px 5px #dedddd;
@@ -32,21 +33,141 @@ header {
             width: 80px;
         }
     }
-
-    #menu {
-        .menu__lien {
-            font-family: $font-family-sans-serif;
-            margin: 7px 12px 0 0;
-            text-transform: uppercase;
-            text-decoration: none;
-            font-size: 20px;
-        }
-
-        .menu__lien:active {
-            text-decoration: underline;
-        }
-    }
 }
+
+
+/*Burger menu*/
+.top-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: #FFF;
+    height: 50px;
+    padding: 1em;
+  }
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    z-index: 2;
+  }
+
+  
+  .menu > li {
+    margin: 0 1rem;
+    overflow: hidden;
+
+    a {
+        font-family: $font-family-sans-serif;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 20px;
+        display: flex;
+        align-self: center;
+    }
+    
+  }
+  
+  .menu-button-container {
+    display: none;
+    height: 100%;
+    width: 30px;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #menu-toggle {
+    display: none;
+  }
+  
+  .menu-button,
+  .menu-button::before,
+  .menu-button::after {
+    display: block;
+    background-color: #fff;
+    position: absolute;
+    height: 4px;
+    width: 30px;
+    transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 2px;
+  }
+  
+  .menu-button::before {
+    content: '';
+    margin-top: -8px;
+  }
+  
+  .menu-button::after {
+    content: '';
+    margin-top: 8px;
+  }
+  
+  #menu-toggle:checked + .menu-button-container .menu-button::before {
+    margin-top: 0px;
+    transform: rotate(405deg);
+  }
+  
+  #menu-toggle:checked + .menu-button-container .menu-button {
+    background: rgba(255, 255, 255, 0);
+  }
+  
+  #menu-toggle:checked + .menu-button-container .menu-button::after {
+    margin-top: 0px;
+    transform: rotate(-405deg);
+  }
+  
+  @media (max-width : 960px) {
+    .menu-button-container {
+      display: flex;
+    }
+    .menu {
+      position: absolute;
+      top: 0;
+      margin-top: 20vh;
+      left: 0;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+    #menu-toggle ~ .menu li {
+      height: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    #menu-toggle:checked ~ .menu li {
+      height: 3.1em;
+      padding: 0.13em;
+      background: $yellow;
+      border-bottom: solid $red 0.13rem;
+      transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .menu > li {
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0.5em 0;
+      width: 100%;
+      color: $blue;
+      background-color: $white;
+    }
+    .menu > li:not(:last-child) {
+      border-bottom: 1px solid $green;
+    }
+  }
+
+
+
+
+ 
 
 // Footer
 
@@ -115,12 +236,17 @@ h3 {
     font-size:1.75rem;
 }
 
-h4 {
+h4, label {
     font-size:  1rem;
 }
 
+label {
+    margin-top : $spacing-6;
+}
+
 input {
-    padding: 7px;
+    padding: $spacing-6;
+    height: 45px;
 }
 
 
@@ -182,6 +308,14 @@ input {
     }
 }
 
+.bloc--3-1 {
+    @include bloc--2-columns(70%, 30%);
+   
+    &>*:first-child {
+        background-color : #fff;
+    }
+}
+
 .bloc--2-2 {
     @include bloc--2-columns(50%, 50%);
 
@@ -189,12 +323,34 @@ input {
         display: flex;
         flex-direction: column;
     }
+}
 
+.block--1-5 {
+    @include bloc--2-columns(20%, 80%);
+}
+
+.bloc--3-columns {
+    display : flex;
+    flex-direction : column;
+    align-items: center;
+
+    @media screen and (min-width : $laptop){
+        flex-direction : row;
+    }
+
+    &>*{
+       display : flex;
+       flex-direction : column; 
+       width : 30%;
+    }
 }
 
 .yellowButton {
     @include button($yellow, $blue);
+}
 
+label {
+    color : $blue;
 }
 
 .field_error {
@@ -204,4 +360,8 @@ input {
     padding : $spacing-6;
     width : fit-content;
     margin-top : $spacing-6;
+}
+
+.menu li:focus-within {
+    outline: 3px dashed #1F294C !important;
 }
