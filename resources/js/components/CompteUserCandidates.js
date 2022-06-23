@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import {Helmet} from "react-helmet";
-import {useParams, Link} from "react-router-dom";
+import {useParams, Link, useNavigate} from "react-router-dom";
 import Moment from 'react-moment';
 import CategoryIcon from '@mui/icons-material/Category';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const CompteUserCandidates = () => {
+    let navigate = useNavigate();
+
+    require("../../../public/css/compteUser.css");
 
     const API_URL = process.env.MIX_APP_URL + 'api/';
 
@@ -38,18 +41,26 @@ const CompteUserCandidates = () => {
             }
         ).then(resp => {console.log(resp.data.data),setResp(resp.data.data.posts), setCandidates(resp.data.data.posts.map(item=> {return {
             candidates : item.candidates,
-            posts : item.id}}))});
+            posts : item.title}}))});
         }
 
 
-    async function validateCandidature(id, post){
+    async function validateCandidature(id){
         await axios.get(
-            API_URL + "posts/progress/" + post , { 
+            API_URL + "posts/progress/" + id , { 
                 headers: { 
                     Authorization: 'Bearer ' + window.sessionStorage.getItem('token') 
                 } 
             }
-        );
+        )
+    }
+
+    async function voirProfil(id){
+        navigate("/utilisateur?id=" + id);
+    }
+
+    const LinkProfil = (item) =>{
+       return <td><button className="button-blue" onClick={()=>{voirProfil(item.item.user.id)}}>voir le profil de {item.item.user.firstName} {item.item.user.lastName} </button></td>
     }
     
     if(resp !== undefined) {       
@@ -60,32 +71,39 @@ const CompteUserCandidates = () => {
                     </Helmet>
                     <p role="status" className="visually-hidden"> La Boite à Sel - {title} </p>
                     <h3 className="panel-title"> Candidatures </h3>
-                    <table>
-                        <tr>
-                            <td>
-                                <a> Voir le profil </a>
-                            </td>
-                            <td>
-                                <a> Accepter </a>
-                            </td>
-                        </tr>
-                    </table>
 
-                    <ul className="list-posts bloc-list--annonces">
+                    <div className="list--tables">
                         {candidates.map(candidatesPost =>
                             {return (
-                                <li> 
-                                {candidatesPost.posts}
-                                {candidatesPost.candidates.map(
-                                    item => {return <button className="button-blue" onClick={()=>{validateCandidature(item.id, candidatesPost.posts)}}>valider candidature du profil n° {item.id} </button>}
-                                )}
-                                </li>)
-                            }
-                        )} 
-                    </ul>
+                                <div className="table--wrapper">
+                                    <h4>  {candidatesPost.posts}</h4>
+                                    <table  className="table--candidates">
+                                        <thead> 
+                                            <tr>
+                                                <th> Voir le profil </th>
+                                                <th> Accepter la demande </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {candidatesPost.candidates.map(
+                                                item => {return (
+                                                    <tr>
+                                                        <LinkProfil item={item}/>
+                                                        <td><button className="button-blue" onClick={()=>{validateCandidature(item.id, candidatesPost.posts)}}>valider la candidature de {item.user.firstName} {item.user.lastName} </button></td>
+                                                    </tr>
+                                                )}
+                                            )}
+                                        </tbody>   
+                                    </table>
+                                </div>
+                            )
+                        }
+                    )
+                }
+                </div>
             </div>
-        );
-    } 
+            )
+        }             
     else {
         return (
             <div>
