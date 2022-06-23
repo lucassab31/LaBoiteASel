@@ -55,7 +55,7 @@ class UsersController extends Controller
      * @return Response
      */
     public function view($id) {
-        if (Auth::id() == $id || $id == 0) {
+        if (Auth::check() && (Auth::id() == $id || $id == 0)) {
             return $this->sendResponse(true, User::where('id', Auth::id())->withCount('posts')->withCount('postsMaker')->first());
         } else {
             $user = User::where('id', $id)->withCount('posts')->withCount('postsMaker')->first();
