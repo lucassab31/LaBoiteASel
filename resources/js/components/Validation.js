@@ -18,8 +18,7 @@ const Validation = () => {
     });
 
     const fetchUserName = async () => {
-        const apiUser = await axios.get(baseUrl+"view/"+id, 
-        { headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}}); 
+        const apiUser = await axios.get(baseUrl+"view/"+id); 
         setData({
             userName: await apiUser.data.data, 
         });
@@ -28,6 +27,7 @@ const Validation = () => {
         fetchUserName();
     }, []);
 
+    console.log(state.userName);
     return (
         <main className="main-validation">
             <Helmet>

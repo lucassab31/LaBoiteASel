@@ -34,7 +34,7 @@ const UsersList = () => {
      };
 
     return(
-        <main>
+        <main className="mainList">
             <h2 className="adminPanelList_title"> Liste des membres </h2>
             <Link className="button-blue" to="addMembers">Ajouter un membre</Link>
 

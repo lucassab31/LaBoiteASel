@@ -106,7 +106,6 @@ const ListAnnonces = () => {
         }
         
         let urlApiRequest = baseUrl+"postsFiltered/"+idCategory+"/"+lengthService+"/"+dateFilter+"/"+searchDateSpecification;
-        //console.log(urlApiRequest);
         fetchFilteredPosts(urlApiRequest);
     }; 
     console.log(state.posts);
@@ -116,8 +115,7 @@ const ListAnnonces = () => {
               setData({
             ...state, posts: resp.data.data, 
     })});
-        console.log("tata");
-        console.log(state.posts);
+        //console.log(state.posts);
     };
 
     return (
@@ -188,7 +186,7 @@ const ListAnnonces = () => {
 
                                      <div className="annonce__infosCategorie">
                                         <CategoryIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                        <p> {item.category.title}</p>
+                                        <p>{item.category.title}</p>
                                     </div>
                                    
 
@@ -213,7 +211,7 @@ const ListAnnonces = () => {
                             
                             <div className="annonce_btn">
                                 <Link to={`/annonce?id=${item.id}`} className="button-blue">Voir l'annonce</Link>
-                                <Link to="/validation" className="button-yellow">Rendre service</Link>
+                                <Link to={`/validation?id=${item.id}`} className="button-yellow">Rendre service</Link>
                             </div>
                         </div>           
                     }
