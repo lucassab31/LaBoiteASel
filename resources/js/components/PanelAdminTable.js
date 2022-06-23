@@ -63,6 +63,26 @@ const PanelAdminTable = () => {
         }
     }
 
+    async function downloadInformations(e) {
+        e.preventDefault();
+
+        await axios.post(
+            API_URL + "admin/stats/export", 
+            dates,
+            {
+                headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}
+            }
+        ).then(resp => {
+            const url = window.URL.createObjectURL(new Blob([resp.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'file.csv');
+            document.body.appendChild(link);
+            link.click();
+            }
+        );
+    }
+
     /*useEffect(()=>{
         getInformations();
     }, [])*/
@@ -70,31 +90,35 @@ const PanelAdminTable = () => {
     const Table = () => {
         if(results.length > 1){
             return(
-        <table>
-                <caption> Services échangés et reçus par les utilisateurs et utilisatrices </caption>
-                <thead>
-                    <tr>
-                        <th scope="col">utilisateur/utilisatrice</th>
-                        <th scope="col">service reçu</th>
-                        <th scope="col">service donné</th>
-                        <th scope="col">total de services rendus et donnés</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {results.map((item, i)=>
-                        {
-                            return (
-                                <tr key={i}>
-                                <td>{item.name}</td>
-                                <td>{item.posts_count}</td>
-                                <td>{item.posts_maker_count}</td>
-                                <td>{item.total}</td>
+                <>
+                    <table>
+                            <caption> Services échangés et reçus par les utilisateurs et utilisatrices </caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">utilisateur/utilisatrice</th>
+                                    <th scope="col">service reçu</th>
+                                    <th scope="col">service donné</th>
+                                    <th scope="col">total de services rendus et donnés</th>
                                 </tr>
-                            )
-                        }
-                    )}
-                </tbody>
-        </table>)
+                            </thead>
+                            <tbody>
+                                {results.map((item, i)=>
+                                    {
+                                        return (
+                                            <tr key={i}>
+                                            <td>{item.name}</td>
+                                            <td>{item.posts_count}</td>
+                                            <td>{item.posts_maker_count}</td>
+                                            <td>{item.total}</td>
+                                            </tr>
+                                        )
+                                    }
+                                )}
+                            </tbody>
+                    </table>
+                    <button className="button-blue" onClick={downloadInformations}>Exporter les données</button>
+                </>
+            )
         }
         else 
         {

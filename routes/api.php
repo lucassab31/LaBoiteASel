@@ -74,7 +74,7 @@ Route::middleware('auth:api')->group(function () {
         Route::prefix('stats')->name('stats.')->group(function () {
             Route::get('/', [AdminStatsController::class, 'index']);
             Route::post('/balance', [AdminStatsController::class, 'balance']);
-            Route::get('/export', [AdminStatsController::class, 'exportCsv']);
+            Route::post('/export', [AdminStatsController::class, 'exportCsv']);
         });
     });
 });
