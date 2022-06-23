@@ -21,7 +21,7 @@ const ListCategories = () => {
         setData({
             listCategories: await apiCategories.data.data, 
         });
-        console.log(apiCategories.data.data);
+        //console.log(apiCategories.data.data);
     };
     
     useEffect(() => {

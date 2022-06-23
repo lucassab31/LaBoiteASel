@@ -58,14 +58,12 @@ const ListAnnonces = () => {
                     break; 
             } 
             post.dateText = dateText; 
-            //console.log(post);
         }
     };
     
     useEffect(() => {
             fetchPosts();
     }, []);
-    //console.log(state.listCategories);
 
 
     // Filter part - form 
@@ -76,19 +74,15 @@ const ListAnnonces = () => {
 
     const handleCategoryChange = event => {
         setCategory(event.target.value);
-       // console.log('The value of category is :', event.target.value);
     };
     const handleDateChange = event => {
         setDate(event.target.value);
-        //console.log('The date is :', event.target.value);
     };
     const handleLengthServiceChange = event => {
         setLenghtService(event.target.value);
-        //console.log('The value of category is :', event.target.value);
     };
     const handleSearchDateSpecificationChange = event => {
         setSearchDateSpecification(event.target.value);
-       // console.log('The value of category is :', event.target.value);
     };
 
     const handleClick = event => {
