@@ -45,9 +45,9 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/logout', [UsersController::class, 'logout']);
 
         Route::get('/view/{id}', [UsersController::class, 'view']);
-        Route::get('/viewPosts/{id}', [UsersController::class, 'viewPosts']);
-        Route::get('/viewTransactions/{id}', [UsersController::class, 'viewTransactions']);
-        Route::get('/viewReports/{id}', [UsersController::class, 'viewReports']);
+        Route::get('/viewPosts', [UsersController::class, 'viewPosts']);
+        Route::get('/viewTransactions', [UsersController::class, 'viewTransactions']);
+        Route::get('/viewReports', [UsersController::class, 'viewReports']);
         
         Route::post('/edit', [UsersController::class, 'update']);
         

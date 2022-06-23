@@ -79,7 +79,9 @@ class UsersController extends Controller
      */
     public function viewPosts() {
         $user = User::where('id', Auth::id())->with(['posts' => function ($query) {
-            $query->with('candidates')->orderByDesc('created_at');
+            $query->with('category')->with(['candidates' => function ($query) {
+                $query->with('user');
+            }])->orderByDesc('created_at');
         }])->first();
         return $this->sendResponse(true, $user);
     }

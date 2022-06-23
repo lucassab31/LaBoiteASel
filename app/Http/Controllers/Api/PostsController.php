@@ -243,20 +243,21 @@ class PostsController extends Controller
      * @return Request
      */
     public function finish($id) {
-        if (!Auth::check()) return $this->sendResponse(false, "Vous n'avez pas accès à cette partie !");
         $post = Post::findOrFail($id);
         $post->status = 'F';
         $post->save();
-        // Create Transaction
-        $transaction = new Transaction();
-        $transaction->amount = $post->cost;
-        $transaction->post()->associate($post->id);
-        $transaction->save();
-        // debit + crédit gds
-        $post->user->money -= $post->cost;
-        $post->user->save();
-        $post->userMaker->money += $post->cost;
-        $post->userMaker->save();
+        if ($post->userMaker != null) {
+            // Create Transaction
+            $transaction = new Transaction();
+            $transaction->amount = $post->cost;
+            $transaction->post()->associate($post->id);
+            $transaction->save();
+            // debit + crédit gds
+            $post->user->money -= $post->cost;
+            $post->user->save();
+            $post->userMaker->money += $post->cost;
+            $post->userMaker->save();
+        }
 
         return $this->sendResponse();
     }
