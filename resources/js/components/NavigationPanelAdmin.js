@@ -39,7 +39,6 @@ const NavigationPanelAdmin = () => {
                     </div>
                     <div>
                         <Link to="adminTable">Balance des services et volume des échanges </Link>
-                        <a>Export des données</a>
                     </div>
                 </div>
             </div>

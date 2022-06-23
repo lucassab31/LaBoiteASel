@@ -24,7 +24,7 @@ const PanelAdminTable = () => {
     async function getInformations(e) {
         e.preventDefault();
 
-        if(dates) {console.log(dates)};
+        //if(dates) {console.log(dates)};
         let max = 0; 
         let min = 0;
         let listValues = [];

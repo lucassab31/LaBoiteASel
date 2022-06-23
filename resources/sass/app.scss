@@ -56,9 +56,6 @@ header {
     z-index: 2;
   }
 
-   li:focus {
-    outline: 3px dashed #1F294C !important;
-   }
   
   .menu > li {
     margin: 0 1rem;
@@ -363,4 +360,8 @@ label {
     padding : $spacing-6;
     width : fit-content;
     margin-top : $spacing-6;
+}
+
+.menu li:focus-within {
+    outline: 3px dashed #1F294C !important;
 }
