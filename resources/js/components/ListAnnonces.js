@@ -105,7 +105,6 @@ const ListAnnonces = () => {
         }
         
         let urlApiRequest = baseUrl+"postsFiltered/"+idCategory+"/"+lengthService+"/"+dateFilter+"/"+searchDateSpecification;
-        //console.log(urlApiRequest);
         fetchFilteredPosts(urlApiRequest);
     }; 
     
@@ -115,8 +114,7 @@ const ListAnnonces = () => {
               setData({
             ...state, posts: resp.data.data, 
     })});
-        console.log("tata");
-        console.log(state.posts);
+        //console.log(state.posts);
     };
 
     async function changeStatutPost(id) {
@@ -199,7 +197,7 @@ const ListAnnonces = () => {
 
                                      <div className="annonce__infosCategorie">
                                         <CategoryIcon style={{ color: '#5BB286', fontSize:30}}/>
-                                        <p> {item.category.title}</p>
+                                        <p>{item.category.title}</p>
                                     </div>
                                    
 

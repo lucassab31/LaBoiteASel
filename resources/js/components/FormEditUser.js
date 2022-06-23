@@ -9,7 +9,7 @@ const FormEditUser = () => {
     const urlSplit = url.split('/');
     console.log(urlSplit[6]);
 
-    //require("../../../public/css/formNewUser.css");
+    require("../../../public/css/formEdit.css");
     const [errors, setErrors] = useState();
     const [edited, setEdited] = useState();
     const [focusInput, setFocusInput] = useState();

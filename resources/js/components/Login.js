@@ -53,7 +53,7 @@ const Login = () => {
                             autoFocus
                             type="email"
                             id="email"
-                            placeholder="Votre adresse mail"
+                            placeholder="Votre nom d'utilisateur"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />

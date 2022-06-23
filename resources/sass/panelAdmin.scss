@@ -12,6 +12,10 @@
     }
 }
 
+.mainList {
+    margin-top: $spacing-1;
+}
+
 table {
     border-collapse : collapse;
     text-align : center;
@@ -19,6 +23,7 @@ table {
     table-layout: auto;
     width: 100%;
     background-color : #fff;
+    margin-bottom: 40px;
 
     tr:nth-child(even){
         background-color : $white;
@@ -49,5 +54,28 @@ table {
     margin: $spacing-6 $spacing-6 $spacing-6 0;
     table {
         margin-top: $spacing-4;
+    }
+}
+
+
+/*Panel Admin*/
+.panelAdmin__title{
+    margin: $spacing-2 0 $spacing-5 $spacing-3;
+    align-items: center;
+    display: flex;
+
+    span {
+        margin-left: $spacing-6;
+    }
+}
+
+/*Panel Admin Home*/
+.charts-btnDescription {
+    margin-top: $spacing-5;
+}
+#desc {
+    p {
+        text-align: center;
+        margin: $spacing-5;
     }
 }

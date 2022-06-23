@@ -3,6 +3,7 @@ import NavigationPanelAdmin from './NavigationPanelAdmin';
 import PanelAdminHome from './PanelAdminHome';
 import FormNewUser from './FormNewUser';
 import {Routes, Route } from "react-router-dom";
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import PanelAdminTable from "./PanelAdminTable";
 import NavigationCategories from "./NavigationCategories";
 import NavigationUser from "./NavigationUser";
@@ -13,7 +14,10 @@ const PanelAdmin = () => {
 
     return(
         <main>
-            <h2> Administration du site </h2>
+            <h2 className="panelAdmin__title">
+                <AdminPanelSettingsIcon  style={{ color: '#5BB286', fontSize:40 }} />
+                 <span>Administration du site</span>
+            </h2>
             <div className="block--1-5">
                 <NavigationPanelAdmin/>
 

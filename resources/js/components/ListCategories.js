@@ -34,8 +34,7 @@ const ListCategories = () => {
     };
 
     return(
-        <main>
-
+        <main className="mainList">
             <h2 className="adminPanelList_title"> Liste des catégories </h2>
             <div className="listCategories">
                 <Link className="button-blue" to="addCategory">Ajouter une catégorie</Link>
