@@ -170,7 +170,6 @@ const ListAnnonces = () => {
                 <div id="listAnnonces__container">
                     <FlatList keyExtractor={(item) => item.id} list={state.posts}  renderItem={item => 
                         <div className="annonce">
-                            <img src="#" alt=""/>
                             <div className="annonce__infos">
                                 <h3>{item.title}</h3>
 
