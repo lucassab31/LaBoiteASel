@@ -25,7 +25,10 @@ const CompteUser = () => {
     }, []);
 
     async function fetchUser() {
-        const apiUser = await axios.get(API_URL + "users/view/0", { headers: { Authorization: 'Bearer ' + window.sessionStorage.getItem('token') } });
+        const queryParams = new URLSearchParams(window.location.search);
+        let id = queryParams.get('id');
+        if (id == null) id = 0;
+        const apiUser = await axios.get(API_URL + "users/view/" + id, { headers: { Authorization: 'Bearer ' + window.sessionStorage.getItem('token') } });
         setResp(apiUser.data.data);
         setInfoId(apiUser.data.data.id);
     }
