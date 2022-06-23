@@ -30,7 +30,7 @@ const PanelAdminTable = () => {
         let listValues = [];
 
         await axios.post(
-            API_URL + "stats/balance", 
+            API_URL + "admin/stats/balance", 
             dates,
             {
                 headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}

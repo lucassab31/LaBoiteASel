@@ -39,7 +39,7 @@ const PanelAdminHome = () => {
 
     async function fetchInformations() {
         await axios.get(
-            API_URL + "stats/", 
+            API_URL + "admin/stats/", 
             {
                 headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}
             }
@@ -116,8 +116,8 @@ const PanelAdminHome = () => {
         {
             label: 'Nombre de posts fermés à cette date',
             data: finished,
-            borderColor: 'rgb(53, 162, 235)',
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            borderColor: 'rgba(75, 192, 192)',
+            backgroundColor: 'rgba(75, 192, 192, 0.5)',
         },
     ],
     };
