@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
         $user->zipCode          = "75010";
         $user->city             = "Paris";
         $user->role             = 'A';
-        $password               = "laboitasel";
+        $password               = "laboiteasel";
         $user->password         = bcrypt($password);
         $user->save();
 
@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
         $user->zipCode          = "42100";
         $user->city             = "Saint-Étienne";
         $user->role             = 'U';
-        $password               = "laboitasel";
+        $password               = "laboiteasel";
         $user->password         = bcrypt($password);
         $user->save();
     }

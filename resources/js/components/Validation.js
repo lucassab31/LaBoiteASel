@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import {Helmet} from "react-helmet";
-const API_URL = process.env.MIX_APP_URL +'api/'; 
+const API_URL = process.env.MIX_APP_URL +'api/';
 
 const Validation = () => {
     require("../../../public/css/validation.css");
@@ -17,15 +17,15 @@ const Validation = () => {
         userName: '', 
     });
 
-    const fetchUserName = async () => {
-        const apiUser = await axios.get(baseUrl+"view/"+id); 
-        setData({
-            userName: await apiUser.data.data, 
-        });
-    };
-    useEffect(() => {
-        fetchUserName();
-    }, []);
+    // const fetchUserName = async () => {
+    //     const apiUser = await axios.get(baseUrl+"view/"+id, { headers: { Authorization: 'Bearer ' + window.sessionStorage.getItem('token') } }); 
+    //     setData({
+    //         userName: await apiUser.data.data, 
+    //     });
+    // };
+    // useEffect(() => {
+    //     fetchUserName();
+    // }, []);
 
     console.log(state.userName);
     return (
@@ -37,7 +37,7 @@ const Validation = () => {
 
             <div className="bloc--icon"><ThumbUpAltIcon  aria-hidden="true" style={{ color: '#5BB286', fontSize:80}}/></div>
             <div className="bloc-yellow">
-                <h2 className="bloc-title">Votre demande bien été envoyée à {state.userName.firstName} . {state.userName.lastName} !</h2>
+                <h2 className="bloc-title">Votre demande bien été envoyée !</h2>
                 <p>Vous recevrez une réponse dès que possible.</p>
             </div>
         </main>
