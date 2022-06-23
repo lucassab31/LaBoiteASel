@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import CompteUserProfile from "./CompteUserProfile";
 import CompteUserPosts from "./CompteUserPosts";
 import CompteUserCandidates from "./CompteUserCandidates";
+import EditCompteUser from "./EditCompteUser";
 import { Button } from "react-bootstrap";
 import EditIcon from '@mui/icons-material/Edit';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
@@ -36,7 +37,7 @@ const CompteUser = () => {
             if (resp.role == 'A') {
                 return (
                     <span>
-                        <Link to="" className="">
+                        <Link to="edit" className="">
                             <EditIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} />Modifier le profil
                         </Link>
                         <Link to="/admin" className="">
@@ -46,7 +47,7 @@ const CompteUser = () => {
                 );
             } else {
                 return (
-                    <Link to="" className="">
+                    <Link to="edit" className="">
                         <EditIcon aria-hidden="true" style={{ color: '#5BB286', fontSize: 15 }} />Modifier le profil
                     </Link>
                 );
@@ -79,6 +80,7 @@ const CompteUser = () => {
                 <Route index path="/" element={<CompteUserProfile />} />
                 <Route path={"myPosts/"} element={<CompteUserPosts />} /> 
                 <Route path={"candidatures/"} element={<CompteUserCandidates />} />
+                <Route path={"edit/"} element={<EditCompteUser/>}/>
             </Routes>
         </main>
     );
