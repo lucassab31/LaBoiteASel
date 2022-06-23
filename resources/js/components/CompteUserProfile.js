@@ -15,6 +15,9 @@ const CompteUserProfile = () => {
     let title = "Mon profil";
 
     async function fetchUser() {
+        const queryParams = new URLSearchParams(window.location.search);
+        let id = queryParams.get('id');
+        if (id == null) id = 0;
         const apiUser = await axios.get(API_URL + "users/view/0", { headers: { Authorization: 'Bearer ' + window.sessionStorage.getItem('token') } });
         setResp(apiUser.data.data);
     }
