@@ -14,7 +14,7 @@ const Validation = () => {
 
             <div className="bloc--icon"><ThumbUpAltIcon  aria-hidden="true" style={{ color: '#5BB286', fontSize:80}}/></div>
             <div className="bloc-yellow">
-                <h2 className="bloc-title">Votre demande bien été envoyée !</h2>
+                <h2 className="bloc-title">Votre demande a bien été envoyée !</h2>
                 <p>Vous recevrez une réponse dès que possible.</p>
             </div>
         </main>

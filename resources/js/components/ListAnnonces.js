@@ -11,6 +11,7 @@ const API_URL = process.env.MIX_APP_URL +'api/';
 const ListAnnonces = () => {
     require("../../../public/css/listAnnonces.css");
     const title = "Liste des annonces";
+    const [candidate, setCandidate] = useState({});
     
     // Display posts 
     // Fetch data from database to get list of posts and category
@@ -42,8 +43,6 @@ const ListAnnonces = () => {
             posts: await apiPosts.data.data, 
             listCategories: await apiCategories.data.data
         });
-        //console.log(apiPosts.data.data);
-
 
         for (let post of apiPosts.data.data) {
             let dateText = ""; 
@@ -59,14 +58,12 @@ const ListAnnonces = () => {
                     break; 
             } 
             post.dateText = dateText; 
-            //console.log(post);
         }
     };
     
     useEffect(() => {
             fetchPosts();
     }, []);
-    //console.log(state.listCategories);
 
 
     // Filter part - form 
@@ -77,28 +74,19 @@ const ListAnnonces = () => {
 
     const handleCategoryChange = event => {
         setCategory(event.target.value);
-       // console.log('The value of category is :', event.target.value);
     };
     const handleDateChange = event => {
         setDate(event.target.value);
-        //console.log('The date is :', event.target.value);
     };
     const handleLengthServiceChange = event => {
         setLenghtService(event.target.value);
-        //console.log('The value of category is :', event.target.value);
     };
     const handleSearchDateSpecificationChange = event => {
         setSearchDateSpecification(event.target.value);
-       // console.log('The value of category is :', event.target.value);
     };
 
     const handleClick = event => {
         event.preventDefault();
-        /*console.log('-- result of the form --')
-        console.log('category ', category);
-        console.log('length of the service ', lengthService);
-        console.log('date limit is ', date);
-        console.log('search operator ', searchDateSpecification);*/
         let idCategory;
         // à rendre dynamique
         let dateFilter ; 
@@ -115,7 +103,7 @@ const ListAnnonces = () => {
         //console.log(urlApiRequest);
         fetchFilteredPosts(urlApiRequest);
     }; 
-    console.log(state.posts);
+    
 
     const fetchFilteredPosts = async (urlRequest) => {
         //console.log("toto");
@@ -123,31 +111,19 @@ const ListAnnonces = () => {
               setData({
             ...state, posts: resp.data.data, 
     })});
-        console.log("tata");
-        console.log(state.posts);
     };
+
+    async function changeStatutPost(id) {
+        await axios.get(
+            baseUrl + "candidate/" + id, 
+            {
+                headers: {Authorization: 'Bearer ' + window.sessionStorage.getItem('token')}
+            }
+        );
+    }
 
     const displayDatePost =  (item) => {
-        //console.log(item);
-       
-        /*let dateText = ""; 
-        switch (item.datetimeType) {
-            case "B":
-                dateText =  "Avant le ";
-                break;
-            case "O":
-                dateText =  "À faire le ";
-                break;
-            case "A":
-                dateText =  "Après le ";
-                break; 
-        } 
-        item.dateText = dateText; 
-        console.log(item);*/
     };
-
-    
-
 
     return (
         <main id="annonces">
@@ -243,7 +219,7 @@ const ListAnnonces = () => {
                             
                             <div className="annonce_btn">
                                 <Link to={`/annonce?id=${item.id}`} className="button-blue">Voir l'annonce</Link>
-                                <Link to="/validation" className="button-yellow">Rendre service</Link>
+                                <Link to="/validation" onClick={()=>{changeStatutPost(item.id)}} className="button-yellow">Rendre service</Link>
                             </div>
                         </div>           
                     }

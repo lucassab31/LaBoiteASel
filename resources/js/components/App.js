@@ -28,8 +28,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/connexion" element={<Login />} />
-                    <Route path="/utilisateur" element={<CompteUser />} />
-                    <Route path="/modificationUtilisateur" element={<EditCompteUser />} />
+                    <Route path="/utilisateur/*" element={<CompteUser />} />
                     <Route path="/test" element={<Test />} />
                     <Route path="/annonces" element={<ListAnnonces/>} />
                     <Route path="/validation" element={<Validation />} />

@@ -52,7 +52,7 @@ const Messaging = () => {
                     <Helmet>
                         <title>{title}</title>
                     </Helmet>
-                    <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
+                    <p role="status" className="visually-hidden"> La Boite à Sel - {title} </p>
 
                     <div className="bloc-messages"> 
                         <div className="bloc-messages__wrapper">
@@ -77,11 +77,11 @@ const Messaging = () => {
                             </div>
                         </div>
                         <form className="bloc-messages__content bloc--bg-blue">
-                            <div class="bloc-messages__wrapper-textarea">
+                            <div className="bloc-messages__wrapper-textarea">
                                 <label htmlFor="message"> Entrez votre message </label>
                                 <textarea placeholder="Exemple : Bonjour..." id="message"/>
                             </div>
-                            <button class="button button-white" type="submit"> Envoyer le message </button>
+                            <button className="button button-white" type="submit"> Envoyer le message </button>
                         </form>
                     </div>
                 </main>
@@ -109,7 +109,7 @@ const Messaging = () => {
                 <Helmet>
                     <title>{title}</title>
                 </Helmet>
-                <p role="status" class="visually-hidden"> La Boite à Sel - {title} </p>
+                <p role="status" className="visually-hidden"> La Boite à Sel - {title} </p>
                 <h2> Ma messagerie </h2>
                 <div id="bloc" className="bloc bloc-messaging bloc--1-3">
                     <div className="bloc-chat">
@@ -144,11 +144,11 @@ const Messaging = () => {
                             </div>
                         </div>
                         <form className="bloc-messages__content bloc--bg-blue">
-                            <div class="bloc-messages__wrapper-textarea">
+                            <div className="bloc-messages__wrapper-textarea">
                                 <label htmlFor="message"> Entrez votre message </label>
                                 <textarea placeholder="Exemple : Bonjour..." id="message"/>
                             </div>
-                            <button class="button button-white" type="submit"> Envoyer le message </button>
+                            <button className="button button-white" type="submit"> Envoyer le message </button>
                         </form>
                     </div>
                 </div>
