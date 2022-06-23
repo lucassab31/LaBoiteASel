@@ -48,12 +48,12 @@ const Login = () => {
                 <h1 className="title">Connectez-vous</h1>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="group" size="lg">
-                        <Form.Label htmlFor="email">Nom d'utilisateur</Form.Label>
+                        <Form.Label htmlFor="email">Adresse mail</Form.Label>
                         <Form.Control
                             autoFocus
                             type="email"
                             id="email"
-                            placeholder="Votre nom d'utilisateur"
+                            placeholder="Votre adresse mail"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
