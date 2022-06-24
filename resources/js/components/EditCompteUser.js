@@ -158,7 +158,7 @@ const EditCompteUser = () => {
 
                     <EditUser/>
 
-                    <form onSubmit={submitForm} >
+                    <form class="form--edit" onSubmit={submitForm} >
                         <fieldset className="form-user">
                             <label className="label" style={{ fontWeight: "bold", color: '#1F294C' }} htmlFor="lastName">Nom :</label>
                             <input
